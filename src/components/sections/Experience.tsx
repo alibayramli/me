@@ -42,7 +42,7 @@ const Experience = () => {
                 className={`ml-12 md:ml-0 ${index % 2 === 0 ? "md:mr-8" : "md:ml-8"}`}
               >
                 <Card
-                  className={`glass border-0 transition-all duration-300 hover:scale-[1.01] ${
+                  className={`glass border-0 transition-colors duration-300 hover:border-primary/25 ${
                     exp.highlight ? "ring-1 ring-primary/30" : ""
                   }`}
                 >

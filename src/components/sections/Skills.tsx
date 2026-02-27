@@ -29,7 +29,7 @@ const Skills = () => {
           {SKILL_CATEGORIES.map((category, index) => (
             <Card
               key={index}
-              className={`glass border-0 transition-all duration-300 hover:scale-[1.02] ${
+              className={`glass border-0 transition-colors duration-300 hover:border-primary/30 ${
                 category.highlight ? "glow ring-1 ring-primary/50" : ""
               }`}
             >

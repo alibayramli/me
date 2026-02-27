@@ -28,7 +28,7 @@ const Projects = () => {
           {PROJECTS.map((project, index) => (
             <Card
               key={index}
-              className="glass border-0 overflow-hidden group transition-all duration-300 hover:scale-[1.02] hover:glow"
+              className="glass border-0 overflow-hidden group transition-colors duration-300 hover:glow hover:border-primary/25"
             >
               <div className="relative border-b border-white/10">
                 {project.image ? (

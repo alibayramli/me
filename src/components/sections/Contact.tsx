@@ -1,4 +1,4 @@
-import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Linkedin, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,7 +14,7 @@ const Contact = () => {
                 variant="outline"
                 className="mb-4 border-primary/50 text-primary"
               >
-                <Mail className="w-3 h-3 mr-1" />
+                <Linkedin className="w-3 h-3 mr-1" />
                 Get In Touch
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -29,33 +29,7 @@ const Contact = () => {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-              <a
-                href="mailto:alibayramli@tutanota.com"
-                className="flex items-center gap-3 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors group"
-              >
-                <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-sm text-muted-foreground">Email</div>
-                  <div className="font-medium">alibayramli@tutanota.com</div>
-                </div>
-              </a>
-
-              <a
-                href="tel:+994773183356"
-                className="flex items-center gap-3 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors group"
-              >
-                <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  <Phone className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-sm text-muted-foreground">Phone</div>
-                  <div className="font-medium">+994 77 318 3356</div>
-                </div>
-              </a>
-
+            <div className="mx-auto mb-10 max-w-md">
               <a
                 href="https://www.linkedin.com/in/alibayramli"
                 target="_blank"
@@ -72,21 +46,11 @@ const Contact = () => {
               </a>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 w-full sm:w-auto glow"
-                asChild
-              >
-                <a href="mailto:alibayramli@tutanota.com">
-                  <Mail className="w-4 h-4 mr-2" />
-                  Send Email
-                </a>
-              </Button>
+            <div className="flex items-center justify-center">
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/20 hover:bg-white/5 w-full sm:w-auto"
+                className="border-white/20 hover:bg-white/5 w-full sm:w-auto max-w-xs"
                 asChild
               >
                 <a
@@ -107,8 +71,8 @@ const Contact = () => {
               </div>
               <div className="flex items-center justify-center gap-4 text-sm">
                 <span className="flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  Fluent in English and Turkish
+                  <span className="w-2 h-2 rounded-full bg-green-500" />
+                  Fluent in English and Azerbaijani
                 </span>
                 <span>-</span>
                 <span>Intermediate French</span>

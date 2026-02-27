@@ -1,25 +1,8 @@
-import { useEffect, useState } from "react";
 import { Briefcase, ChevronDown, Mail, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
-  const [typedText, setTypedText] = useState("");
-  const fullText = "Full-Stack Developer";
-
-  useEffect(() => {
-    let index = 0;
-    const timer = setInterval(() => {
-      if (index <= fullText.length) {
-        setTypedText(fullText.slice(0, index));
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 80);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 pt-20">
       <div className="max-w-5xl mx-auto text-center">
@@ -36,8 +19,7 @@ const Hero = () => {
 
         <div className="h-16 md:h-20 flex items-center justify-center mb-8">
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-foreground/90">
-            {typedText}
-            <span className="animate-pulse text-primary">|</span>
+            Full-Stack Developer
           </h2>
         </div>
 
@@ -50,7 +32,7 @@ const Hero = () => {
           <span className="text-primary font-medium">CI/CD Automation</span>
         </p>
         <p className="text-base text-muted-foreground/70 max-w-xl mx-auto mb-12">
-          7+ years building scalable solutions for multinational enterprises.
+          8+ years building scalable solutions for multinational enterprises.
           Former Senior Angular Developer turned Full-Stack Platform Engineer.
         </p>
 

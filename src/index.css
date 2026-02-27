@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700;800&family=Source+Sans+3:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,28 +6,28 @@
 
 @layer base {
   :root {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 6%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 262 83% 58%;
-    --accent-foreground: 210 40% 98%;
+    --background: 220 18% 8%;
+    --foreground: 210 20% 96%;
+    --card: 220 16% 11%;
+    --card-foreground: 210 20% 96%;
+    --popover: 220 16% 11%;
+    --popover-foreground: 210 20% 96%;
+    --primary: 206 72% 62%;
+    --primary-foreground: 220 18% 8%;
+    --secondary: 219 14% 18%;
+    --secondary-foreground: 210 20% 96%;
+    --muted: 219 14% 18%;
+    --muted-foreground: 214 12% 68%;
+    --accent: 208 30% 42%;
+    --accent-foreground: 210 20% 96%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 217 91% 60%;
+    --border: 219 14% 22%;
+    --input: 219 14% 22%;
+    --ring: 206 72% 62%;
     --radius: 0.75rem;
-    --font-display: "Fraunces", "Times New Roman", serif;
-    --font-body: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-display: "Space Grotesk", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Manrope", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   }
 }
 
@@ -39,6 +39,9 @@
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family: var(--font-body);
+    background-image:
+      radial-gradient(circle at 15% 10%, hsl(var(--primary) / 0.12), transparent 38%),
+      radial-gradient(circle at 85% 20%, hsl(var(--primary) / 0.08), transparent 34%);
   }
   html {
     scroll-behavior: smooth;
@@ -56,19 +59,20 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-foreground via-foreground to-primary;
   }
   
   .glass {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+    background-color: rgb(255 255 255 / 0.035);
   }
   
   .glow {
-    box-shadow: 0 0 40px -10px hsl(var(--primary) / 0.5);
+    box-shadow: 0 12px 32px -26px hsl(var(--primary) / 0.55);
   }
   
   .glow-accent {
-    box-shadow: 0 0 40px -10px hsl(var(--accent) / 0.5);
+    box-shadow: 0 12px 32px -26px hsl(var(--accent) / 0.5);
   }
 }
 
@@ -82,12 +86,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary) / 0.3);
+  background: hsl(var(--primary) / 0.25);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary) / 0.5);
+  background: hsl(var(--primary) / 0.38);
 }
 
 /* Animation keyframes */
@@ -97,8 +101,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.8; }
+  0%, 100% { opacity: 0.28; }
+  50% { opacity: 0.42; }
 }
 
 @keyframes gradient-shift {
@@ -121,7 +125,8 @@
 }
 
 .case-study {
-  @apply rounded-2xl border border-white/10 bg-white/5 shadow-lg shadow-black/10;
+  @apply rounded-2xl border border-white/10 bg-white/5 shadow-md shadow-black/10;
+  background-color: rgb(255 255 255 / 0.035);
 }
 
 @media (prefers-reduced-motion: reduce) {

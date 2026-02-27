@@ -71,10 +71,10 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const STATS: Stat[] = [
-  { value: "7+", label: "Years Experience" },
-  { value: "15K+", label: "Users Impacted" },
-  { value: "40%", label: "Performance Gain" },
-  { value: "4", label: "Enterprise Clients" },
+  { value: "8+", label: "Years Experience" },
+  { value: "15K+", label: "Users Served at Scale" },
+  { value: "40%", label: "Manual Effort Reduced" },
+  { value: "10+", label: "Enterprise Clients" },
 ];
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
@@ -118,7 +118,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: "Cloud & DevOps",
     icon: <Cloud className="w-5 h-5" />,
-    skills: ["Azure", "AWS S3", "Docker", "Jenkins", "GitLab", "Bitbucket"],
+    skills: ["AWS", "Docker", "Jenkins", "GitHub", "GitLab"],
   },
   {
     title: "Testing & Quality",
