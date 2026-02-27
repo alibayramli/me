@@ -14,6 +14,18 @@
       content="Full-Stack Developer specializing in internal developer platforms, cloud architecture, and CI/CD automation."
     />
     <meta property="og:type" content="website" />
+    <script>
+      (() => {
+        const key = "portfolio-theme";
+        const stored = localStorage.getItem(key);
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = stored === "light" || stored === "dark" || stored === "system"
+          ? stored
+          : "system";
+        const isDark = theme === "system" ? prefersDark : theme === "dark";
+        document.documentElement.classList.toggle("dark", isDark);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
