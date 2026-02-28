@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
 import {
+  Activity,
+  BellRing,
   Code2,
   Cloud,
   Layers,
-  Cpu,
-  Globe,
   Server,
+  TrendingUp,
   Workflow,
   Zap,
 } from "lucide-react";
@@ -215,35 +216,6 @@ export const EXPERIENCES: Experience[] = [
 
 export const PROJECTS: Project[] = [
   {
-    title: "Fitness Tracker CRM",
-    description:
-      "A comprehensive CRM web application for tracking fitness goals with admin support, multi-language support, and real-time data synchronization.",
-    role: "Product Engineer",
-    tech: [
-      "Angular",
-      "Angular Material",
-      "Tailwind CSS",
-      "Firebase",
-      "Transloco",
-    ],
-    links: {
-      live: "https://ali-fitness-tracker.vercel.app/",
-      github: "https://github.com/alibayramli/fitness-tracker",
-    },
-    icon: <Globe className="w-6 h-6" />,
-    caseStudy: [
-      "Designed role-based dashboards for coaches and admins.",
-      "Implemented real-time updates for goal tracking and progress reporting.",
-      "Built a localization layer to support multi-language onboarding flows.",
-    ],
-    metrics: [
-      { label: "Time-to-insight", value: "-35%" },
-      { label: "Coach adoption", value: "+22%" },
-    ],
-    coverClass:
-      "from-sky-500/20 via-cyan-500/10 to-blue-600/20 border-sky-500/30",
-  },
-  {
     title: "Backstage.io IDP Integration",
     description:
       "Custom Backstage.io plugin development with Azure AI Services integration for automated catalog entity validation and developer portal optimization.",
@@ -264,12 +236,36 @@ export const PROJECTS: Project[] = [
       "from-indigo-500/20 via-purple-500/10 to-fuchsia-500/20 border-purple-500/30",
   },
   {
+    title: "FX Notifier",
+    description:
+      "A Python automation tool that fetches FX rates from Frankfurter API and posts weekday Telegram updates, including derived EUR/AZN rates.",
+    role: "Personal Project",
+    tech: [
+      "Python",
+      "Requests",
+      "python-telegram-bot",
+      "Pytest",
+      "GitHub Actions",
+    ],
+    links: {
+      github: "https://github.com/alibayramli/fx-notifier",
+    },
+    icon: <BellRing className="w-6 h-6" />,
+    caseStudy: [
+      "Built an FX service layer with config validation and retry/backoff for network resilience.",
+      "Implemented deterministic AZN derivation via EUR->USD and a configurable USD->AZN peg.",
+      "Automated weekday notifications using scheduled GitHub Actions with secret-based Telegram delivery.",
+    ],
+    coverClass:
+      "from-slate-500/25 via-cyan-500/10 to-sky-500/25 border-cyan-500/30",
+  },
+  {
     title: "Trading.com Platform",
     description:
       "Front-end architecture and development for a leading forex broker's entry into European and Australian markets.",
     role: "Senior Front-End Engineer",
     tech: ["Angular", "NgRx", "i18n", "Material UI", "REST APIs"],
-    icon: <Cpu className="w-6 h-6" />,
+    icon: <TrendingUp className="w-6 h-6" />,
     company: "XM.com",
     caseStudy: [
       "Led UI architecture for a multi-region rollout.",
@@ -282,5 +278,34 @@ export const PROJECTS: Project[] = [
     ],
     coverClass:
       "from-emerald-500/20 via-teal-500/10 to-green-500/20 border-emerald-500/30",
+  },
+  {
+    title: "Fitness Tracker CRM",
+    description:
+      "A comprehensive CRM web application for tracking fitness goals with admin support, multi-language support, and real-time data synchronization.",
+    role: "Product Engineer",
+    tech: [
+      "Angular",
+      "Angular Material",
+      "Tailwind CSS",
+      "Firebase",
+      "Transloco",
+    ],
+    links: {
+      live: "https://ali-fitness-tracker.vercel.app/",
+      github: "https://github.com/alibayramli/fitness-tracker",
+    },
+    icon: <Activity className="w-6 h-6" />,
+    caseStudy: [
+      "Designed role-based dashboards for coaches and admins.",
+      "Implemented real-time updates for goal tracking and progress reporting.",
+      "Built a localization layer to support multi-language onboarding flows.",
+    ],
+    metrics: [
+      { label: "Time-to-insight", value: "-35%" },
+      { label: "Coach adoption", value: "+22%" },
+    ],
+    coverClass:
+      "from-sky-500/20 via-cyan-500/10 to-blue-600/20 border-sky-500/30",
   },
 ];
