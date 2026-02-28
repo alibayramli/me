@@ -47,18 +47,20 @@ const Contact = () => {
               </Button>
             </div>
 
-            <div className="mt-10 pt-8 border-t border-white/10 text-center">
-              <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-2">
-                <MapPin className="w-4 h-4" />
-                Baku, Azerbaijan (Available for Remote Work)
-              </div>
-              <div className="flex items-center justify-center gap-4 text-sm">
-                <span className="flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-green-500" />
-                  Fluent in English and Azerbaijani
-                </span>
-                <span>-</span>
-                <span>Intermediate French</span>
+            <div className="mt-10 pt-8 border-t border-white/10">
+              <div className="mx-auto w-full max-w-md text-sm">
+                <div className="grid grid-cols-[1.25rem_1fr] gap-x-3 gap-y-3">
+                  <MapPin className="mt-0.5 h-4 w-4 text-muted-foreground" />
+                  <p className="text-muted-foreground">
+                    Baku, Azerbaijan (Available for Remote Work)
+                  </p>
+                  <span className="mt-1 flex h-4 w-4 items-center justify-center">
+                    <span className="h-2 w-2 rounded-full bg-green-500" />
+                  </span>
+                  <p>Fluent in English and Azerbaijani</p>
+                  <span className="h-4 w-4" aria-hidden="true" />
+                  <p>Intermediate French</p>
+                </div>
               </div>
             </div>
           </CardContent>

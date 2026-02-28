@@ -79,11 +79,11 @@ const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
         }`}
       >
         <div className="px-6 pb-6 pt-4">
-          <div className="flex flex-col gap-4 glass rounded-2xl p-4">
+          <div className="flex flex-col gap-3 glass rounded-2xl p-4">
             <Button
               type="button"
               variant="ghost"
-              className="justify-start px-2"
+              className="justify-start px-3 text-sm"
               onClick={onToggleTheme}
             >
               {theme === "dark" ? (
@@ -93,16 +93,18 @@ const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
               )}
               {theme === "dark" ? "Theme: Dark" : "Theme: Light"}
             </Button>
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                onClick={() => setMenuOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
+            <div className="flex flex-col gap-4 pt-0.5">
+              {NAV_ITEMS.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="px-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>

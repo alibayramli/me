@@ -44,15 +44,20 @@ const Projects = () => {
                   />
                 )}
                 <div className="absolute inset-0">
-                  <div className="h-full w-full flex items-end justify-between p-4">
-                    <div className="p-3 rounded-xl bg-white/5 text-primary">
-                      {project.icon}
+                  <div className="h-full w-full flex items-end p-4">
+                    <div className="flex w-full items-center">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 text-primary">
+                        {project.icon}
+                      </div>
+                      {project.company && (
+                        <Badge
+                          variant="outline"
+                          className="ml-3 text-xs bg-black/30 sm:ml-auto"
+                        >
+                          {project.company}
+                        </Badge>
+                      )}
                     </div>
-                    {project.company && (
-                      <Badge variant="outline" className="text-xs bg-black/30">
-                        {project.company}
-                      </Badge>
-                    )}
                   </div>
                 </div>
               </div>
