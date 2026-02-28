@@ -1,27 +1,17 @@
 import { useEffect, useState } from "react";
-import { Laptop, Menu, Moon, Sun, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NAV_ITEMS } from "@/lib/portfolio-data";
 
 type NavigationProps = {
-  themeMode: "light" | "dark" | "system";
-  resolvedTheme: "light" | "dark";
+  theme: "light" | "dark";
   onToggleTheme: () => void;
 };
 
-const Navigation = ({
-  themeMode,
-  resolvedTheme,
-  onToggleTheme,
-}: NavigationProps) => {
+const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const nextThemeLabel =
-    themeMode === "system"
-      ? "dark"
-      : themeMode === "dark"
-        ? "light"
-        : "system";
+  const nextThemeLabel = theme === "dark" ? "light" : "dark";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -60,9 +50,7 @@ const Navigation = ({
             aria-label={`Switch to ${nextThemeLabel} theme`}
             onClick={onToggleTheme}
           >
-            {themeMode === "system" ? (
-              <Laptop className="h-4 w-4" />
-            ) : resolvedTheme === "dark" ? (
+            {theme === "dark" ? (
               <Sun className="h-4 w-4" />
             ) : (
               <Moon className="h-4 w-4" />
@@ -98,18 +86,12 @@ const Navigation = ({
               className="justify-start px-2"
               onClick={onToggleTheme}
             >
-              {themeMode === "system" ? (
-                <Laptop className="h-4 w-4" />
-              ) : resolvedTheme === "dark" ? (
+              {theme === "dark" ? (
                 <Sun className="h-4 w-4" />
               ) : (
                 <Moon className="h-4 w-4" />
               )}
-              {themeMode === "system"
-                ? "Theme: System"
-                : resolvedTheme === "dark"
-                  ? "Theme: Dark"
-                  : "Theme: Light"}
+              {theme === "dark" ? "Theme: Dark" : "Theme: Light"}
             </Button>
             {NAV_ITEMS.map((item) => (
               <a
