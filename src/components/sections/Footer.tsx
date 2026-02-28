@@ -8,7 +8,7 @@ const Footer = () => {
           <span className="text-xl font-bold text-gradient">AB</span>
           <span className="text-muted-foreground">-</span>
           <span className="text-sm text-muted-foreground">
-            Full-Stack Developer
+            Platform Engineer
           </span>
         </div>
 

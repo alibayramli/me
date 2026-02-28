@@ -19,21 +19,17 @@ const Hero = () => {
 
         <div className="h-16 md:h-20 flex items-center justify-center mb-8">
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-foreground/90">
-            Full-Stack Developer
+            Platform Engineer
           </h2>
         </div>
 
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-4 leading-relaxed">
-          Specializing in{" "}
-          <span className="text-primary font-medium">
-            Internal Developer Platforms
-          </span>{" "}
-          (Backstage.io), Cloud Architecture and{" "}
-          <span className="text-primary font-medium">CI/CD Automation</span>
+          <span className="text-primary font-medium">IDP (Backstage.io)</span>.
+          {" "}Cloud architecture.{" "}
+          <span className="text-primary font-medium">CI/CD automation</span>.
         </p>
         <p className="text-base text-muted-foreground/70 max-w-xl mx-auto mb-12">
-          8+ years building scalable solutions for multinational enterprises.
-          Former Senior Angular Developer turned Full-Stack Platform Engineer.
+          Full-stack delivery with React, Angular, and Node.js.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">

@@ -22,14 +22,12 @@ const About = () => {
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                I'm a passionate Full-Stack Developer with extensive experience
-                in building
+                I'm a platform engineer focused on building
                 <strong className="text-foreground">
                   {" "}
                   Internal Developer Platforms (IDP)
                 </strong>{" "}
-                that streamline development workflows and boost team
-                productivity.
+                that streamline development workflows.
               </p>
               <p>
                 At <strong className="text-foreground">XM.com</strong>, I led
@@ -44,7 +42,7 @@ const About = () => {
               <p>
                 My background includes modernizing legacy applications at{" "}
                 <strong className="text-foreground">Morgan Stanley</strong>
-                for 15,000+ users, and building scalable full-stack solutions
+                {" "}for 15,000+ users, and building scalable full-stack solutions
                 across fintech and enterprise sectors.
               </p>
             </div>
