@@ -1,4 +1,4 @@
-import { Linkedin, MapPin } from "lucide-react";
+import { Handshake, Linkedin, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -14,7 +14,7 @@ const Contact = () => {
                 variant="outline"
                 className="mb-4 border-primary/50 text-primary"
               >
-                <Linkedin className="w-3 h-3 mr-1" />
+                <Handshake className="w-3 h-3 mr-1" />
                 Get In Touch
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -29,24 +29,7 @@ const Contact = () => {
               </p>
             </div>
 
-            <div className="mx-auto mb-10 max-w-md">
-              <a
-                href="https://www.linkedin.com/in/alibayramli"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-colors group"
-              >
-                <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  <Linkedin className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-sm text-muted-foreground">LinkedIn</div>
-                  <div className="font-medium">/in/alibayramli</div>
-                </div>
-              </a>
-            </div>
-
-            <div className="flex items-center justify-center">
+            <div className="flex flex-col items-center justify-center gap-3 mb-10">
               <Button
                 size="lg"
                 variant="outline"
@@ -59,7 +42,7 @@ const Contact = () => {
                   rel="noopener noreferrer"
                 >
                   <Linkedin className="w-4 h-4 mr-2" />
-                  Connect on LinkedIn
+                  Message on LinkedIn
                 </a>
               </Button>
             </div>

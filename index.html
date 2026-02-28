@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ali Bayramli - Full Stack Developer</title>
+    <title>Ali Bayramli | Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta
       name="description"
       content="Ali Bayramli - Full-Stack Developer specializing in internal developer platforms, cloud architecture, and CI/CD automation."
@@ -18,11 +19,8 @@
       (() => {
         const key = "portfolio-theme";
         const stored = localStorage.getItem(key);
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const theme = stored === "light" || stored === "dark" || stored === "system"
-          ? stored
-          : "system";
-        const isDark = theme === "system" ? prefersDark : theme === "dark";
+        const theme = stored === "light" || stored === "dark" ? stored : "light";
+        const isDark = theme === "dark";
         document.documentElement.classList.toggle("dark", isDark);
       })();
     </script>

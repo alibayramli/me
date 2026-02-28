@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -12,7 +12,7 @@ const Footer = () => {
           </span>
         </div>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
           <a
             href="https://github.com/alibayramli"
             target="_blank"
@@ -30,13 +30,6 @@ const Footer = () => {
             aria-label="Visit LinkedIn profile"
           >
             <Linkedin className="w-5 h-5" />
-          </a>
-          <a
-            href="mailto:alibayramli@tutanota.com"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Send email"
-          >
-            <Mail className="w-5 h-5" />
           </a>
         </div>
 
