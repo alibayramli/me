@@ -39,7 +39,7 @@ const Projects = () => {
                     <div className="min-w-0">
                       <div className="mb-2 flex flex-wrap items-center gap-2">
                         <span className="text-xs font-medium uppercase tracking-[0.16em] text-primary/80">
-                          {project.role}
+                          {project.label}
                         </span>
                         {project.company && (
                           <Badge
@@ -90,10 +90,10 @@ const Projects = () => {
                     <Layers className="h-3.5 w-3.5 text-primary/80" />
                     Highlights
                   </div>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="card-list space-y-2 text-sm text-muted-foreground">
                     {project.caseStudy.slice(0, 3).map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary/70" />
+                      <li key={item} className="card-list-item">
+                        <span className="card-list-bullet" aria-hidden="true" />
                         <span>{item}</span>
                       </li>
                     ))}

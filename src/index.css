@@ -125,6 +125,20 @@
   .glow-accent {
     box-shadow: 0 18px 40px -32px hsl(var(--primary) / 0.14);
   }
+
+  .card-list {
+    list-style: none;
+  }
+
+  .card-list-item {
+    @apply flex items-start gap-3;
+  }
+
+  .card-list-bullet {
+    @apply mt-2 block h-2 w-2 shrink-0 rounded-full;
+    background-color: hsl(var(--primary) / 0.7);
+    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.12);
+  }
 }
 
 /* Custom scrollbar */

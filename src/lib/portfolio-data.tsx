@@ -53,7 +53,7 @@ export type ProjectMetric = {
 export type Project = {
   title: string;
   description: string;
-  role: string;
+  label: string;
   tech: string[];
   links?: ProjectLink;
   icon: ReactNode;
@@ -261,7 +261,7 @@ export const PROJECTS: Project[] = [
     title: "Platform DevOps Lab",
     description:
       "A full-stack learning lab built around a team task management app, with end-to-end observability, local platform tooling, and Kubernetes starter manifests.",
-    role: "Platform / Full-Stack Engineer",
+    label: "Platform Lab Project",
     tech: [
       "React",
       "Node.js",
@@ -289,7 +289,7 @@ export const PROJECTS: Project[] = [
     title: "Backstage.io IDP Integration",
     description:
       "Custom Backstage.io plugin development with Azure AI Services integration for automated catalog entity validation and developer portal optimization.",
-    role: "Platform Engineer",
+    label: "Developer Portal Project",
     tech: ["Backstage.io", "React", "Node.js", "Azure AI", "TypeScript"],
     icon: <Layers className="w-6 h-6" />,
     company: "XM.com",
@@ -309,7 +309,7 @@ export const PROJECTS: Project[] = [
     title: "FX Notifier",
     description:
       "A Python automation tool that fetches FX rates from Frankfurter API and posts weekday Telegram updates, including derived EUR/AZN rates.",
-    role: "Personal Project",
+    label: "Automation Tool Project",
     tech: [
       "Python",
       "Requests",
@@ -333,7 +333,7 @@ export const PROJECTS: Project[] = [
     title: "Trading.com Platform",
     description:
       "Front-end architecture and development for a leading forex broker's entry into European and Australian markets.",
-    role: "Senior Front-End Engineer",
+    label: "Product Launch Project",
     tech: ["Angular", "NgRx", "i18n", "Material UI", "REST APIs"],
     icon: <TrendingUp className="w-6 h-6" />,
     company: "XM.com",

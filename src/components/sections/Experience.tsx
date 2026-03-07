@@ -60,10 +60,10 @@ const Experience = () => {
 
                 <p className="mb-4 text-muted-foreground">{exp.description}</p>
 
-                <ul className="mb-5 grid gap-2">
+                <ul className="card-list mb-5 grid gap-2">
                   {exp.achievements.map((achievement, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary/70" />
+                    <li key={i} className="card-list-item text-sm">
+                      <span className="card-list-bullet" aria-hidden="true" />
                       <span className="text-muted-foreground">{achievement}</span>
                     </li>
                   ))}
