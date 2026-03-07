@@ -7,7 +7,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-24 px-6">
       <div className="max-w-4xl mx-auto">
-        <Card className="glass border-0 glow overflow-hidden">
+        <Card className="glass overflow-hidden border-0">
           <CardContent className="p-8 md:p-12">
             <div className="text-center mb-10">
               <Badge
@@ -18,22 +18,18 @@ const Contact = () => {
                 Get In Touch
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Let's Build Something{" "}
-                <span className="text-gradient">Amazing</span>
+                Open to <span className="text-gradient">contract and consulting</span>
               </h2>
               <p className="text-muted-foreground max-w-lg mx-auto">
-                I'm currently available for contract work and consulting
-                opportunities. Whether you need IDP expertise, full-stack
-                development, or platform engineering - let's discuss how I can
-                help.
+                Available for platform engineering, full-stack development, and
+                delivery-focused consulting work.
               </p>
             </div>
 
             <div className="flex flex-col items-center justify-center gap-3 mb-10">
               <Button
                 size="lg"
-                variant="outline"
-                className="border-white/20 hover:bg-white/5 w-full sm:w-auto max-w-xs"
+                className="w-full max-w-xs sm:w-auto"
                 asChild
               >
                 <a
@@ -47,7 +43,7 @@ const Contact = () => {
               </Button>
             </div>
 
-            <div className="mt-10 pt-8 border-t border-white/10">
+            <div className="mt-10 border-t border-border/70 pt-8">
               <div className="mx-auto w-full max-w-md text-sm">
                 <div className="grid grid-cols-[1.25rem_1fr] gap-x-3 gap-y-3">
                   <MapPin className="mt-0.5 h-4 w-4 text-muted-foreground" />

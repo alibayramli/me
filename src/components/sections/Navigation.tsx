@@ -22,11 +22,13 @@ const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass py-3" : "py-6"
+        scrolled
+          ? "border-b border-border/70 bg-background/82 py-3 backdrop-blur-md"
+          : "py-6"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a href="#" className="text-xl font-bold text-gradient">
+        <a href="#" className="text-xl font-bold text-foreground">
           AB
         </a>
         <div className="hidden md:flex items-center gap-8">
@@ -46,7 +48,7 @@ const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
             type="button"
             size="icon-sm"
             variant="ghost"
-            className="rounded-full border border-border/70"
+            className="rounded-full border border-border/75 bg-background/70"
             aria-label={`Switch to ${nextThemeLabel} theme`}
             onClick={onToggleTheme}
           >
@@ -56,12 +58,12 @@ const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
               <Moon className="h-4 w-4" />
             )}
           </Button>
-          <Button size="sm" className="bg-primary hover:bg-primary/90" asChild>
+          <Button size="sm" className="px-4" asChild>
             <a href="#contact">Hire Me</a>
           </Button>
           <button
             type="button"
-            className="md:hidden p-2 rounded-lg border border-white/10 bg-white/5 text-foreground hover:bg-white/10 transition-colors"
+            className="md:hidden rounded-lg border border-border/75 bg-background/70 p-2 text-foreground transition-colors hover:bg-accent/70"
             aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-haspopup="menu"
             aria-controls="mobile-nav"
@@ -79,7 +81,7 @@ const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
         }`}
       >
         <div className="px-6 pb-6 pt-4">
-          <div className="flex flex-col gap-3 glass rounded-2xl p-4">
+          <div className="flex flex-col gap-3 rounded-2xl border border-border/75 bg-background/88 p-4 backdrop-blur-md">
             <Button
               type="button"
               variant="ghost"

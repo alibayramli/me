@@ -13,15 +13,15 @@ const Skills = () => {
             className="mb-4 border-primary/50 text-primary"
           >
             <Cpu className="w-3 h-3 mr-1" />
-            Expertise
+            Core Stack
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Technical <span className="text-gradient">Skills</span>
+            Tools, workflows, and{" "}
+            <span className="text-gradient">engineering focus</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            A comprehensive toolkit built over 7+ years of enterprise
-            development, with deep expertise in platform engineering and
-            full-stack development.
+            The core technologies and delivery practices I use across platform
+            engineering and full-stack work.
           </p>
         </div>
 
@@ -29,14 +29,14 @@ const Skills = () => {
           {SKILL_CATEGORIES.map((category, index) => (
             <Card
               key={index}
-              className={`glass border-0 transition-colors duration-300 hover:border-primary/30 ${
-                category.highlight ? "glow ring-1 ring-primary/50" : ""
+              className={`glass border-0 transition-colors duration-300 hover:border-primary/25 ${
+                category.highlight ? "border border-primary/30 bg-primary/[0.035]" : ""
               }`}
             >
               <CardContent className="p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <div
-                    className={`p-2 rounded-lg ${category.highlight ? "bg-primary/20" : "bg-white/5"}`}
+                    className={`rounded-lg p-2 ${category.highlight ? "bg-primary/12 text-primary" : "bg-background/70 text-foreground/80"}`}
                   >
                     {category.icon}
                   </div>
@@ -47,7 +47,7 @@ const Skills = () => {
                     <Badge
                       key={i}
                       variant="secondary"
-                      className={`text-xs ${category.highlight ? "bg-primary/20 text-primary hover:bg-primary/30" : ""}`}
+                      className={`text-xs ${category.highlight ? "bg-background/80 text-foreground/85" : "bg-background/70"}`}
                     >
                       {skill}
                     </Badge>

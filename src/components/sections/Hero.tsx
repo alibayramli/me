@@ -1,80 +1,102 @@
 import { Briefcase, Mail, Sparkles } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-20">
-      <div className="max-w-5xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 animate-fade-in">
-          <Sparkles className="w-4 h-4 text-primary" />
-          <span className="text-sm text-muted-foreground">
-            Available for Contract Work
-          </span>
-        </div>
+    <section className="relative flex min-h-screen items-center px-6 pb-20 pt-28">
+      <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+        <div>
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/70 px-4 py-2">
+            <Sparkles className="h-4 w-4 text-primary" />
+            <span className="text-sm text-muted-foreground">
+              Platform engineering and full-stack delivery
+            </span>
+          </div>
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 tracking-tight">
-          <span className="text-gradient">Ali Bayramli</span>
-        </h1>
+          <h1 className="mb-5 text-5xl font-bold tracking-tight md:text-7xl lg:text-8xl">
+            <span className="text-gradient">Ali Bayramli</span>
+          </h1>
 
-        <div className="h-16 md:h-20 flex items-center justify-center mb-8">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-foreground/90">
-            Platform Engineer
+          <h2 className="mb-6 max-w-3xl text-2xl font-light leading-tight text-foreground/90 md:text-4xl lg:text-5xl">
+            I build developer platforms and full-stack systems that are easy to
+            ship, run, and scale.
           </h2>
-        </div>
 
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-4 leading-relaxed">
-          <span className="text-primary font-medium">IDP (Backstage.io)</span>.
-          {" "}Cloud architecture.{" "}
-          <span className="text-primary font-medium">CI/CD automation</span>.
-        </p>
-        <p className="text-base text-muted-foreground/70 max-w-xl mx-auto mb-12">
-          Full-stack delivery with React, Angular, and Node.js.
-        </p>
+          <p className="mb-12 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+            Platform engineering, CI/CD automation, cloud infrastructure, and
+            full-stack delivery with React, Angular, Node.js, and Python.
+          </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-          <Button
-            size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 glow"
-            asChild
-          >
-            <a href="#contact">
-              <Mail className="w-4 h-4 mr-2" />
-              Get In Touch
-            </a>
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-white/20 hover:bg-white/5"
-            asChild
-          >
-            <a href="#experience">
-              <Briefcase className="w-4 h-4 mr-2" />
-              View Experience
-            </a>
-          </Button>
-        </div>
-
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          {[
-            "Backstage.io",
-            "React",
-            "Node.js",
-            "Azure",
-            "Angular",
-            "Docker",
-          ].map((tech) => (
-            <Badge
-              key={tech}
-              variant="secondary"
-              className="glass px-4 py-2 text-sm"
+          <div className="mb-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <Button
+              size="lg"
+              className="px-8 text-primary-foreground hover:bg-primary/90"
+              asChild
             >
-              {tech}
-            </Badge>
-          ))}
+              <a href="#contact">
+                <Mail className="mr-2 h-4 w-4" />
+                Get In Touch
+              </a>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              asChild
+            >
+              <a href="#experience">
+                <Briefcase className="mr-2 h-4 w-4" />
+                View Experience
+              </a>
+            </Button>
+          </div>
         </div>
 
+        <Card className="glass border-0">
+          <CardContent className="p-8">
+            <div className="mb-6 text-sm font-medium uppercase tracking-[0.24em] text-primary/90">
+              Current Focus
+            </div>
+            <div className="space-y-4">
+              <div className="rounded-2xl border border-border/70 bg-background/45 p-5">
+                <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-primary/80">
+                  Platform
+                </div>
+                <h3 className="mb-2 text-lg font-semibold">
+                  Internal platforms
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  Developer portals, service catalogs, automation, and workflows
+                  that reduce friction for engineering teams.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-border/70 bg-background/45 p-5">
+                <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-primary/80">
+                  Product
+                </div>
+                <h3 className="mb-2 text-lg font-semibold">
+                  Full-stack systems
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  Product and internal applications spanning React, Angular,
+                  Node.js, Python, APIs, and integration layers.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-border/70 bg-background/45 p-5">
+                <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-primary/80">
+                  Delivery
+                </div>
+                <h3 className="mb-2 text-lg font-semibold">
+                  Delivery and operations
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  GitLab CI/CD, AWS, Terraform, observability, and release
+                  workflows built for repeatable delivery.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </section>
   );

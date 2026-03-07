@@ -19,8 +19,8 @@ const Projects = () => {
             Featured <span className="text-gradient">Projects</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            A selection of projects showcasing my expertise in platform
-            engineering, full-stack development, and enterprise solutions.
+            Selected work across platform engineering, internal tooling, and
+            full-stack product delivery.
           </p>
         </div>
 
@@ -28,94 +28,84 @@ const Projects = () => {
           {PROJECTS.map((project, index) => (
             <Card
               key={index}
-              className="glass border-0 overflow-hidden group transition-colors duration-300 hover:glow hover:border-primary/25"
+              className="glass group overflow-hidden border-0 transition-colors duration-300 hover:border-primary/20"
             >
-              <div className="relative border-b border-white/10">
-                {project.image ? (
-                  <img
-                    src={project.image}
-                    alt={`${project.title} project preview`}
-                    className="h-44 w-full object-cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div
-                    className={`h-44 bg-gradient-to-br ${project.coverClass}`}
-                  />
-                )}
-                <div className="absolute inset-0">
-                  <div className="h-full w-full flex items-end p-4">
-                    <div className="flex w-full items-center">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 text-primary">
-                        {project.icon}
+              <CardContent className="p-6">
+                <div className="mb-5 flex items-start justify-between gap-4">
+                  <div className="flex min-w-0 items-start gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-border/70 bg-background/60 text-foreground/85 dark:text-primary">
+                      {project.icon}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="mb-2 flex flex-wrap items-center gap-2">
+                        <span className="text-xs font-medium uppercase tracking-[0.16em] text-primary/80">
+                          {project.role}
+                        </span>
+                        {project.company && (
+                          <Badge
+                            variant="outline"
+                            className="bg-background/70 text-[10px] uppercase tracking-[0.14em]"
+                          >
+                            {project.company}
+                          </Badge>
+                        )}
                       </div>
-                      {project.company && (
-                        <Badge
-                          variant="outline"
-                          className="ml-3 text-xs bg-black/30 sm:ml-auto"
-                        >
-                          {project.company}
-                        </Badge>
-                      )}
+                      <h3 className="text-xl font-bold transition-colors group-hover:text-foreground">
+                        {project.title}
+                      </h3>
                     </div>
                   </div>
+                  {project.links && (
+                    <div className="hidden shrink-0 items-center gap-3 sm:flex">
+                      {project.links.live && (
+                        <a
+                          href={project.links.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-primary hover:underline"
+                        >
+                          Live
+                        </a>
+                      )}
+                      {project.links.github && (
+                        <a
+                          href={project.links.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-muted-foreground hover:text-foreground"
+                        >
+                          GitHub
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
 
-                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
                   {project.description}
                 </p>
 
-                <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4">
-                  <Layers className="w-4 h-4 text-primary" />
-                  <span className="font-medium text-foreground">
-                    Role:
-                  </span>
-                  <span>{project.role}</span>
-                </div>
-
-                <div className="mb-4">
-                  <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">
-                    Case Study
+                <div className="mb-5">
+                  <div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                    <Layers className="h-3.5 w-3.5 text-primary/80" />
+                    Highlights
                   </div>
                   <ul className="space-y-2 text-sm text-muted-foreground">
-                    {project.caseStudy.map((item) => (
+                    {project.caseStudy.slice(0, 3).map((item) => (
                       <li key={item} className="flex items-start gap-2">
-                        <span className="text-primary">&gt;</span>
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary/70" />
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {project.metrics && (
-                  <div className="grid grid-cols-2 gap-3 mb-4">
-                    {project.metrics.map((metric) => (
-                      <div
-                        key={metric.label}
-                        className="rounded-lg bg-white/5 p-3"
-                      >
-                        <div className="text-xs text-muted-foreground">
-                          {metric.label}
-                        </div>
-                        <div className="text-lg font-semibold text-foreground">
-                          {metric.value}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="mb-5 flex flex-wrap gap-2">
                   {project.tech.map((t, i) => (
                     <Badge
                       key={i}
                       variant="secondary"
-                      className="text-xs bg-white/5"
+                      className="text-xs bg-background/70"
                     >
                       {t}
                     </Badge>
@@ -123,7 +113,7 @@ const Projects = () => {
                 </div>
 
                 {project.links && (
-                  <div className="flex gap-3">
+                  <div className="flex flex-wrap gap-4 border-t border-border/70 pt-4 sm:hidden">
                     {project.links.live && (
                       <a
                         href={project.links.live}

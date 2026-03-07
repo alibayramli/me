@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import {
-  Activity,
   BellRing,
   Code2,
   Cloud,
@@ -16,9 +15,11 @@ export type NavItem = {
   href: string;
 };
 
-export type Stat = {
-  value: string;
-  label: string;
+export type AboutHighlight = {
+  icon: ReactNode;
+  title: string;
+  description: string;
+  keywords: string[];
 };
 
 export type SkillCategory = {
@@ -71,70 +72,111 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Contact", href: "#contact" },
 ];
 
-export const STATS: Stat[] = [
-  { value: "8+", label: "Years Experience" },
-  { value: "15K+", label: "Users Served at Scale" },
-  { value: "40%", label: "Manual Effort Reduced" },
-  { value: "10+", label: "Enterprise Clients" },
+export const ABOUT_HIGHLIGHTS: AboutHighlight[] = [
+  {
+    icon: <Layers className="h-5 w-5" />,
+    title: "Developer platforms",
+    description:
+      "Internal portals, service catalogs, and workflows that reduce friction for engineering teams.",
+    keywords: [
+      "Backstage.io",
+      "Service Catalogs",
+      "Golden Paths",
+      "Developer Experience",
+    ],
+  },
+  {
+    icon: <Code2 className="h-5 w-5" />,
+    title: "Full-stack applications",
+    description:
+      "Frontend systems, APIs, and backend integrations built with React, Angular, Node.js, and Python.",
+    keywords: ["React", "Angular", "Node.js", "Python", "TypeScript"],
+  },
+  {
+    icon: <Cloud className="h-5 w-5" />,
+    title: "Delivery and reliability",
+    description:
+      "CI/CD, cloud infrastructure, Terraform, and observability focused on repeatable delivery and operational clarity.",
+    keywords: [
+      "GitLab CI/CD",
+      "AWS",
+      "Terraform",
+      "Observability",
+      "Automation",
+    ],
+  },
 ];
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: "IDP & Platform Engineering",
+    title: "Platform Engineering",
     icon: <Layers className="w-5 h-5" />,
     skills: [
       "Backstage.io",
-      "Azure AI Services",
-      "Docker",
-      "CI/CD Pipelines",
-      "GitLab CI",
+      "Internal Developer Platforms",
+      "Service Catalogs",
+      "Golden Paths",
     ],
     highlight: true,
   },
   {
-    title: "Frontend Development",
+    title: "Frontend Systems",
     icon: <Code2 className="w-5 h-5" />,
     skills: [
       "React",
       "Angular",
       "TypeScript",
-      "NgRx",
-      "Material UI",
-      "Tailwind CSS",
-      "i18n",
+      "State Management",
+      "Component Architecture",
+      "Responsive UI",
     ],
   },
   {
-    title: "Backend & Database",
+    title: "Backend and APIs",
     icon: <Server className="w-5 h-5" />,
-    skills: [
-      "Node.js",
-      "Express",
-      "PostgreSQL",
-      "Knex.js",
-      "REST APIs",
-      "MongoDB",
-    ],
+    skills: ["Node.js", "Python", "PostgreSQL/ORMs", "MongoDB"],
   },
   {
-    title: "Cloud & DevOps",
-    icon: <Cloud className="w-5 h-5" />,
-    skills: ["AWS", "Docker", "Jenkins", "GitHub", "GitLab"],
-  },
-  {
-    title: "Testing & Quality",
-    icon: <Zap className="w-5 h-5" />,
-    skills: ["Jest", "Jasmine", "Cypress", "Karma", "AG Grid"],
-  },
-  {
-    title: "Methodologies",
+    title: "CI/CD and Automation",
     icon: <Workflow className="w-5 h-5" />,
     skills: [
-      "Scrum",
-      "Kanban",
-      "Agile",
-      "Architecture Design",
-      "Team Leadership",
+      "GitLab CI",
+      "CI/CD Pipelines",
+      "GitHub Actions",
+      "Husky",
+      "Deployment Automation",
+      "Scripting",
+      "Build Tooling",
+    ],
+  },
+  {
+    title: "Cloud and Infrastructure",
+    icon: <Cloud className="w-5 h-5" />,
+    skills: [
+      "AWS",
+      "Terraform",
+      "Docker",
+      "Docker Compose",
+      "Kubernetes",
+      "Infrastructure as Code",
+      "Environment Management",
+      "Cloud Architecture",
+    ],
+  },
+  {
+    title: "Observability and Operations",
+    icon: <Zap className="w-5 h-5" />,
+    skills: [
+      "Observability",
+      "OpenTelemetry",
+      "Prometheus",
+      "Grafana",
+      "Tempo",
+      "Logging",
+      "Metrics",
+      "Tracing",
+      "Monitoring",
+      "Incident Debugging",
     ],
   },
 ];
@@ -216,6 +258,34 @@ export const EXPERIENCES: Experience[] = [
 
 export const PROJECTS: Project[] = [
   {
+    title: "Platform DevOps Lab",
+    description:
+      "A full-stack learning lab built around a team task management app, with end-to-end observability, local platform tooling, and Kubernetes starter manifests.",
+    role: "Platform / Full-Stack Engineer",
+    tech: [
+      "React",
+      "Node.js",
+      "PostgreSQL",
+      "Docker Compose",
+      "Kubernetes",
+      "OpenTelemetry",
+      "Prometheus",
+      "Grafana",
+      "Tempo",
+    ],
+    links: {
+      github: "https://github.com/alibayramli/platform-devops-lab",
+    },
+    icon: <Cloud className="w-6 h-6" />,
+    caseStudy: [
+      "Built a TypeScript full-stack app with modular Express services, PostgreSQL, Drizzle ORM, and a React frontend organized by feature domains.",
+      "Added end-to-end observability with Prometheus metrics, OpenTelemetry tracing, Tempo, Grafana dashboards, and structured JSON logs.",
+      "Created Docker Compose workflows, Makefile shortcuts, CI quality checks, and Kubernetes starter manifests for hands-on platform practice.",
+    ],
+    coverClass:
+      "from-slate-200/78 via-slate-100/50 to-indigo-100/60 border-slate-300/60 dark:from-slate-900 dark:via-slate-900 dark:to-indigo-950/70 dark:border-slate-800/80",
+  },
+  {
     title: "Backstage.io IDP Integration",
     description:
       "Custom Backstage.io plugin development with Azure AI Services integration for automated catalog entity validation and developer portal optimization.",
@@ -233,7 +303,7 @@ export const PROJECTS: Project[] = [
       { label: "Catalog coverage", value: "+60%" },
     ],
     coverClass:
-      "from-indigo-500/20 via-purple-500/10 to-fuchsia-500/20 border-purple-500/30",
+      "from-slate-200/80 via-slate-100/50 to-blue-100/65 border-slate-300/60 dark:from-slate-900 dark:via-slate-900 dark:to-blue-950/70 dark:border-slate-800/80",
   },
   {
     title: "FX Notifier",
@@ -257,7 +327,7 @@ export const PROJECTS: Project[] = [
       "Automated weekday notifications using scheduled GitHub Actions with secret-based Telegram delivery.",
     ],
     coverClass:
-      "from-slate-500/25 via-cyan-500/10 to-sky-500/25 border-cyan-500/30",
+      "from-slate-200/85 via-slate-100/55 to-cyan-100/60 border-slate-300/60 dark:from-slate-900 dark:via-slate-900 dark:to-cyan-950/70 dark:border-slate-800/80",
   },
   {
     title: "Trading.com Platform",
@@ -277,35 +347,6 @@ export const PROJECTS: Project[] = [
       { label: "Latency", value: "-18%" },
     ],
     coverClass:
-      "from-emerald-500/20 via-teal-500/10 to-green-500/20 border-emerald-500/30",
-  },
-  {
-    title: "Fitness Tracker CRM",
-    description:
-      "A comprehensive CRM web application for tracking fitness goals with admin support, multi-language support, and real-time data synchronization.",
-    role: "Product Engineer",
-    tech: [
-      "Angular",
-      "Angular Material",
-      "Tailwind CSS",
-      "Firebase",
-      "Transloco",
-    ],
-    links: {
-      live: "https://ali-fitness-tracker.vercel.app/",
-      github: "https://github.com/alibayramli/fitness-tracker",
-    },
-    icon: <Activity className="w-6 h-6" />,
-    caseStudy: [
-      "Designed role-based dashboards for coaches and admins.",
-      "Implemented real-time updates for goal tracking and progress reporting.",
-      "Built a localization layer to support multi-language onboarding flows.",
-    ],
-    metrics: [
-      { label: "Time-to-insight", value: "-35%" },
-      { label: "Coach adoption", value: "+22%" },
-    ],
-    coverClass:
-      "from-sky-500/20 via-cyan-500/10 to-blue-600/20 border-sky-500/30",
+      "from-slate-200/80 via-slate-100/50 to-emerald-100/60 border-slate-300/60 dark:from-slate-900 dark:via-slate-900 dark:to-emerald-950/65 dark:border-slate-800/80",
   },
 ];
