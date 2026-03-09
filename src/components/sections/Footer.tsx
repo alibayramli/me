@@ -11,9 +11,7 @@ const Footer = () => {
         <div>
           <div className="text-lg font-semibold">{SITE_PROFILE.name}</div>
           <div>
-            <div className="text-sm text-muted-foreground">
-              {SITE_PROFILE.title} / {capabilitySummary}
-            </div>
+            <div className="text-sm text-muted-foreground">{capabilitySummary}</div>
           </div>
         </div>
 
