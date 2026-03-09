@@ -1,0 +1,401 @@
+{
+  "profile": {
+    "name": "Ali Bayramli",
+    "title": "Platform Engineer",
+    "resumeTitle": "Platform Engineer | Full-Stack Developer",
+    "headline": "Platform engineer who reduces delivery friction with internal tooling, automation, and full-stack systems.",
+    "summary": "8+ years across fintech and enterprise. I build developer portals, CI/CD workflows, cloud-backed applications, and observability foundations that help teams ship faster and operate with less drag.",
+    "resumeSummary": "Platform engineer and full-stack developer with 8+ years across fintech and enterprise. Builds developer portals, delivery automation, and internal applications with React, Angular, Node.js, and Python. Specializes in Backstage plugins, release workflows, and internal tooling that reduce manual review.",
+    "heroBadge": "Platform engineering, delivery systems, and full-stack execution",
+    "availability": "Open to remote senior platform and full-stack roles",
+    "contactHeadline": "Available for platform engineering, full-stack delivery, and consulting engagements.",
+    "location": "Baku, Azerbaijan",
+    "remote": "Available for Contract Work",
+    "phone": "+994773183356",
+    "email": "alibayramli@tutanota.com",
+    "linkedin": "https://www.linkedin.com/in/alibayramli",
+    "github": "https://github.com/alibayramli",
+    "siteUrl": "https://alibayramli.github.io/me/",
+    "resumePdf": "resume/Ali_Bayramli_CV.pdf",
+    "resumeDocx": "resume/Ali_Bayramli_CV.docx",
+    "profileImage": "profile-photo.jpeg",
+    "languages": ["English", "Azerbaijani", "French (intermediate)"],
+    "resumeLanguages": [
+      "English - Fluent",
+      "Azerbaijani - Native",
+      "French - Intermediate"
+    ],
+    "resumeSkillGroups": [
+      {
+        "label": "Platform",
+        "items": [
+          "Backstage.io",
+          "Developer Portals",
+          "Service Catalogs",
+          "Golden Paths"
+        ]
+      },
+      {
+        "label": "Frontend",
+        "items": ["React", "Angular", "TypeScript", "NgRx", "i18n"]
+      },
+      {
+        "label": "Backend",
+        "items": ["Node.js", "Python", "Express", "PostgreSQL", "MongoDB"]
+      },
+      {
+        "label": "Delivery",
+        "items": [
+          "AWS",
+          "Terraform",
+          "Docker",
+          "Kubernetes",
+          "GitLab CI",
+          "GitHub Actions"
+        ]
+      },
+      {
+        "label": "Observability",
+        "items": ["OpenTelemetry", "Prometheus", "Grafana", "Tempo", "Logging"]
+      }
+    ],
+    "resumeSkillLines": [
+      "Backstage.io, Developer Portals, React, Angular, TypeScript, Node.js, Python",
+      "CI/CD, Docker, Kubernetes, Terraform, AWS, GitLab CI, GitHub Actions",
+      "PostgreSQL, REST APIs, OpenTelemetry, Prometheus, Grafana, Azure AI Services"
+    ],
+    "education": [
+      {
+        "institution": "Eotvos Lorand University",
+        "degree": "Computer Science BSc",
+        "period": "2017 - 2021"
+      }
+    ]
+  },
+  "navigation": [
+    { "label": "About", "href": "#about" },
+    { "label": "Impact", "href": "#impact" },
+    { "label": "Experience", "href": "#experience" },
+    { "label": "Projects", "href": "#projects" },
+    { "label": "Contact", "href": "#contact" }
+  ],
+  "proofMetrics": [
+    {
+      "value": "~40% less",
+      "label": "Manual review",
+      "note": "Backstage catalog validation at XM.com"
+    },
+    {
+      "value": "15k+",
+      "label": "Users served",
+      "note": "Broker-facing workflows at Morgan Stanley"
+    },
+    {
+      "value": "~40% faster",
+      "label": "Email generation",
+      "note": "Campaign workflow optimization at EDM Designer"
+    },
+    {
+      "value": "25% faster",
+      "label": "Release cycle",
+      "note": "Trading.com delivery and internal platform work"
+    }
+  ],
+  "heroFocus": [
+    {
+      "icon": "layers",
+      "eyebrow": "Developer Portals",
+      "title": "Backstage-based platforms",
+      "description": "Internal portals, service catalog governance, and adoption flows that make engineering systems easier to discover and use."
+    },
+    {
+      "icon": "workflow",
+      "eyebrow": "Delivery Systems",
+      "title": "CI/CD, infra, and observability",
+      "description": "Release paths, cloud infrastructure, and telemetry that move teams from manual steps to repeatable delivery."
+    },
+    {
+      "icon": "code",
+      "eyebrow": "Product Engineering",
+      "title": "Full-stack execution",
+      "description": "React, Angular, Node.js, Python, and integration-heavy application work across internal and customer-facing systems."
+    }
+  ],
+  "about": {
+    "eyebrow": "How I Work",
+    "title": "I build internal tools that help teams ship faster.",
+    "paragraphs": [
+      "I work across platform and product. I build developer portals, release workflows, and the app features around them.",
+      "Most of my work is about removing manual steps, making services easier to find, and shipping reliable frontend and backend code."
+    ],
+    "cards": [
+      {
+        "icon": "sparkles",
+        "eyebrow": "Adoption",
+        "title": "Platforms people actually use",
+        "description": "I make internal tools clear enough that teams actually use them.",
+        "points": [
+          "Backstage plugins and catalog flows",
+          "Less review work through automation",
+          "UI built for clarity and adoption"
+        ]
+      },
+      {
+        "icon": "box",
+        "eyebrow": "Crossover",
+        "title": "Platform and product",
+        "description": "I can work on the portal, app code, and API layer without long handoffs.",
+        "points": [
+          "React and Angular frontends",
+          "Node.js and Python services",
+          "Internal tools and cloud apps"
+        ]
+      },
+      {
+        "icon": "gauge",
+        "eyebrow": "Delivery",
+        "title": "Reliable delivery",
+        "description": "I build delivery paths that are easier to ship, monitor, and maintain.",
+        "points": [
+          "CI/CD, Docker, Kubernetes, Terraform",
+          "OpenTelemetry, Prometheus, Grafana, Tempo",
+          "Release flows with less overhead"
+        ]
+      }
+    ]
+  },
+  "skillCategories": [
+    {
+      "title": "Platform Engineering",
+      "icon": "layers",
+      "summary": "Developer portals, service catalogs, and paved paths that reduce friction for engineering teams.",
+      "skills": [
+        "Backstage.io",
+        "Developer Portals",
+        "Service Catalogs",
+        "Golden Paths",
+        "Developer Experience"
+      ],
+      "highlight": true
+    },
+    {
+      "title": "Cloud and Delivery",
+      "icon": "workflow",
+      "summary": "CI/CD, infrastructure, and runtime tooling that make releases more repeatable and supportable.",
+      "skills": [
+        "AWS",
+        "Terraform",
+        "Docker",
+        "Kubernetes",
+        "GitLab CI",
+        "GitHub Actions"
+      ],
+      "highlight": true
+    },
+    {
+      "title": "Frontend Systems",
+      "icon": "code",
+      "summary": "Internal tools and product-facing UI work built with modern TypeScript frontends.",
+      "skills": ["React", "Angular", "TypeScript", "NgRx", "i18n"]
+    },
+    {
+      "title": "Backend and APIs",
+      "icon": "server",
+      "summary": "Application services, integrations, and data layers around platform and product workflows.",
+      "skills": ["Node.js", "Python", "Express", "PostgreSQL", "MongoDB"]
+    },
+    {
+      "title": "Observability",
+      "icon": "zap",
+      "summary": "Tracing, metrics, and logs that make delivery safer and operational issues easier to see.",
+      "skills": ["OpenTelemetry", "Prometheus", "Grafana", "Tempo", "Logging"]
+    }
+  ],
+  "experiences": [
+    {
+      "company": "XM.com",
+      "role": "Platform Engineer / Full-Stack Developer",
+      "shortRole": "Platform Eng / Full-Stack",
+      "period": "2023 - Present",
+      "location": "Remote",
+      "description": "Developer platform initiatives and application delivery for a global forex broker.",
+      "impact": "~40% less manual review in catalog validation",
+      "resumeLine": "Built Backstage.io validation workflows with Azure AI, reducing manual catalog review for internal services.",
+      "resumeBullets": [
+        "Built Backstage.io plugins and Azure AI-assisted catalog validation workflows, reducing manual review by about 40% and improving internal service governance.",
+        "Delivered internal tooling across React, Node.js, and PostgreSQL, and supported Trading.com's multi-region Angular launch with i18n and state management."
+      ],
+      "achievements": [
+        "Built Backstage.io plugin workflows with Azure AI-assisted entity validation to reduce manual catalog review and governance load.",
+        "Delivered full-stack internal tooling across React, Node.js, PostgreSQL, and service integration layers.",
+        "Supported Trading.com launch work with Angular architecture, i18n, and state management for multi-region rollout."
+      ],
+      "tech": [
+        "Backstage.io",
+        "React",
+        "Node.js",
+        "Azure AI",
+        "PostgreSQL",
+        "Angular",
+        "TypeScript"
+      ],
+      "highlight": true
+    },
+    {
+      "company": "Morgan Stanley",
+      "role": "Front-End Developer",
+      "shortRole": "Front-End Dev",
+      "period": "2021 - 2022",
+      "location": "Budapest, Hungary",
+      "description": "Modernized legacy financial applications for enterprise-scale teams.",
+      "impact": "Workflows used by 15k+ users",
+      "resumeLine": "Modernized broker-facing Angular applications used by 15,000+ users, improving clarity and daily productivity.",
+      "resumeBullets": [
+        "Modernized broker-facing Angular applications used by 15,000+ users, improving workflow clarity and daily productivity for trading teams through responsive, data-heavy interfaces."
+      ],
+      "achievements": [
+        "Rebuilt desktop-era workflows as modern Angular web applications for broker-facing teams.",
+        "Refined interfaces used by 15,000+ users, improving clarity and day-to-day productivity.",
+        "Implemented responsive data grids and real-time trading experiences for faster interaction."
+      ],
+      "tech": ["Angular", "RxJS", "SCSS", "AG Grid", "Karma", "Jenkins"]
+    },
+    {
+      "company": "EDM Designer",
+      "role": "Full-Stack Developer",
+      "shortRole": "Full-Stack Dev",
+      "period": "2019 - 2021",
+      "location": "Remote",
+      "description": "Built and optimized an email marketing dashboard with measurable performance gains.",
+      "impact": "~40% faster campaign generation",
+      "resumeLine": "Improved template and campaign flows, cutting generation time by 40 percent and speeding delivery.",
+      "resumeBullets": [
+        "Improved campaign and template workflows, cutting generation time by 40% and speeding delivery across Vue.js, Node.js, MongoDB, and AWS S3."
+      ],
+      "achievements": [
+        "Improved dashboard UX for template styling and campaign operations.",
+        "Reduced generation time by 40%, speeding up campaign delivery and editing loops.",
+        "Integrated AWS S3 storage flows for more reliable asset management."
+      ],
+      "tech": ["Vue.js", "Vuex", "Vuetify", "Node.js", "MongoDB", "AWS S3"]
+    },
+    {
+      "company": "ExxonMobil",
+      "role": "Full-Stack Developer",
+      "shortRole": "Full-Stack Dev",
+      "period": "2018 - 2019",
+      "location": "Budapest, Hungary",
+      "description": "Developed internal UI kits and a website builder for enterprise teams.",
+      "impact": "25% faster delivery and 15% lower cost",
+      "resumeLine": "Built reusable UI kits for an internal website builder, helping reduce delivery time by 25 percent and project cost by 15 percent.",
+      "resumeBullets": [
+        "Built reusable UI kits and internal website-builder components, reducing delivery time by 25% and project cost by 15% while integrating SharePoint APIs for enterprise content operations."
+      ],
+      "achievements": [
+        "Built reusable UI kits with AngularJS and jQuery to standardize internal website creation.",
+        "Contributed to a 15% reduction in project cost and a 25% decrease in delivery time.",
+        "Integrated SharePoint APIs for smoother content operations."
+      ],
+      "tech": ["AngularJS", "jQuery", "Bootstrap", "SharePoint APIs", "Agile"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Platform DevOps Lab",
+      "label": "Open-source platform lab",
+      "description": "A production-shaped learning repo for full-stack delivery, observability, local tooling, and Kubernetes starter workflows.",
+      "result": "Built to practice platform delivery end to end, not just isolated app development.",
+      "resumeLine": "Production-shaped platform lab covering observability, local tooling, and Kubernetes starter workflows.",
+      "tech": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Docker Compose",
+        "Kubernetes",
+        "OpenTelemetry",
+        "Prometheus",
+        "Grafana",
+        "Tempo"
+      ],
+      "links": {
+        "github": "https://github.com/alibayramli/platform-devops-lab"
+      },
+      "icon": "cloud",
+      "caseStudy": [
+        "Built a TypeScript full-stack app with modular Express services, PostgreSQL, Drizzle ORM, and a React frontend organized by feature domains.",
+        "Added end-to-end observability with Prometheus metrics, OpenTelemetry tracing, Tempo, Grafana dashboards, and structured JSON logs.",
+        "Created Docker Compose workflows, Makefile shortcuts, CI quality checks, and Kubernetes starter manifests for hands-on platform practice."
+      ],
+      "metrics": [
+        { "label": "Architecture", "value": "Full stack" },
+        { "label": "Ops", "value": "OTel + K8s" }
+      ]
+    },
+    {
+      "title": "Backstage.io IDP Integration",
+      "label": "Developer portal project",
+      "description": "Custom Backstage.io plugin development with Azure AI integration for automated catalog validation and better internal service discoverability.",
+      "result": "Reduced manual review with AI-assisted catalog governance for internal services.",
+      "resumeLine": "Backstage.io portal work with Azure AI-assisted validation for stronger catalog governance and discoverability.",
+      "tech": ["Backstage.io", "React", "Node.js", "Azure AI", "TypeScript"],
+      "icon": "layers",
+      "company": "XM.com",
+      "caseStudy": [
+        "Delivered custom Backstage plugins for service catalog governance.",
+        "Automated entity validations to reduce manual review load.",
+        "Improved developer portal discoverability for internal services."
+      ],
+      "metrics": [
+        { "label": "Manual review", "value": "-40%" },
+        { "label": "Catalog coverage", "value": "+60%" }
+      ]
+    },
+    {
+      "title": "FX Notifier",
+      "label": "Automation tool project",
+      "description": "A Python automation tool that fetches FX rates from the Frankfurter API and posts weekday Telegram updates, including derived EUR/AZN rates.",
+      "result": "Automated the full weekday FX update flow from data retrieval to delivery.",
+      "resumeLine": "Python automation for weekday Telegram FX updates, including derived rates and scheduled delivery.",
+      "tech": [
+        "Python",
+        "Requests",
+        "python-telegram-bot",
+        "Pytest",
+        "GitHub Actions"
+      ],
+      "links": {
+        "github": "https://github.com/alibayramli/fx-notifier"
+      },
+      "icon": "bell",
+      "caseStudy": [
+        "Built an FX service layer with config validation and retry and backoff for network resilience.",
+        "Implemented deterministic AZN derivation via EUR to USD and a configurable USD to AZN peg.",
+        "Automated weekday notifications using scheduled GitHub Actions with secret-based Telegram delivery."
+      ],
+      "metrics": [
+        { "label": "Delivery", "value": "Weekdays" },
+        { "label": "Channel", "value": "Telegram" }
+      ]
+    },
+    {
+      "title": "Trading.com Platform",
+      "label": "Product launch project",
+      "description": "Front-end architecture and development for a broker launch into European and Australian markets.",
+      "result": "Supported multi-region rollout with lower frontend latency.",
+      "resumeLine": "Multi-region Angular launch work with state management and i18n support for market expansion.",
+      "tech": ["Angular", "NgRx", "i18n", "Material UI", "REST APIs"],
+      "icon": "trending",
+      "company": "XM.com",
+      "caseStudy": [
+        "Led UI architecture for a multi-region rollout.",
+        "Implemented state management patterns for high-frequency updates.",
+        "Delivered i18n-ready UX for rapid market expansion."
+      ],
+      "metrics": [
+        { "label": "Release cycles", "value": "-25%" },
+        { "label": "Latency", "value": "-18%" }
+      ]
+    }
+  ],
+  "resumeProjects": ["Platform DevOps Lab", "FX Notifier"]
+}

@@ -1,64 +1,54 @@
 import { User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { ABOUT_HIGHLIGHTS } from "@/lib/portfolio-data";
+import { ABOUT_SECTION } from "@/lib/portfolio-data";
 
 const About = () => {
   return (
-    <section id="about" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-10 max-w-3xl">
-          <Badge
-            variant="outline"
-            className="mb-4 border-primary/50 text-primary"
-          >
-            <User className="w-3 h-3 mr-1" />
-            About Me
-          </Badge>
-          <h2 className="mb-6 text-3xl font-bold md:text-4xl">
-            Platform engineering,
-            <span className="block text-gradient">full-stack delivery.</span>
-          </h2>
-          <div className="space-y-4 leading-relaxed text-muted-foreground">
-            <p>
-              I build internal platforms, delivery workflows, cloud
-              infrastructure, and web applications that help teams ship
-              reliably.
-            </p>
-            <p>
-              My stack spans React, Angular, Node.js, and Python, alongside
-              GitLab CI/CD, AWS, Terraform, and observability.
-            </p>
+    <section id="about" className="px-6 py-24">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
+          <div>
+            <Badge
+              variant="outline"
+              className="mb-4 border-primary/50 text-primary"
+            >
+              <User className="mr-1 h-3 w-3" />
+              {ABOUT_SECTION.eyebrow}
+            </Badge>
+            <h2 className="mb-5 max-w-3xl text-3xl font-bold md:text-4xl">
+              {ABOUT_SECTION.title}
+            </h2>
+          </div>
+          <div className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+            {ABOUT_SECTION.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {ABOUT_HIGHLIGHTS.map((item, index) => (
-            <Card key={index} className="glass border-0">
+        <div className="grid gap-4 xl:grid-cols-3">
+          {ABOUT_SECTION.cards.map((card) => (
+            <Card key={card.title} className="glass border-0">
               <CardContent className="flex h-full flex-col p-6">
                 <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                  {item.icon}
+                  {card.icon}
                 </div>
-                <div className="mb-2 text-sm font-medium uppercase tracking-[0.16em] text-primary/85">
-                  {index === 0 ? "Core Focus" : index === 1 ? "Application" : "Operations"}
+                <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary/85">
+                  {card.eyebrow}
                 </div>
-                <div className="mb-3 text-lg font-semibold">
-                  {item.title}
-                </div>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {item.description}
+                <h3 className="mb-3 text-lg font-semibold">{card.title}</h3>
+                <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
+                  {card.description}
                 </p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {item.keywords.map((keyword) => (
-                    <Badge
-                      key={keyword}
-                      variant="secondary"
-                      className="bg-background/75 text-foreground/80 hover:bg-accent/70"
-                    >
-                      {keyword}
-                    </Badge>
+                <ul className="card-list mt-auto grid gap-3 text-sm text-muted-foreground">
+                  {card.points.map((point) => (
+                    <li key={point} className="card-list-item">
+                      <span className="card-list-bullet" aria-hidden="true" />
+                      <span>{point}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </CardContent>
             </Card>
           ))}

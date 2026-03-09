@@ -3,25 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ali Bayramli | Portfolio</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Ali Bayramli | Platform Engineer</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" href="favicon.ico" />
     <meta
       name="description"
-      content="Ali Bayramli - Platform Engineer focused on IDP (Backstage.io), cloud architecture, and CI/CD automation."
+      content="Portfolio, projects, and experience for Ali Bayramli."
     />
-    <meta property="og:title" content="Ali Bayramli - Platform Engineer" />
+    <meta property="og:title" content="Ali Bayramli | Platform Engineer" />
     <meta
       property="og:description"
-      content="Platform Engineer focused on IDP (Backstage.io), cloud architecture, and CI/CD automation."
+      content="Portfolio, projects, and experience for Ali Bayramli."
     />
     <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://alibayramli.github.io/me/og-card.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="Ali Bayramli portfolio preview card"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image"
+      content="https://alibayramli.github.io/me/og-card.png"
+    />
     <script>
-      (() => {
-        const key = "portfolio-theme";
-        const stored = localStorage.getItem(key);
-        const theme = stored === "light" || stored === "dark" ? stored : "light";
-        const isDark = theme === "dark";
-        document.documentElement.classList.toggle("dark", isDark);
+      (function () {
+        try {
+          var theme = window.localStorage.getItem("portfolio-theme");
+          var prefersDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+          document.documentElement.classList.toggle(
+            "dark",
+            theme === "dark" || (theme !== "light" && prefersDark),
+          );
+        } catch {}
       })();
     </script>
   </head>

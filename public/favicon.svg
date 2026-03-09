@@ -1,19 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a" />
-      <stop offset="100%" stop-color="#1d4ed8" />
+    <linearGradient id="brand-bg" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f9fbff" />
+      <stop offset="1" stop-color="#dbe7f5" />
+    </linearGradient>
+    <linearGradient id="brand-fill" x1="19" y1="16" x2="45" y2="47" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4f76a6" />
+      <stop offset="1" stop-color="#294d79" />
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="14" fill="url(#bg)" />
+  <rect x="1" y="1" width="62" height="62" rx="16" fill="url(#brand-bg)" />
   <text
     x="32"
-    y="40"
+    y="42"
     text-anchor="middle"
-    fill="#f8fafc"
-    font-family="Segoe UI, Arial, sans-serif"
-    font-size="24"
+    fill="url(#brand-fill)"
+    font-family="Candara, Trebuchet MS, Segoe UI, Arial, sans-serif"
+    font-size="29"
     font-weight="700"
+    letter-spacing="-1.1"
   >
     AB
   </text>

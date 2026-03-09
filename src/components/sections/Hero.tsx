@@ -1,102 +1,170 @@
-import { Briefcase, Mail, Sparkles } from "lucide-react";
+import { useState } from "react";
+import {
+  Download,
+  Globe,
+  Mail,
+  MapPin,
+  MoveRight,
+  User,
+} from "lucide-react";
+import { GitHubIcon, LinkedInIcon } from "@/components/brand-icons";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { HERO_FOCUS, SITE_PROFILE } from "@/lib/portfolio-data";
 
 const Hero = () => {
+  const [imageFailed, setImageFailed] = useState(false);
+
   return (
-    <section className="relative flex min-h-screen items-center px-6 pb-20 pt-28">
-      <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
-        <div>
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/70 px-4 py-2">
-            <Sparkles className="h-4 w-4 text-primary" />
-            <span className="text-sm text-muted-foreground">
-              Platform engineering and full-stack delivery
-            </span>
+    <section id="hero" className="relative flex min-h-screen items-center px-6 pb-20 pt-32">
+      <div className="mx-auto w-full max-w-6xl">
+        <div className="grid gap-10 xl:grid-cols-[minmax(0,1.1fr)_24rem]">
+          <div id="hero-intro">
+            <Badge
+              variant="outline"
+              className="mb-6 border-primary/50 bg-background/80 px-4 py-2 text-primary"
+            >
+              {SITE_PROFILE.heroBadge}
+            </Badge>
+
+            <div className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary/85">
+              {SITE_PROFILE.title}
+            </div>
+            <h1 id="hero-name" className="mb-4 text-5xl font-bold tracking-tight md:text-7xl">
+              <span className="text-gradient">{SITE_PROFILE.name}</span>
+            </h1>
+            <h2 className="mb-6 max-w-4xl text-2xl font-light leading-tight text-foreground/90 md:text-4xl lg:text-5xl">
+              {SITE_PROFILE.headline}
+            </h2>
+
+            <p className="mb-10 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+              {SITE_PROFILE.summary}
+            </p>
+
+            <div className="mb-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button
+                size="lg"
+                className="px-7 text-primary-foreground hover:bg-primary/90"
+                asChild
+              >
+                <a href={SITE_PROFILE.resumePdfUrl} download>
+                  <Download className="mr-2 h-4 w-4" />
+                  Download Resume
+                </a>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <a href="#projects">
+                  View Projects
+                  <MoveRight className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+              <Button
+                size="lg"
+                variant="ghost"
+                className="justify-start"
+                asChild
+              >
+                <a href={`mailto:${SITE_PROFILE.email}`}>
+                  <Mail className="mr-2 h-4 w-4" />
+                  Email Me
+                </a>
+              </Button>
+            </div>
           </div>
 
-          <h1 className="mb-5 text-5xl font-bold tracking-tight md:text-7xl lg:text-8xl">
-            <span className="text-gradient">Ali Bayramli</span>
-          </h1>
+          <div>
+            <Card className="glass overflow-hidden border-0">
+              <CardContent className="p-5">
+                <div className="overflow-hidden rounded-[1.75rem] border border-border/70 bg-background/60">
+                  {imageFailed ? (
+                    <div className="flex aspect-[4/5] items-center justify-center bg-gradient-to-br from-slate-200 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950">
+                      <div className="flex h-24 w-24 items-center justify-center rounded-[1.75rem] border border-border/70 bg-background/85 shadow-lg shadow-primary/10">
+                        <User className="h-10 w-10 text-primary/75" />
+                      </div>
+                    </div>
+                  ) : (
+                    <img
+                      src={SITE_PROFILE.profileImageUrl}
+                      alt={`${SITE_PROFILE.name} portrait`}
+                      className="aspect-[4/5] h-full w-full object-cover"
+                      onError={() => setImageFailed(true)}
+                    />
+                  )}
+                </div>
 
-          <h2 className="mb-6 max-w-3xl text-2xl font-light leading-tight text-foreground/90 md:text-4xl lg:text-5xl">
-            I build developer platforms and full-stack systems that are easy to
-            ship, run, and scale.
-          </h2>
+                <div className="mt-5 flex items-start justify-between gap-4">
+                  <div>
+                    <div className="text-xl font-semibold">
+                      {SITE_PROFILE.name}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {SITE_PROFILE.title}
+                    </div>
+                  </div>
+                </div>
 
-          <p className="mb-12 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Platform engineering, CI/CD automation, cloud infrastructure, and
-            full-stack delivery with React, Angular, Node.js, and Python.
-          </p>
+                <div className="mt-5 grid gap-3 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-4 w-4 text-primary/80" />
+                    {SITE_PROFILE.location} / {SITE_PROFILE.remote}
+                  </div>
+                  <a
+                    href={SITE_PROFILE.siteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 hover:text-foreground"
+                  >
+                    <Globe className="h-4 w-4 text-primary/80" />
+                    {SITE_PROFILE.siteUrl.replace(/^https?:\/\//, "")}
+                  </a>
+                </div>
 
-          <div className="mb-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <Button
-              size="lg"
-              className="px-8 text-primary-foreground hover:bg-primary/90"
-              asChild
-            >
-              <a href="#contact">
-                <Mail className="mr-2 h-4 w-4" />
-                Get In Touch
-              </a>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-            >
-              <a href="#experience">
-                <Briefcase className="mr-2 h-4 w-4" />
-                View Experience
-              </a>
-            </Button>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <Button size="sm" variant="outline" asChild>
+                    <a
+                      href={SITE_PROFILE.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <LinkedInIcon className="mr-2 h-4 w-4" />
+                      LinkedIn
+                    </a>
+                  </Button>
+                  <Button size="sm" variant="outline" asChild>
+                    <a
+                      href={SITE_PROFILE.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <GitHubIcon className="mr-2 h-4 w-4" />
+                      GitHub
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
 
-        <Card className="glass border-0">
-          <CardContent className="p-8">
-            <div className="mb-6 text-sm font-medium uppercase tracking-[0.24em] text-primary/90">
-              Current Focus
-            </div>
-            <div className="space-y-4">
-              <div className="rounded-2xl border border-border/70 bg-background/45 p-5">
-                <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-primary/80">
-                  Platform
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {HERO_FOCUS.map((item) => (
+            <Card key={item.title} className="glass h-full border-0">
+              <CardContent className="p-5">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                  {item.icon}
                 </div>
-                <h3 className="mb-2 text-lg font-semibold">
-                  Internal platforms
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  Developer portals, service catalogs, automation, and workflows
-                  that reduce friction for engineering teams.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-border/70 bg-background/45 p-5">
-                <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-primary/80">
-                  Product
+                <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary/80">
+                  {item.eyebrow}
                 </div>
-                <h3 className="mb-2 text-lg font-semibold">
-                  Full-stack systems
-                </h3>
+                <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">
-                  Product and internal applications spanning React, Angular,
-                  Node.js, Python, APIs, and integration layers.
+                  {item.description}
                 </p>
-              </div>
-              <div className="rounded-2xl border border-border/70 bg-background/45 p-5">
-                <div className="mb-2 text-xs font-medium uppercase tracking-[0.18em] text-primary/80">
-                  Delivery
-                </div>
-                <h3 className="mb-2 text-lg font-semibold">
-                  Delivery and operations
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  GitLab CI/CD, AWS, Terraform, observability, and release
-                  workflows built for repeatable delivery.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   );

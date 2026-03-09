@@ -1,66 +1,123 @@
-import { Handshake, Linkedin, MapPin } from "lucide-react";
+import {
+  Globe,
+  Handshake,
+  Mail,
+  MapPin,
+} from "lucide-react";
+import { GitHubIcon, LinkedInIcon } from "@/components/brand-icons";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { SITE_PROFILE } from "@/lib/portfolio-data";
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-24 px-6">
-      <div className="max-w-4xl mx-auto">
-        <Card className="glass overflow-hidden border-0">
-          <CardContent className="p-8 md:p-12">
-            <div className="text-center mb-10">
-              <Badge
-                variant="outline"
-                className="mb-4 border-primary/50 text-primary"
-              >
-                <Handshake className="w-3 h-3 mr-1" />
-                Get In Touch
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Open to <span className="text-gradient">contract and consulting</span>
-              </h2>
-              <p className="text-muted-foreground max-w-lg mx-auto">
-                Available for platform engineering, full-stack development, and
-                delivery-focused consulting work.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-3 mb-10">
-              <Button
-                size="lg"
-                className="w-full max-w-xs sm:w-auto"
-                asChild
-              >
-                <a
-                  href="https://www.linkedin.com/in/alibayramli"
-                  target="_blank"
-                  rel="noopener noreferrer"
+    <section id="contact" className="px-6 py-24">
+      <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-[46rem]">
+          <Card className="glass overflow-hidden border-0">
+            <CardContent className="p-8 md:p-11">
+              <div className="mx-auto mb-10 max-w-3xl text-center">
+                <Badge
+                  variant="outline"
+                  className="mb-4 border-primary/50 text-primary"
                 >
-                  <Linkedin className="w-4 h-4 mr-2" />
-                  Message on LinkedIn
-                </a>
-              </Button>
-            </div>
+                  <Handshake className="mr-1 h-3 w-3" />
+                  Contact
+                </Badge>
+                <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+                  Need someone who can improve developer flow
+                  <span className="text-gradient"> and still ship product code?</span>
+                </h2>
+                <p className="mx-auto max-w-2xl text-muted-foreground">
+                  {SITE_PROFILE.contactHeadline}
+                </p>
+              </div>
 
-            <div className="mt-10 border-t border-border/70 pt-8">
-              <div className="mx-auto w-full max-w-md text-sm">
-                <div className="grid grid-cols-[1.25rem_1fr] gap-x-3 gap-y-3">
-                  <MapPin className="mt-0.5 h-4 w-4 text-muted-foreground" />
-                  <p className="text-muted-foreground">
-                    Baku, Azerbaijan (Available for Remote Work)
-                  </p>
-                  <span className="mt-1 flex h-4 w-4 items-center justify-center">
-                    <span className="h-2 w-2 rounded-full bg-green-500" />
-                  </span>
-                  <p>Fluent in English and Azerbaijani</p>
-                  <span className="h-4 w-4" aria-hidden="true" />
-                  <p>Intermediate French</p>
+              <div className="mb-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+                <Button size="lg" className="w-full max-w-xs sm:w-auto" asChild>
+                  <a href={`mailto:${SITE_PROFILE.email}`}>
+                    <Mail className="mr-2 h-4 w-4" />
+                    Email Me
+                  </a>
+                </Button>
+                <Button size="lg" variant="outline" className="w-full max-w-xs sm:w-auto" asChild>
+                  <a
+                    href={SITE_PROFILE.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <LinkedInIcon className="mr-2 h-4 w-4" />
+                    LinkedIn
+                  </a>
+                </Button>
+              </div>
+
+              <div className="mx-auto grid max-w-[38rem] gap-4 border-t border-border/70 pt-8 md:grid-cols-2">
+                <div className="rounded-3xl border border-border/70 bg-background/55 p-5">
+                  <div className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-primary/80">
+                    Direct Contact
+                  </div>
+                  <div className="grid gap-3 text-sm text-muted-foreground">
+                    <a
+                      href={`mailto:${SITE_PROFILE.email}`}
+                      className="flex items-center gap-2 hover:text-foreground"
+                    >
+                      <Mail className="h-4 w-4 text-primary/80" />
+                      {SITE_PROFILE.email}
+                    </a>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4 text-primary/80" />
+                      {SITE_PROFILE.location} / {SITE_PROFILE.remote}
+                    </div>
+                    <a
+                      href={SITE_PROFILE.siteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 hover:text-foreground"
+                    >
+                      <Globe className="h-4 w-4 text-primary/80" />
+                      {SITE_PROFILE.siteUrl.replace(/^https?:\/\//, "")}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="rounded-3xl border border-border/70 bg-background/55 p-5">
+                  <div className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-primary/80">
+                    Profiles and Languages
+                  </div>
+                  <div className="grid gap-3 text-sm text-muted-foreground">
+                    <a
+                      href={SITE_PROFILE.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 hover:text-foreground"
+                    >
+                      <GitHubIcon className="h-4 w-4 text-primary/80" />
+                      GitHub /alibayramli
+                    </a>
+                    <a
+                      href={SITE_PROFILE.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 hover:text-foreground"
+                    >
+                      <LinkedInIcon className="h-4 w-4 text-primary/80" />
+                      LinkedIn /in/alibayramli
+                    </a>
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {SITE_PROFILE.languages.map((language) => (
+                        <Badge key={language} variant="secondary" className="bg-background/80">
+                          {language}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </section>
   );

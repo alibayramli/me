@@ -1,50 +1,53 @@
-import { Container, ExternalLink, Github, Layers } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Layers } from "lucide-react";
+import { GitHubIcon } from "@/components/brand-icons";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { PROJECTS } from "@/lib/portfolio-data";
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+    <section id="projects" className="px-6 py-24">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 max-w-3xl">
           <Badge
             variant="outline"
             className="mb-4 border-primary/50 text-primary"
           >
-            <Container className="w-3 h-3 mr-1" />
-            Portfolio
+            <Layers className="mr-1 h-3 w-3" />
+            Featured Work
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Featured <span className="text-gradient">Projects</span>
+          <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+            Projects that show how I
+            <span className="text-gradient"> think and execute</span>
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Selected work across platform engineering, internal tooling, and
-            full-stack product delivery.
+          <p className="max-w-2xl text-muted-foreground">
+            A mix of internal platform work, shipping product systems, and
+            open-source or self-directed builds that make my engineering range
+            visible.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {PROJECTS.map((project, index) => (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {PROJECTS.map((project) => (
             <Card
-              key={index}
-              className="glass group overflow-hidden border-0 transition-colors duration-300 hover:border-primary/20"
+              key={project.title}
+              className="glass group relative overflow-hidden border-0"
             >
-              <CardContent className="p-6">
-                <div className="mb-5 flex items-start justify-between gap-4">
+              <CardContent className="relative p-6">
+                <div className="mb-6 flex items-start justify-between gap-4">
                   <div className="flex min-w-0 items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-border/70 bg-background/60 text-foreground/85 dark:text-primary">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-border/70 bg-background/45 text-foreground/85 dark:bg-background/25 dark:text-primary">
                       {project.icon}
                     </div>
                     <div className="min-w-0">
                       <div className="mb-2 flex flex-wrap items-center gap-2">
-                        <span className="text-xs font-medium uppercase tracking-[0.16em] text-primary/80">
+                        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-primary/75">
                           {project.label}
                         </span>
                         {project.company && (
                           <Badge
                             variant="outline"
-                            className="bg-background/70 text-[10px] uppercase tracking-[0.14em]"
+                            className="bg-background/45 text-[10px] uppercase tracking-[0.14em]"
                           >
                             {project.company}
                           </Badge>
@@ -55,6 +58,7 @@ const Projects = () => {
                       </h3>
                     </div>
                   </div>
+
                   {project.links && (
                     <div className="hidden shrink-0 items-center gap-3 sm:flex">
                       {project.links.live && (
@@ -81,16 +85,44 @@ const Projects = () => {
                   )}
                 </div>
 
-                <p className="mb-5 text-sm leading-relaxed text-muted-foreground">
+                <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
                   {project.description}
                 </p>
 
+                <div className="mb-5 rounded-2xl border border-border/70 bg-background/28 p-4 dark:bg-background/18">
+                  <div className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary/75">
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                    Outcome
+                  </div>
+                  <p className="text-sm leading-relaxed text-foreground/90">
+                    {project.result}
+                  </p>
+                </div>
+
+                {project.metrics && project.metrics.length > 0 && (
+                  <div className="mb-5 grid gap-3 sm:grid-cols-2">
+                    {project.metrics.map((metric) => (
+                      <div
+                        key={`${project.title}-${metric.label}`}
+                        className="rounded-2xl border border-border/70 bg-background/28 p-4 dark:bg-background/18"
+                      >
+                        <div className="text-xl font-bold text-foreground">
+                          {metric.value}
+                        </div>
+                        <div className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                          {metric.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 <div className="mb-5">
-                  <div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                  <div className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                     <Layers className="h-3.5 w-3.5 text-primary/80" />
                     Highlights
                   </div>
-                  <ul className="card-list space-y-2 text-sm text-muted-foreground">
+                  <ul className="card-list space-y-3 text-sm text-muted-foreground">
                     {project.caseStudy.slice(0, 3).map((item) => (
                       <li key={item} className="card-list-item">
                         <span className="card-list-bullet" aria-hidden="true" />
@@ -101,19 +133,19 @@ const Projects = () => {
                 </div>
 
                 <div className="mb-5 flex flex-wrap gap-2">
-                  {project.tech.map((t, i) => (
+                  {project.tech.map((tech) => (
                     <Badge
-                      key={i}
+                      key={tech}
                       variant="secondary"
-                      className="text-xs bg-background/70"
+                      className="bg-background/70 text-xs"
                     >
-                      {t}
+                      {tech}
                     </Badge>
                   ))}
                 </div>
 
                 {project.links && (
-                  <div className="flex flex-wrap gap-4 border-t border-border/70 pt-4 sm:hidden">
+                  <div className="flex flex-wrap gap-4 border-t border-border/70 pt-4">
                     {project.links.live && (
                       <a
                         href={project.links.live}
@@ -121,7 +153,7 @@ const Projects = () => {
                         rel="noopener noreferrer"
                         className="flex items-center gap-1 text-sm text-primary hover:underline"
                       >
-                        <ExternalLink className="w-4 h-4" />
+                        <ExternalLink className="h-4 w-4" />
                         Live Demo
                       </a>
                     )}
@@ -132,8 +164,8 @@ const Projects = () => {
                         rel="noopener noreferrer"
                         className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
                       >
-                        <Github className="w-4 h-4" />
-                        Source
+                        <GitHubIcon className="h-4 w-4" />
+                        Source Code
                       </a>
                     )}
                   </div>
