@@ -3,6 +3,8 @@ import { GitHubIcon, LinkedInIcon } from '@/components/brand-icons'
 import { NAV_ITEMS, SITE_PROFILE } from '@/lib/portfolio-data'
 
 const Footer = () => {
+  const capabilitySummary = SITE_PROFILE.heroCapabilities.join(' / ')
+
   return (
     <footer className="border-t border-border/70 px-6 py-8">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
@@ -10,7 +12,7 @@ const Footer = () => {
           <div className="text-lg font-semibold">{SITE_PROFILE.name}</div>
           <div>
             <div className="text-sm text-muted-foreground">
-              {SITE_PROFILE.title} / platform work, delivery systems, and full-stack execution
+              {SITE_PROFILE.title} / {capabilitySummary}
             </div>
           </div>
         </div>

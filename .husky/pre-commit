@@ -1,1 +1,6 @@
+if git diff --cached --name-only --diff-filter=ACMR | grep -q '^src/content/site-content.json$'; then
+  npm run og:generate
+  git add public/og-card.svg public/og-card.png
+fi
+
 npm run precommit:staged

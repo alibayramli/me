@@ -10,6 +10,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "og:generate": "node scripts/generate-og-card.mjs",
     "preview": "vite preview",
     "resume": "node scripts/export-resume.mjs",
     "prepare": "husky",
