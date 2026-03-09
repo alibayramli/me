@@ -1,5 +1,5 @@
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import {
   AlignmentType,
   BorderStyle,
@@ -14,29 +14,27 @@ import {
   TextRun,
   VerticalAlignTable,
   WidthType,
-} from "docx";
-import puppeteer from "puppeteer";
+} from 'docx'
+import puppeteer from 'puppeteer'
 
-const rootDir = resolve(import.meta.dirname, "..");
-const siteContentPath = resolve(rootDir, "src/content/site-content.json");
-const outputDir = resolve(rootDir, "public/resume");
-const docxPath = resolve(outputDir, "Ali_Bayramli_CV.docx");
-const pdfPath = resolve(outputDir, "Ali_Bayramli_CV.pdf");
+const rootDir = resolve(import.meta.dirname, '..')
+const siteContentPath = resolve(rootDir, 'src/content/site-content.json')
+const outputDir = resolve(rootDir, 'public/resume')
+const docxPath = resolve(outputDir, 'Ali_Bayramli_CV.docx')
+const pdfPath = resolve(outputDir, 'Ali_Bayramli_CV.pdf')
 
-const siteContent = JSON.parse(readFileSync(siteContentPath, "utf8"));
-const { profile, experiences, projects, resumeProjects } = siteContent;
-const selectedProjects = projects.filter((project) =>
-  resumeProjects.includes(project.title),
-);
+const siteContent = JSON.parse(readFileSync(siteContentPath, 'utf8'))
+const { profile, experiences, projects, resumeProjects } = siteContent
+const selectedProjects = projects.filter((project) => resumeProjects.includes(project.title))
 
 const LAYOUT = {
-  color: "111111",
-  fontFamily: "Verdana, Arial, sans-serif",
+  color: '111111',
+  fontFamily: 'Verdana, Arial, sans-serif',
   font: {
-    ascii: "Verdana",
-    hAnsi: "Verdana",
-    eastAsia: "Verdana",
-    cs: "Verdana",
+    ascii: 'Verdana',
+    hAnsi: 'Verdana',
+    eastAsia: 'Verdana',
+    cs: 'Verdana',
   },
   page: {
     width: 11906,
@@ -85,59 +83,52 @@ const LAYOUT = {
     hanging: 260,
   },
   tableColumnWidths: [4200, 3050, 3994],
-};
+}
 
 const TABLE_BORDERS = {
-  top: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-  bottom: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-  left: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-  right: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-  insideHorizontal: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-  insideVertical: { style: BorderStyle.NONE, size: 0, color: "FFFFFF" },
-};
+  top: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
+  bottom: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
+  left: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
+  right: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
+  insideHorizontal: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
+  insideVertical: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
+}
 
-const displayUrl = (url) =>
-  url.replace(/^https?:\/\/(?:www\.)?/, "").replace(/\/$/, "");
-const displayRepo = (url) =>
-  url.replace(/^https?:\/\/github\.com\//, "").replace(/\/$/, "");
+const displayUrl = (url) => url.replace(/^https?:\/\/(?:www\.)?/, '').replace(/\/$/, '')
+const displayRepo = (url) => url.replace(/^https?:\/\/github\.com\//, '').replace(/\/$/, '')
 const escapeHtml = (value) =>
   value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
-const text = (value) => escapeHtml(String(value));
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;')
+const text = (value) => escapeHtml(String(value))
 
-const halfPointsToPt = (value) => value / 2;
-const twipsToPt = (value) => value / 20;
+const halfPointsToPt = (value) => value / 2
+const twipsToPt = (value) => value / 20
 const formatCssNumber = (value) => {
-  const rounded = Number(value.toFixed(3));
-  return Number.isInteger(rounded) ? String(rounded) : String(rounded);
-};
-const pt = (value) => `${formatCssNumber(value)}pt`;
-const halfPointsToCss = (value) => pt(halfPointsToPt(value));
-const twipsToCss = (value) => pt(twipsToPt(value));
+  const rounded = Number(value.toFixed(3))
+  return Number.isInteger(rounded) ? String(rounded) : String(rounded)
+}
+const pt = (value) => `${formatCssNumber(value)}pt`
+const halfPointsToCss = (value) => pt(halfPointsToPt(value))
+const twipsToCss = (value) => pt(twipsToPt(value))
 const lineHeight = (lineTwips, fontHalfPoints) =>
-  formatCssNumber(twipsToPt(lineTwips) / halfPointsToPt(fontHalfPoints));
+  formatCssNumber(twipsToPt(lineTwips) / halfPointsToPt(fontHalfPoints))
 const contactColumnPercentages = (() => {
-  const totalWidth = LAYOUT.tableColumnWidths.reduce(
-    (sum, width) => sum + width,
-    0,
-  );
+  const totalWidth = LAYOUT.tableColumnWidths.reduce((sum, width) => sum + width, 0)
 
-  return LAYOUT.tableColumnWidths.map((width) =>
-    formatCssNumber((width / totalWidth) * 100),
-  );
-})();
+  return LAYOUT.tableColumnWidths.map((width) => formatCssNumber((width / totalWidth) * 100))
+})()
 const PDF_LAYOUT = {
   lineHeight: {
-    title: "1.04",
-    body: "1.095",
-    summary: "1.11",
-    section: "1.08",
-    tech: "1.09",
-    contact: "1.09",
+    title: '1.04',
+    body: '1.095',
+    summary: '1.11',
+    section: '1.08',
+    tech: '1.09',
+    contact: '1.09',
   },
   spacing: {
     summaryBefore: 120,
@@ -154,32 +145,32 @@ const PDF_LAYOUT = {
     middleRight: 8,
     rightLeft: 12,
   },
-};
+}
 
 const contactRows = [
   [
-    { label: "Address", text: profile.location },
-    { label: "Phone", text: profile.phone, href: `tel:${profile.phone}` },
-    { label: "Email", text: profile.email, href: `mailto:${profile.email}` },
+    { label: 'Address', text: profile.location },
+    { label: 'Phone', text: profile.phone, href: `tel:${profile.phone}` },
+    { label: 'Email', text: profile.email, href: `mailto:${profile.email}` },
   ],
   [
     {
-      label: "Portfolio",
+      label: 'Portfolio',
       text: displayUrl(profile.siteUrl),
       href: profile.siteUrl,
     },
     {
-      label: "GitHub",
+      label: 'GitHub',
       text: displayUrl(profile.github),
       href: profile.github,
     },
     {
-      label: "LinkedIn",
+      label: 'LinkedIn',
       text: displayUrl(profile.linkedin),
       href: profile.linkedin,
     },
   ],
-];
+]
 
 const makeRun = (value, overrides = {}) =>
   new TextRun({
@@ -189,7 +180,7 @@ const makeRun = (value, overrides = {}) =>
     size: LAYOUT.sizes.body,
     noProof: true,
     ...overrides,
-  });
+  })
 
 const makeLink = (label, url, overrides = {}) =>
   new ExternalHyperlink({
@@ -205,7 +196,7 @@ const makeLink = (label, url, overrides = {}) =>
         ...overrides,
       }),
     ],
-  });
+  })
 
 const makeParagraph = ({
   children,
@@ -230,7 +221,7 @@ const makeParagraph = ({
     indent,
     keepNext,
     children: children ?? [makeRun(value)],
-  });
+  })
 
 const createContactCell = (cell, alignment) =>
   new TableCell({
@@ -246,17 +237,17 @@ const createContactCell = (cell, alignment) =>
         children: cell
           ? [
               makeRun(`${cell.label}:`, { size: LAYOUT.sizes.contact }),
-              makeRun(" ", { size: LAYOUT.sizes.contact }),
+              makeRun(' ', { size: LAYOUT.sizes.contact }),
               cell.href
                 ? makeLink(cell.text, cell.href, {
                     size: LAYOUT.sizes.contact,
                   })
                 : makeRun(cell.text, { size: LAYOUT.sizes.contact }),
             ]
-          : [makeRun("", { size: LAYOUT.sizes.contact })],
+          : [makeRun('', { size: LAYOUT.sizes.contact })],
       }),
     ],
-  });
+  })
 
 const createContactTable = () =>
   new Table({
@@ -275,7 +266,7 @@ const createContactTable = () =>
           ],
         }),
     ),
-  });
+  })
 
 const createBullets = (items) =>
   items.map((item) =>
@@ -293,7 +284,7 @@ const createBullets = (items) =>
       },
       run: { size: LAYOUT.sizes.body },
     }),
-  );
+  )
 
 const createSectionTitle = (value) =>
   makeParagraph({
@@ -311,12 +302,12 @@ const createSectionTitle = (value) =>
         characterSpacing: 6,
       }),
     ],
-  });
+  })
 
 const createExperienceNodes = (experience) => {
   const bullets = experience.resumeBullets?.length
     ? experience.resumeBullets
-    : [experience.resumeLine];
+    : [experience.resumeLine]
 
   return [
     makeParagraph({
@@ -338,26 +329,24 @@ const createExperienceNodes = (experience) => {
       },
       run: { size: LAYOUT.sizes.tech },
       children: [
-        makeRun("Technologies:", {
+        makeRun('Technologies:', {
           bold: true,
           size: LAYOUT.sizes.tech,
         }),
-        makeRun(` ${experience.tech.join(", ")}`, {
+        makeRun(` ${experience.tech.join(', ')}`, {
           size: LAYOUT.sizes.tech,
         }),
       ],
     }),
-  ];
-};
+  ]
+}
 
 const createProjectNodes = (project) => {
-  const descriptionChildren = [makeRun(project.resumeLine)];
+  const descriptionChildren = [makeRun(project.resumeLine)]
 
   if (project.links?.github) {
-    descriptionChildren.push(makeRun(" GitHub: "));
-    descriptionChildren.push(
-      makeLink(displayRepo(project.links.github), project.links.github),
-    );
+    descriptionChildren.push(makeRun(' GitHub: '))
+    descriptionChildren.push(makeLink(displayRepo(project.links.github), project.links.github))
   }
 
   return [
@@ -374,19 +363,19 @@ const createProjectNodes = (project) => {
       },
       children: descriptionChildren,
     }),
-  ];
-};
+  ]
+}
 
-const inlineLink = (url, label) => `<a href="${text(url)}">${text(label)}</a>`;
+const inlineLink = (url, label) => `<a href="${text(url)}">${text(label)}</a>`
 
 const renderContactCell = (cell) => {
   if (!cell) {
-    return "";
+    return ''
   }
 
-  const value = cell.href ? inlineLink(cell.href, cell.text) : text(cell.text);
-  return `<span class="contact-label">${text(cell.label)}:</span> ${value}`;
-};
+  const value = cell.href ? inlineLink(cell.href, cell.text) : text(cell.text)
+  return `<span class="contact-label">${text(cell.label)}:</span> ${value}`
+}
 
 const renderPdfHtml = () => {
   const renderContactRows = () =>
@@ -394,41 +383,41 @@ const renderPdfHtml = () => {
       .map(
         (cells) => `
           <tr>
-            ${cells.map((cell) => `<td>${renderContactCell(cell)}</td>`).join("")}
+            ${cells.map((cell) => `<td>${renderContactCell(cell)}</td>`).join('')}
           </tr>`,
       )
-      .join("");
+      .join('')
 
   const renderBullets = (items) => `
     <ul class="compact-list">
-      ${items.map((item) => `<li>${text(item)}</li>`).join("")}
-    </ul>`;
+      ${items.map((item) => `<li>${text(item)}</li>`).join('')}
+    </ul>`
 
   const renderExperience = (experience) => {
     const bullets = experience.resumeBullets?.length
       ? experience.resumeBullets
-      : [experience.resumeLine];
+      : [experience.resumeLine]
 
     return `
       <div class="entry">
         <p class="company">${text(experience.company)}</p>
         <p class="role">${text(experience.role)} (${text(experience.period)})</p>
         ${renderBullets(bullets)}
-        <p class="tech"><strong>Technologies:</strong> ${text(experience.tech.join(", "))}</p>
-      </div>`;
-  };
+        <p class="tech"><strong>Technologies:</strong> ${text(experience.tech.join(', '))}</p>
+      </div>`
+  }
 
   const renderProject = (project) => {
     const source = project.links?.github
       ? ` GitHub: ${inlineLink(project.links.github, displayRepo(project.links.github))}`
-      : "";
+      : ''
 
     return `
       <div class="entry">
         <p class="company">${text(project.title)}</p>
         <p class="project-detail">${text(project.resumeLine)}${source}</p>
-      </div>`;
-  };
+      </div>`
+  }
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -558,9 +547,7 @@ const renderPdfHtml = () => {
       <h1>${text(profile.name)}, ${text(profile.resumeTitle)}</h1>
       <table class="contact-table" role="presentation">
         <colgroup>
-          ${contactColumnPercentages
-            .map((width) => `<col style="width:${width}%">`)
-            .join("")}
+          ${contactColumnPercentages.map((width) => `<col style="width:${width}%">`).join('')}
         </colgroup>
         ${renderContactRows()}
       </table>
@@ -571,13 +558,13 @@ const renderPdfHtml = () => {
       ${renderBullets(profile.resumeSkillLines)}
 
       <p class="section-title">WORK EXPERIENCE</p>
-      ${experiences.map(renderExperience).join("")}
+      ${experiences.map(renderExperience).join('')}
 
       <p class="section-title">PERSONAL PROJECTS</p>
-      ${selectedProjects.map(renderProject).join("")}
+      ${selectedProjects.map(renderProject).join('')}
 
       <p class="section-title">LANGUAGES</p>
-      <p class="single-line">${text(profile.resumeLanguages.join(" | "))}</p>
+      <p class="single-line">${text(profile.resumeLanguages.join(' | '))}</p>
 
       <p class="section-title">EDUCATION</p>
       <p class="single-line">${text(
@@ -585,8 +572,8 @@ const renderPdfHtml = () => {
       )}</p>
     </main>
   </body>
-</html>`;
-};
+</html>`
+}
 
 const createDocxDocument = () =>
   new Document({
@@ -623,18 +610,18 @@ const createDocxDocument = () =>
               line: LAYOUT.line.summary,
             },
           }),
-          createSectionTitle("SKILLS"),
+          createSectionTitle('SKILLS'),
           ...createBullets(profile.resumeSkillLines),
-          createSectionTitle("WORK EXPERIENCE"),
+          createSectionTitle('WORK EXPERIENCE'),
           ...experiences.flatMap(createExperienceNodes),
-          createSectionTitle("PERSONAL PROJECTS"),
+          createSectionTitle('PERSONAL PROJECTS'),
           ...selectedProjects.flatMap(createProjectNodes),
-          createSectionTitle("LANGUAGES"),
+          createSectionTitle('LANGUAGES'),
           makeParagraph({
-            text: profile.resumeLanguages.join(" | "),
+            text: profile.resumeLanguages.join(' | '),
             spacing: { after: LAYOUT.spacing.singleLineAfter, line: LAYOUT.line.body },
           }),
-          createSectionTitle("EDUCATION"),
+          createSectionTitle('EDUCATION'),
           makeParagraph({
             text: `${profile.education[0].institution} ${profile.education[0].degree} (${profile.education[0].period})`,
             spacing: { after: 0, line: LAYOUT.line.body },
@@ -642,58 +629,55 @@ const createDocxDocument = () =>
         ],
       },
     ],
-  });
+  })
 
 const exportDocx = async () => {
-  const document = createDocxDocument();
-  const buffer = await Packer.toBuffer(document);
-  writeFileSync(docxPath, buffer);
-};
+  const document = createDocxDocument()
+  const buffer = await Packer.toBuffer(document)
+  writeFileSync(docxPath, buffer)
+}
 
 const exportPdf = async () => {
   const browser = await puppeteer.launch({
     headless: true,
-    args:
-      process.platform === "linux"
-        ? ["--no-sandbox", "--disable-setuid-sandbox"]
-        : [],
-  });
+    args: process.platform === 'linux' ? ['--no-sandbox', '--disable-setuid-sandbox'] : [],
+  })
 
   try {
-    const page = await browser.newPage();
-    await page.setContent(renderPdfHtml(), { waitUntil: "networkidle0" });
-    await page.emulateMediaType("print");
+    const page = await browser.newPage()
+    await page.setContent(renderPdfHtml(), { waitUntil: 'networkidle0' })
+    await page.emulateMediaType('print')
     const pdfBuffer = await page.pdf({
-      format: "A4",
+      format: 'A4',
       printBackground: true,
       displayHeaderFooter: false,
       preferCSSPageSize: true,
       margin: {
-        top: "0in",
-        right: "0in",
-        bottom: "0in",
-        left: "0in",
+        top: '0in',
+        right: '0in',
+        bottom: '0in',
+        left: '0in',
       },
-    });
-    writeFileSync(pdfPath, pdfBuffer);
+    })
+    writeFileSync(pdfPath, pdfBuffer)
   } finally {
-    await browser.close();
+    await browser.close()
   }
-};
-
-mkdirSync(outputDir, { recursive: true });
-
-try {
-  await exportDocx();
-} catch (error) {
-  if (error?.code !== "EBUSY") {
-    throw error;
-  }
-
-  console.warn(`Skipped DOCX export because the file is locked: ${docxPath}`);
 }
 
-await exportPdf();
+mkdirSync(outputDir, { recursive: true })
 
-console.log(`Exported DOCX: ${docxPath}`);
-console.log(`Exported PDF: ${pdfPath}`);
+try {
+  await exportDocx()
+} catch (error) {
+  if (error?.code !== 'EBUSY') {
+    throw error
+  }
+
+  console.warn(`Skipped DOCX export because the file is locked: ${docxPath}`)
+}
+
+await exportPdf()
+
+console.log(`Exported DOCX: ${docxPath}`)
+console.log(`Exported PDF: ${pdfPath}`)

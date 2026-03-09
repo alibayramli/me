@@ -1,14 +1,9 @@
-import {
-  Globe,
-  Handshake,
-  Mail,
-  MapPin,
-} from "lucide-react";
-import { GitHubIcon, LinkedInIcon } from "@/components/brand-icons";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { SITE_PROFILE } from "@/lib/portfolio-data";
+import { Globe, Handshake, Mail, MapPin } from 'lucide-react'
+import { GitHubIcon, LinkedInIcon } from '@/components/brand-icons'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { SITE_PROFILE } from '@/lib/portfolio-data'
 
 const Contact = () => {
   return (
@@ -18,10 +13,7 @@ const Contact = () => {
           <Card className="glass overflow-hidden border-0">
             <CardContent className="p-8 md:p-11">
               <div className="mx-auto mb-10 max-w-3xl text-center">
-                <Badge
-                  variant="outline"
-                  className="mb-4 border-primary/50 text-primary"
-                >
+                <Badge variant="outline" className="mb-4 border-primary/50 text-primary">
                   <Handshake className="mr-1 h-3 w-3" />
                   Contact
                 </Badge>
@@ -42,11 +34,7 @@ const Contact = () => {
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className="w-full max-w-xs sm:w-auto" asChild>
-                  <a
-                    href={SITE_PROFILE.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href={SITE_PROFILE.linkedin} target="_blank" rel="noopener noreferrer">
                     <LinkedInIcon className="mr-2 h-4 w-4" />
                     LinkedIn
                   </a>
@@ -77,7 +65,7 @@ const Contact = () => {
                       className="flex items-center gap-2 hover:text-foreground"
                     >
                       <Globe className="h-4 w-4 text-primary/80" />
-                      {SITE_PROFILE.siteUrl.replace(/^https?:\/\//, "")}
+                      {SITE_PROFILE.siteUrl.replace(/^https?:\/\//, '')}
                     </a>
                   </div>
                 </div>
@@ -120,7 +108,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact

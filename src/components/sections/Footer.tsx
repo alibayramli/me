@@ -1,6 +1,6 @@
-import { Mail } from "lucide-react";
-import { GitHubIcon, LinkedInIcon } from "@/components/brand-icons";
-import { NAV_ITEMS, SITE_PROFILE } from "@/lib/portfolio-data";
+import { Mail } from 'lucide-react'
+import { GitHubIcon, LinkedInIcon } from '@/components/brand-icons'
+import { NAV_ITEMS, SITE_PROFILE } from '@/lib/portfolio-data'
 
 const Footer = () => {
   return (
@@ -56,7 +56,7 @@ const Footer = () => {
         (c) {new Date().getFullYear()} {SITE_PROFILE.name}
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

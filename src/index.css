@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -26,8 +26,8 @@
     --input: 214 20% 82%;
     --ring: 214 54% 44%;
     --radius: 0.75rem;
-    --font-display: "Space Grotesk", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    --font-body: "Manrope", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-display: 'Space Grotesk', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --font-body: 'Manrope', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   }
 
   .dark {
@@ -59,7 +59,9 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
     font-family: var(--font-body);
     background-image:
       radial-gradient(circle at 12% 8%, hsl(var(--primary) / 0.08), transparent 28%),
@@ -161,19 +163,35 @@
 
 /* Animation keyframes */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.08; }
-  50% { opacity: 0.14; }
+  0%,
+  100% {
+    opacity: 0.08;
+  }
+  50% {
+    opacity: 0.14;
+  }
 }
 
 @keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .animate-float {

@@ -1,42 +1,40 @@
-import { useEffect, useState } from "react";
-import AnimatedBackground from "@/components/sections/AnimatedBackground";
-import About from "@/components/sections/About";
-import Contact from "@/components/sections/Contact";
-import Experience from "@/components/sections/Experience";
-import Footer from "@/components/sections/Footer";
-import Hero from "@/components/sections/Hero";
-import Impact from "@/components/sections/Impact";
-import Navigation from "@/components/sections/Navigation";
-import Projects from "@/components/sections/Projects";
-import Skills from "@/components/sections/Skills";
+import { useEffect, useState } from 'react'
+import AnimatedBackground from '@/components/sections/AnimatedBackground'
+import About from '@/components/sections/About'
+import Contact from '@/components/sections/Contact'
+import Experience from '@/components/sections/Experience'
+import Footer from '@/components/sections/Footer'
+import Hero from '@/components/sections/Hero'
+import Impact from '@/components/sections/Impact'
+import Navigation from '@/components/sections/Navigation'
+import Projects from '@/components/sections/Projects'
+import Skills from '@/components/sections/Skills'
 
-type Theme = "light" | "dark";
-const THEME_STORAGE_KEY = "portfolio-theme";
+type Theme = 'light' | 'dark'
+const THEME_STORAGE_KEY = 'portfolio-theme'
 
 function App() {
   const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === "undefined") {
-      return "light";
+    if (typeof window === 'undefined') {
+      return 'light'
     }
 
-    const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
-    if (storedTheme === "light" || storedTheme === "dark") {
-      return storedTheme;
+    const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY)
+    if (storedTheme === 'light' || storedTheme === 'dark') {
+      return storedTheme
     }
 
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  });
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  })
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
-  }, [theme]);
+    document.documentElement.classList.toggle('dark', theme === 'dark')
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme)
+  }, [theme])
 
   const toggleTheme = () => {
-    setTheme((current) => (current === "dark" ? "light" : "dark"));
-  };
+    setTheme((current) => (current === 'dark' ? 'light' : 'dark'))
+  }
 
   return (
     <div className="relative min-h-screen">
@@ -47,10 +45,7 @@ function App() {
         Skip to content
       </a>
       <AnimatedBackground />
-      <Navigation
-        theme={theme}
-        onToggleTheme={toggleTheme}
-      />
+      <Navigation theme={theme} onToggleTheme={toggleTheme} />
       <main id="main-content">
         <Hero />
         <About />
@@ -62,7 +57,7 @@ function App() {
       </main>
       <Footer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

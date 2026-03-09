@@ -1,38 +1,30 @@
-import { ArrowUpRight, ExternalLink, Layers } from "lucide-react";
-import { GitHubIcon } from "@/components/brand-icons";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { PROJECTS } from "@/lib/portfolio-data";
+import { ArrowUpRight, ExternalLink, Layers } from 'lucide-react'
+import { GitHubIcon } from '@/components/brand-icons'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent } from '@/components/ui/card'
+import { PROJECTS } from '@/lib/portfolio-data'
 
 const Projects = () => {
   return (
     <section id="projects" className="px-6 py-24">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 max-w-3xl">
-          <Badge
-            variant="outline"
-            className="mb-4 border-primary/50 text-primary"
-          >
+          <Badge variant="outline" className="mb-4 border-primary/50 text-primary">
             <Layers className="mr-1 h-3 w-3" />
             Featured Work
           </Badge>
           <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-            Projects that show how I
-            <span className="text-gradient"> think and execute</span>
+            Projects that show how I<span className="text-gradient"> think and execute</span>
           </h2>
           <p className="max-w-2xl text-muted-foreground">
-            A mix of internal platform work, shipping product systems, and
-            open-source or self-directed builds that make my engineering range
-            visible.
+            A mix of internal platform work, shipping product systems, and open-source or
+            self-directed builds that make my engineering range visible.
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {PROJECTS.map((project) => (
-            <Card
-              key={project.title}
-              className="glass group relative overflow-hidden border-0"
-            >
+            <Card key={project.title} className="glass group relative overflow-hidden border-0">
               <CardContent className="relative p-6">
                 <div className="mb-6 flex items-start justify-between gap-4">
                   <div className="flex min-w-0 items-start gap-4">
@@ -94,9 +86,7 @@ const Projects = () => {
                     <ArrowUpRight className="h-3.5 w-3.5" />
                     Outcome
                   </div>
-                  <p className="text-sm leading-relaxed text-foreground/90">
-                    {project.result}
-                  </p>
+                  <p className="text-sm leading-relaxed text-foreground/90">{project.result}</p>
                 </div>
 
                 {project.metrics && project.metrics.length > 0 && (
@@ -106,9 +96,7 @@ const Projects = () => {
                         key={`${project.title}-${metric.label}`}
                         className="rounded-2xl border border-border/70 bg-background/28 p-4 dark:bg-background/18"
                       >
-                        <div className="text-xl font-bold text-foreground">
-                          {metric.value}
-                        </div>
+                        <div className="text-xl font-bold text-foreground">{metric.value}</div>
                         <div className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                           {metric.label}
                         </div>
@@ -134,11 +122,7 @@ const Projects = () => {
 
                 <div className="mb-5 flex flex-wrap gap-2">
                   {project.tech.map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="secondary"
-                      className="bg-background/70 text-xs"
-                    >
+                    <Badge key={tech} variant="secondary" className="bg-background/70 text-xs">
                       {tech}
                     </Badge>
                   ))}
@@ -176,7 +160,7 @@ const Projects = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Projects;
+export default Projects

@@ -1,7 +1,7 @@
-import { User } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { ABOUT_SECTION } from "@/lib/portfolio-data";
+import { User } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent } from '@/components/ui/card'
+import { ABOUT_SECTION } from '@/lib/portfolio-data'
 
 const About = () => {
   return (
@@ -9,16 +9,11 @@ const About = () => {
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
           <div>
-            <Badge
-              variant="outline"
-              className="mb-4 border-primary/50 text-primary"
-            >
+            <Badge variant="outline" className="mb-4 border-primary/50 text-primary">
               <User className="mr-1 h-3 w-3" />
               {ABOUT_SECTION.eyebrow}
             </Badge>
-            <h2 className="mb-5 max-w-3xl text-3xl font-bold md:text-4xl">
-              {ABOUT_SECTION.title}
-            </h2>
+            <h2 className="mb-5 max-w-3xl text-3xl font-bold md:text-4xl">{ABOUT_SECTION.title}</h2>
           </div>
           <div className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
             {ABOUT_SECTION.paragraphs.map((paragraph) => (
@@ -55,7 +50,7 @@ const About = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default About;
+export default About

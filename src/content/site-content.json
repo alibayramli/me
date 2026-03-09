@@ -6,7 +6,7 @@
     "headline": "Platform engineer who reduces delivery friction with internal tooling, automation, and full-stack systems.",
     "summary": "8+ years across fintech and enterprise. I build developer portals, CI/CD workflows, cloud-backed applications, and observability foundations that help teams ship faster and operate with less drag.",
     "resumeSummary": "Platform engineer and full-stack developer with 8+ years across fintech and enterprise. Builds developer portals, delivery automation, and internal applications with React, Angular, Node.js, and Python. Specializes in Backstage plugins, release workflows, and internal tooling that reduce manual review.",
-    "heroBadge": "Platform engineering, delivery systems, and full-stack execution",
+    "heroCapabilities": ["Platform engineering", "Developer portals", "Full-stack development"],
     "availability": "Open to remote senior platform and full-stack roles",
     "contactHeadline": "Available for platform engineering, full-stack delivery, and consulting engagements.",
     "location": "Baku, Azerbaijan",
@@ -20,20 +20,11 @@
     "resumeDocx": "resume/Ali_Bayramli_CV.docx",
     "profileImage": "profile-photo.jpeg",
     "languages": ["English", "Azerbaijani", "French (intermediate)"],
-    "resumeLanguages": [
-      "English - Fluent",
-      "Azerbaijani - Native",
-      "French - Intermediate"
-    ],
+    "resumeLanguages": ["English - Fluent", "Azerbaijani - Native", "French - Intermediate"],
     "resumeSkillGroups": [
       {
         "label": "Platform",
-        "items": [
-          "Backstage.io",
-          "Developer Portals",
-          "Service Catalogs",
-          "Golden Paths"
-        ]
+        "items": ["Backstage.io", "Developer Portals", "Service Catalogs", "Golden Paths"]
       },
       {
         "label": "Frontend",
@@ -45,14 +36,7 @@
       },
       {
         "label": "Delivery",
-        "items": [
-          "AWS",
-          "Terraform",
-          "Docker",
-          "Kubernetes",
-          "GitLab CI",
-          "GitHub Actions"
-        ]
+        "items": ["AWS", "Terraform", "Docker", "Kubernetes", "GitLab CI", "GitHub Actions"]
       },
       {
         "label": "Observability",
@@ -182,14 +166,7 @@
       "title": "Cloud and Delivery",
       "icon": "workflow",
       "summary": "CI/CD, infrastructure, and runtime tooling that make releases more repeatable and supportable.",
-      "skills": [
-        "AWS",
-        "Terraform",
-        "Docker",
-        "Kubernetes",
-        "GitLab CI",
-        "GitHub Actions"
-      ],
+      "skills": ["AWS", "Terraform", "Docker", "Kubernetes", "GitLab CI", "GitHub Actions"],
       "highlight": true
     },
     {
@@ -356,13 +333,7 @@
       "description": "A Python automation tool that fetches FX rates from the Frankfurter API and posts weekday Telegram updates, including derived EUR/AZN rates.",
       "result": "Automated the full weekday FX update flow from data retrieval to delivery.",
       "resumeLine": "Python automation for weekday Telegram FX updates, including derived rates and scheduled delivery.",
-      "tech": [
-        "Python",
-        "Requests",
-        "python-telegram-bot",
-        "Pytest",
-        "GitHub Actions"
-      ],
+      "tech": ["Python", "Requests", "python-telegram-bot", "Pytest", "GitHub Actions"],
       "links": {
         "github": "https://github.com/alibayramli/fx-notifier"
       },

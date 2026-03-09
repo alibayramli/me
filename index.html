@@ -7,43 +7,30 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="icon" href="favicon.ico" />
-    <meta
-      name="description"
-      content="Portfolio, projects, and experience for Ali Bayramli."
-    />
+    <meta name="description" content="Portfolio, projects, and experience for Ali Bayramli." />
     <meta property="og:title" content="Ali Bayramli | Platform Engineer" />
     <meta
       property="og:description"
       content="Portfolio, projects, and experience for Ali Bayramli."
     />
     <meta property="og:type" content="website" />
-    <meta
-      property="og:image"
-      content="https://alibayramli.github.io/me/og-card.png"
-    />
-    <meta
-      property="og:image:alt"
-      content="Ali Bayramli portfolio preview card"
-    />
+    <meta property="og:image" content="https://alibayramli.github.io/me/og-card.png" />
+    <meta property="og:image:alt" content="Ali Bayramli portfolio preview card" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:image"
-      content="https://alibayramli.github.io/me/og-card.png"
-    />
+    <meta name="twitter:image" content="https://alibayramli.github.io/me/og-card.png" />
     <script>
-      (function () {
+      ;(function () {
         try {
-          var theme = window.localStorage.getItem("portfolio-theme");
+          var theme = window.localStorage.getItem('portfolio-theme')
           var prefersDark =
-            window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches;
+            window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 
           document.documentElement.classList.toggle(
-            "dark",
-            theme === "dark" || (theme !== "light" && prefersDark),
-          );
+            'dark',
+            theme === 'dark' || (theme !== 'light' && prefersDark),
+          )
         } catch {}
-      })();
+      })()
     </script>
   </head>
   <body>
