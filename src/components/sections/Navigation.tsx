@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Menu, Moon, Sun, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { getTrackedElementProps } from '@/lib/observability'
 import { NAV_ITEMS, SITE_PROFILE } from '@/lib/portfolio-data'
 
 type NavigationProps = {
@@ -66,7 +67,14 @@ const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
       <div className="mx-auto hidden w-full max-w-6xl items-center px-6 md:flex">
         <div className="min-w-0 basis-0 flex-1">
           {showBrand ? (
-            <a href="#main-content" className="inline-flex min-w-0 max-w-full text-foreground">
+            <a
+              href="#main-content"
+              className="inline-flex min-w-0 max-w-full text-foreground"
+              {...getTrackedElementProps('navigation_click', {
+                placement: 'desktop_brand',
+                targetSection: 'main-content',
+              })}
+            >
               <div className="truncate text-base font-semibold">{SITE_PROFILE.name}</div>
             </a>
           ) : null}
@@ -78,6 +86,10 @@ const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
               key={item.label}
               href={item.href}
               className="relative text-sm text-muted-foreground transition-colors hover:text-foreground"
+              {...getTrackedElementProps('navigation_click', {
+                placement: 'desktop_nav',
+                targetSection: item.href.replace(/^#/, ''),
+              })}
             >
               {item.label}
             </a>
@@ -90,7 +102,14 @@ const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-6 md:hidden">
         <div className="min-w-0 flex-1">
           {showBrand ? (
-            <a href="#main-content" className="block text-foreground">
+            <a
+              href="#main-content"
+              className="block text-foreground"
+              {...getTrackedElementProps('navigation_click', {
+                placement: 'mobile_brand',
+                targetSection: 'main-content',
+              })}
+            >
               <span className="block truncate text-sm font-semibold">{SITE_PROFILE.name}</span>
             </a>
           ) : null}
@@ -138,6 +157,10 @@ const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
                   href={item.href}
                   className="px-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
                   onClick={() => setMenuOpen(false)}
+                  {...getTrackedElementProps('navigation_click', {
+                    placement: 'mobile_nav',
+                    targetSection: item.href.replace(/^#/, ''),
+                  })}
                 >
                   {item.label}
                 </a>

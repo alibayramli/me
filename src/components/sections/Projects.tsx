@@ -2,6 +2,7 @@ import { ArrowUpRight, ExternalLink, Layers } from 'lucide-react'
 import { GitHubIcon } from '@/components/brand-icons'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
+import { getTrackedElementProps } from '@/lib/observability'
 import { PROJECTS } from '@/lib/portfolio-data'
 
 const Projects = () => {
@@ -59,6 +60,11 @@ const Projects = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-sm text-primary hover:underline"
+                          {...getTrackedElementProps('project_link_click', {
+                            linkType: 'live',
+                            placement: 'header',
+                            projectTitle: project.title,
+                          })}
                         >
                           Live
                         </a>
@@ -69,6 +75,11 @@ const Projects = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-sm text-muted-foreground hover:text-foreground"
+                          {...getTrackedElementProps('project_link_click', {
+                            linkType: 'github',
+                            placement: 'header',
+                            projectTitle: project.title,
+                          })}
                         >
                           GitHub
                         </a>
@@ -136,6 +147,11 @@ const Projects = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-1 text-sm text-primary hover:underline"
+                        {...getTrackedElementProps('project_link_click', {
+                          linkType: 'live',
+                          placement: 'footer',
+                          projectTitle: project.title,
+                        })}
                       >
                         <ExternalLink className="h-4 w-4" />
                         Live Demo
@@ -147,6 +163,11 @@ const Projects = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+                        {...getTrackedElementProps('project_link_click', {
+                          linkType: 'github',
+                          placement: 'footer',
+                          projectTitle: project.title,
+                        })}
                       >
                         <GitHubIcon className="h-4 w-4" />
                         Source Code

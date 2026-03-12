@@ -9,11 +9,15 @@ import Impact from '@/components/sections/Impact'
 import Navigation from '@/components/sections/Navigation'
 import Projects from '@/components/sections/Projects'
 import Skills from '@/components/sections/Skills'
+import { useSectionViewTracking, useTelemetryClickTracking } from '@/hooks/use-observability'
 
 type Theme = 'light' | 'dark'
 const THEME_STORAGE_KEY = 'portfolio-theme'
 
 function App() {
+  useSectionViewTracking()
+  useTelemetryClickTracking()
+
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window === 'undefined') {
       return 'light'
