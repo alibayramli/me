@@ -7,6 +7,7 @@ import Footer from '@/components/sections/Footer'
 import Hero from '@/components/sections/Hero'
 import Impact from '@/components/sections/Impact'
 import Navigation from '@/components/sections/Navigation'
+import Observability from '@/components/sections/Observability'
 import Projects from '@/components/sections/Projects'
 import Skills from '@/components/sections/Skills'
 import { useSectionViewTracking, useTelemetryClickTracking } from '@/hooks/use-observability'
@@ -57,6 +58,7 @@ function App() {
         <Skills />
         <Experience />
         <Projects />
+        <Observability />
         <Contact />
       </main>
       <Footer />
