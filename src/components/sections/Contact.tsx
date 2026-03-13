@@ -19,8 +19,7 @@ const Contact = () => {
                   Contact
                 </Badge>
                 <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-                  Need someone who can improve developer flow
-                  <span className="text-gradient"> and still ship product code?</span>
+                  Need someone who can improve developer flow and still ship product code?
                 </h2>
                 <p className="mx-auto max-w-2xl text-muted-foreground">
                   {SITE_PROFILE.contactHeadline}

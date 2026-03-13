@@ -14,8 +14,7 @@ const Experience = () => {
               Experience
             </Badge>
             <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-              Work history with
-              <span className="text-gradient"> measurable outcomes</span>
+              Work history with measurable outcomes
             </h2>
             <p className="max-w-2xl text-muted-foreground">
               A mix of platform, front-end, and full-stack roles across fintech, SaaS, and

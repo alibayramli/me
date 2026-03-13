@@ -115,6 +115,9 @@ const Hero = () => {
                       src={SITE_PROFILE.profileImageUrl}
                       alt={`${SITE_PROFILE.name} portrait`}
                       className="aspect-[4/5] h-full w-full object-cover"
+                      fetchPriority="high"
+                      loading="eager"
+                      decoding="async"
                       onError={() => {
                         setImageFailed(true)
                         trackEvent(

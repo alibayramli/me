@@ -15,7 +15,7 @@ const Projects = () => {
             Featured Work
           </Badge>
           <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-            Projects that show how I<span className="text-gradient"> think and execute</span>
+            Projects that show how I think and execute
           </h2>
           <p className="max-w-2xl text-muted-foreground">
             A mix of internal platform work, shipping product systems, and open-source or

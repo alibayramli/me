@@ -13,8 +13,7 @@ const Impact = () => {
             Impact
           </Badge>
           <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-            Evidence that the work
-            <span className="text-gradient"> changes delivery outcomes</span>
+            Evidence that the work changes delivery outcomes
           </h2>
           <p className="max-w-2xl text-muted-foreground">
             The strongest signal in platform and product work is whether teams ship with less
