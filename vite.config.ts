@@ -27,15 +27,6 @@ export default defineConfig(({ mode }) => {
     base: BASE_PATH,
     build: {
       sourcemap: shouldUploadSourcemaps ? 'hidden' : false,
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (id.includes('@grafana/')) {
-              return 'grafana-vendor'
-            }
-          },
-        },
-      },
     },
     define: {
       __APP_VERSION__: JSON.stringify(appVersion),

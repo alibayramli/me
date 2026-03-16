@@ -24,6 +24,10 @@ const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
       variant="ghost"
       className="rounded-full border border-border/75 bg-background/70"
       aria-label={`Switch to ${nextThemeLabel} theme`}
+      {...getTrackedElementProps('theme_toggle_click', {
+        nextTheme: nextThemeLabel,
+        source: 'navigation',
+      })}
       onClick={onToggleTheme}
     >
       {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
@@ -125,6 +129,10 @@ const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
             aria-haspopup="menu"
             aria-controls="mobile-nav"
             aria-expanded={menuOpen}
+            {...getTrackedElementProps('navigation_menu_toggle', {
+              source: 'mobile_navigation',
+              state: menuOpen ? 'open' : 'closed',
+            })}
             onClick={() => setMenuOpen((open) => !open)}
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

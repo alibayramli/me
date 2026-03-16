@@ -1,12 +1,17 @@
 import { useEffect } from 'react'
-import { isObservabilityEnabled, readTrackedElementPayload, trackEvent } from '@/lib/observability'
+import {
+  isObservabilityConfigured,
+  readTrackedElementPayload,
+  trackEvent,
+  trackUserAction,
+} from '@/lib/observability'
 
 const ACTIVE_SECTION_MIN_RATIO = 0.2
 const SECTION_THRESHOLDS = [0.15, 0.35, 0.55, 0.75]
 
 export function useTelemetryClickTracking() {
   useEffect(() => {
-    if (!isObservabilityEnabled()) {
+    if (!isObservabilityConfigured()) {
       return
     }
 
@@ -25,6 +30,7 @@ export function useTelemetryClickTracking() {
         return
       }
 
+      trackUserAction(payload.userActionName, payload.attributes)
       trackEvent(payload.eventName, payload.attributes, payload.domain)
     }
 
@@ -38,7 +44,7 @@ export function useTelemetryClickTracking() {
 
 export function useSectionViewTracking() {
   useEffect(() => {
-    if (!isObservabilityEnabled()) {
+    if (!isObservabilityConfigured()) {
       return
     }
 
@@ -63,8 +69,7 @@ export function useSectionViewTracking() {
       }
 
       if (!seenSections.has(nextActiveSection.id)) {
-        seenSections.add(nextActiveSection.id)
-        trackEvent(
+        const wasTracked = trackEvent(
           'section_view',
           {
             pagePath: window.location.pathname,
@@ -72,6 +77,10 @@ export function useSectionViewTracking() {
           },
           'navigation',
         )
+
+        if (wasTracked) {
+          seenSections.add(nextActiveSection.id)
+        }
       }
     }
 
