@@ -1,0 +1,38 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build output
+dist/
+build/
+output/resumes/
+
+# Local role-specific resume inputs and generated files
+.resume-targets/
+public/resume/*
+!public/resume/Ali_Bayramli_Resume.docx
+!public/resume/Ali_Bayramli_Resume.pdf
+/.agents/skills/targeted-resume/
+
+# Env files
+.env
+.env.*.local
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+~$*
+
+# Vite
+.vite/
+
+# Logs
+*.log
+
+# Coverage
+coverage/

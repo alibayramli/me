@@ -1,0 +1,50 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+        env:
+          VITE_FARO_ENABLED: ${{ vars.VITE_FARO_ENABLED }}
+          VITE_FARO_URL: ${{ vars.VITE_FARO_URL }}
+          VITE_FARO_APP_NAME: ${{ vars.VITE_FARO_APP_NAME }}
+          VITE_FARO_APP_ENV: ${{ vars.VITE_FARO_APP_ENV }}
+          FARO_APP_ID: ${{ vars.FARO_APP_ID }}
+          FARO_STACK_ID: ${{ vars.FARO_STACK_ID }}
+          FARO_SOURCEMAP_ENDPOINT: ${{ vars.FARO_SOURCEMAP_ENDPOINT }}
+          FARO_SOURCEMAP_PREFIX_PATH: ${{ vars.FARO_SOURCEMAP_PREFIX_PATH }}
+          FARO_SOURCEMAP_API_KEY: ${{ secrets.FARO_SOURCEMAP_API_KEY }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
