@@ -85,19 +85,27 @@ const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
         </div>
 
         <div className="flex flex-none items-center justify-center gap-8">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="relative text-sm text-muted-foreground transition-colors hover:text-foreground"
-              {...getTrackedElementProps('navigation_click', {
-                placement: 'desktop_nav',
-                targetSection: item.href.replace(/^#/, ''),
-              })}
-            >
-              {item.label}
-            </a>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const isExperience = item.href === '#experience'
+
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className={
+                  isExperience
+                    ? 'relative rounded-full border border-primary/30 bg-primary/[0.08] px-3 py-1.5 text-sm font-semibold text-primary transition-colors hover:border-primary/45 hover:bg-primary/[0.13]'
+                    : 'relative text-sm text-muted-foreground transition-colors hover:text-foreground'
+                }
+                {...getTrackedElementProps('navigation_click', {
+                  placement: 'desktop_nav',
+                  targetSection: item.href.replace(/^#/, ''),
+                })}
+              >
+                {item.label}
+              </a>
+            )
+          })}
         </div>
 
         <div className="flex basis-0 flex-1 justify-end">{renderThemeToggle()}</div>
@@ -159,20 +167,28 @@ const Navigation = ({ theme, onToggleTheme }: NavigationProps) => {
             </Button>
 
             <div className="flex flex-col gap-4 pt-1">
-              {mobileNavItems.map((item) => (
-                <a
-                  key={`${item.label}-${item.href}`}
-                  href={item.href}
-                  className="px-3 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  onClick={() => setMenuOpen(false)}
-                  {...getTrackedElementProps('navigation_click', {
-                    placement: 'mobile_nav',
-                    targetSection: item.href.replace(/^#/, ''),
-                  })}
-                >
-                  {item.label}
-                </a>
-              ))}
+              {mobileNavItems.map((item) => {
+                const isExperience = item.href === '#experience'
+
+                return (
+                  <a
+                    key={`${item.label}-${item.href}`}
+                    href={item.href}
+                    className={
+                      isExperience
+                        ? 'rounded-xl border border-primary/30 bg-primary/[0.08] px-3 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary/[0.13]'
+                        : 'px-3 text-sm text-muted-foreground transition-colors hover:text-foreground'
+                    }
+                    onClick={() => setMenuOpen(false)}
+                    {...getTrackedElementProps('navigation_click', {
+                      placement: 'mobile_nav',
+                      targetSection: item.href.replace(/^#/, ''),
+                    })}
+                  >
+                    {item.label}
+                  </a>
+                )
+              })}
             </div>
           </div>
         </div>

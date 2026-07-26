@@ -36,7 +36,7 @@ const svg = `<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" x
   <text x="126" y="246" fill="#172235" font-family="'Segoe UI', Arial, sans-serif" font-size="72" font-weight="700">${escapeXml(profile.title)}</text>
   <text x="126" y="308" fill="#3F546D" font-family="'Segoe UI', Arial, sans-serif" font-size="30">${escapeXml(capabilitySummary)}</text>
   <text x="126" y="398" fill="#1E2C42" font-family="'Segoe UI', Arial, sans-serif" font-size="28" font-weight="700">Backstage.io / React / Angular / Node.js / Python</text>
-  <text x="126" y="448" fill="#4A5C73" font-family="'Segoe UI', Arial, sans-serif" font-size="26">CI/CD automation / Observability / Internal platform tooling</text>
+  <text x="126" y="448" fill="#4A5C73" font-family="'Segoe UI', Arial, sans-serif" font-size="26">Fintech / Enterprise / Workflow-heavy products</text>
   <rect x="126" y="490" width="376" height="38" rx="19" fill="#E7EFF8" />
   <text x="152" y="515" fill="#4B74AD" font-family="'Segoe UI', Arial, sans-serif" font-size="21" font-weight="700">alibayramli.github.io/me/</text>
 </svg>
@@ -54,7 +54,7 @@ const renderPng = async () => {
     await page.setContent(
       `<!doctype html><html><body style="margin:0;background:#EDF2F8">${svg}</body></html>`,
       {
-        waitUntil: 'networkidle0',
+        waitUntil: 'domcontentloaded',
       },
     )
     await page.screenshot({

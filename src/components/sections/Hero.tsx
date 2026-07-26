@@ -70,13 +70,13 @@ const Hero = () => {
               </Button>
               <Button size="lg" variant="outline" className="w-full sm:w-auto" asChild>
                 <a
-                  href="#projects"
-                  {...getTrackedElementProps('projects_cta_click', {
+                  href="#experience"
+                  {...getTrackedElementProps('experience_cta_click', {
                     source: 'hero',
-                    targetSection: 'projects',
+                    targetSection: 'experience',
                   })}
                 >
-                  View Projects
+                  View Experience
                   <MoveRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>

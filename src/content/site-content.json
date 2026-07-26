@@ -258,17 +258,7 @@
       "achievements": [
         "Avoided ~$100,000 annually in third-party tooling costs by moving email generation and styling to an internally maintained platform."
       ],
-      "tech": [
-        "jQuery",
-        "SharePoint APIs",
-        "Vue.js",
-        "Vuex",
-        "Vuetify",
-        "Node.js",
-        "MongoDB",
-        "AWS S3",
-        "Agile"
-      ],
+      "tech": ["SharePoint APIs", "Vue.js", "Vuex", "Vuetify", "Node.js", "MongoDB", "AWS S3"],
       "resumeTech": ["Vue.js", "Node.js", "MongoDB", "AWS S3", "Vuetify", "SharePoint APIs"]
     }
   ],
@@ -342,7 +332,7 @@
       "title": "Trading.com Platform",
       "label": "Product launch project",
       "description": "Front-end architecture and development for a broker launch into European and Australian markets.",
-      "result": "Supported multi-region rollout with lower frontend latency.",
+      "result": "Supported the product's rollout across European and Australian markets.",
       "resumeLine": "Multi-region Angular launch work with state management and i18n support for market expansion.",
       "tech": ["Angular", "NgRx", "i18n", "Material UI", "REST APIs"],
       "icon": "trending",
@@ -351,10 +341,6 @@
         "Led UI architecture for a multi-region rollout.",
         "Implemented state management patterns for high-frequency updates.",
         "Delivered i18n-ready UX for rapid market expansion."
-      ],
-      "metrics": [
-        { "label": "Release cycles", "value": "-25%" },
-        { "label": "Latency", "value": "-18%" }
       ]
     }
   ],
