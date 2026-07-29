@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ['main']
+  pull_request:
+    branches: ['main']
   workflow_dispatch:
 
 permissions:
@@ -21,26 +23,18 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
       - run: npm ci
-      - run: npm run build
-        env:
-          VITE_FARO_ENABLED: ${{ vars.VITE_FARO_ENABLED }}
-          VITE_FARO_URL: ${{ vars.VITE_FARO_URL }}
-          VITE_FARO_APP_NAME: ${{ vars.VITE_FARO_APP_NAME }}
-          VITE_FARO_APP_ENV: ${{ vars.VITE_FARO_APP_ENV }}
-          FARO_APP_ID: ${{ vars.FARO_APP_ID }}
-          FARO_STACK_ID: ${{ vars.FARO_STACK_ID }}
-          FARO_SOURCEMAP_ENDPOINT: ${{ vars.FARO_SOURCEMAP_ENDPOINT }}
-          FARO_SOURCEMAP_PREFIX_PATH: ${{ vars.FARO_SOURCEMAP_PREFIX_PATH }}
-          FARO_SOURCEMAP_API_KEY: ${{ secrets.FARO_SOURCEMAP_API_KEY }}
+      - run: npm run check
       - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
         with:
           path: dist
 
   deploy:
     needs: build
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: github-pages

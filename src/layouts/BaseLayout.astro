@@ -1,0 +1,119 @@
+---
+import { SITE_PROFILE } from '@/lib/portfolio-data'
+import '@/index.css'
+
+type Props = {
+  title: string
+  description: string
+  image?: string
+  imageAlt?: string
+  pageType?: 'article' | 'website'
+  publishDate?: string
+  updatedDate?: string
+  tags?: string[]
+  structuredData?: Record<string, unknown>
+  preloadProfileImage?: boolean
+}
+
+const {
+  title,
+  description,
+  image,
+  imageAlt = 'Ali Bayramli portfolio preview card',
+  pageType = 'website',
+  publishDate,
+  updatedDate,
+  tags = [],
+  structuredData,
+  preloadProfileImage = false,
+} = Astro.props
+
+const site = Astro.site ?? new URL(SITE_PROFILE.siteUrl)
+const canonicalUrl = new URL(Astro.url.pathname, site)
+const baseUrl = import.meta.env.BASE_URL
+const socialImageUrl = new URL(image ?? `${baseUrl}og-card.png`, site)
+const rssUrl = new URL(`${baseUrl}rss.xml`, site)
+const safeStructuredData = structuredData
+  ? JSON.stringify(structuredData).replace(/</g, '\\u003c')
+  : null
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}favicon.svg`} />
+    <link rel="shortcut icon" href={`${baseUrl}favicon.ico`} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${SITE_PROFILE.name} blog`}
+      href={rssUrl}
+    />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={pageType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={SITE_PROFILE.name} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content={imageAlt} />
+    {
+      pageType === 'article' && publishDate ? (
+        <meta property="article:published_time" content={publishDate} />
+      ) : null
+    }
+    {
+      pageType === 'article' && updatedDate ? (
+        <meta property="article:modified_time" content={updatedDate} />
+      ) : null
+    }
+    {tags.map((tag) => <meta property="article:tag" content={tag} />)}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    />
+    {
+      preloadProfileImage ? (
+        <link rel="preload" as="image" href={`${baseUrl}profile-photo.jpeg`} fetchpriority="high" />
+      ) : null
+    }
+    {
+      safeStructuredData ? (
+        <script is:inline type="application/ld+json" set:html={safeStructuredData} />
+      ) : null
+    }
+    <script is:inline>
+      ;(() => {
+        try {
+          const theme = window.localStorage.getItem('portfolio-theme')
+          const prefersDark =
+            window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+
+          document.documentElement.classList.toggle(
+            'dark',
+            theme === 'dark' || (theme !== 'light' && prefersDark),
+          )
+        } catch {
+          // Theme storage can be unavailable in privacy-restricted browser contexts.
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

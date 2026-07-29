@@ -1,0 +1,74 @@
+---
+import PostCard from '@/components/blog/PostCard.astro'
+import BlogLayout from '@/layouts/BlogLayout.astro'
+import { getBlogPosts, getTagMap } from '@/lib/blog'
+import { withBasePath } from '@/lib/portfolio-data'
+
+const posts = await getBlogPosts({ includeDrafts: false })
+const tags = getTagMap(posts)
+const title = 'Blog | Ali Bayramli'
+const description =
+  'Practical notes from Ali Bayramli on internal developer platforms, Backstage, developer experience, and platform-minded product engineering.'
+---
+
+<BlogLayout title={title} description={description}>
+  <section class="px-6 pb-16 pt-36 md:pb-24 md:pt-40">
+    <div class="mx-auto max-w-6xl">
+      <div class="max-w-3xl">
+        <div class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
+          Blog
+        </div>
+        <h1 class="text-4xl font-bold leading-tight md:text-6xl">
+          Developer platforms, delivery systems, and the work between them.
+        </h1>
+        <p class="mt-6 text-lg leading-8 text-muted-foreground md:text-xl">
+          Practical notes on Backstage, platform engineering, developer experience, and building
+          internal products that teams actually use.
+        </p>
+      </div>
+
+      {
+        tags.size > 0 ? (
+          <nav class="mt-10 flex flex-wrap gap-2" aria-label="Browse posts by tag">
+            {[...tags].map(([slug, label]) => (
+              <a
+                href={withBasePath(`blog/tags/${slug}/`)}
+                class="rounded-full border border-border/80 bg-card/70 px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/35 hover:text-primary"
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
+        ) : null
+      }
+    </div>
+  </section>
+
+  <section class="px-6 pb-24">
+    <div class="mx-auto max-w-6xl">
+      {
+        posts.length > 0 ? (
+          <div class="grid gap-6 md:grid-cols-2">
+            {posts.map((post) => (
+              <PostCard post={post} showDraft={import.meta.env.DEV} />
+            ))}
+          </div>
+        ) : (
+          <div class="glass max-w-3xl rounded-3xl border border-border/70 p-8 md:p-10">
+            <h2 class="text-2xl font-bold">Coming soon...</h2>
+            <p class="mt-3 leading-7 text-muted-foreground">
+              The first posts are in progress. They will cover Backstage, internal developer
+              platforms, platform engineering, and the practical work behind them.
+            </p>
+            <a
+              href={withBasePath('')}
+              class="mt-6 inline-flex text-sm font-semibold text-primary hover:text-primary/80"
+            >
+              Back to the portfolio
+            </a>
+          </div>
+        )
+      }
+    </div>
+  </section>
+</BlogLayout>

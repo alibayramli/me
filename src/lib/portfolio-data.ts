@@ -41,7 +41,7 @@ const iconMap: Record<IconKey, ComponentType<{ className?: string }>> = {
   zap: Zap,
 }
 
-const withBase = (assetPath: string) =>
+export const withBasePath = (assetPath: string) =>
   `${import.meta.env.BASE_URL}${assetPath.replace(/^\/+/, '')}`
 
 const renderIcon = (icon: string, className: string) => {
@@ -152,9 +152,9 @@ export type Project = {
 
 export const SITE_PROFILE: SiteProfile = {
   ...siteContent.profile,
-  resumePdfUrl: withBase(siteContent.profile.resumePdf),
-  resumeDocxUrl: withBase(siteContent.profile.resumeDocx),
-  profileImageUrl: withBase(siteContent.profile.profileImage),
+  resumePdfUrl: withBasePath(siteContent.profile.resumePdf),
+  resumeDocxUrl: withBasePath(siteContent.profile.resumeDocx),
+  profileImageUrl: withBasePath(siteContent.profile.profileImage),
 }
 
 export const NAV_ITEMS: NavItem[] = siteContent.navigation

@@ -141,6 +141,90 @@
   }
 }
 
+@layer components {
+  .blog-prose {
+    --tw-prose-body: hsl(var(--foreground) / 0.88);
+    --tw-prose-headings: hsl(var(--foreground));
+    --tw-prose-lead: hsl(var(--muted-foreground));
+    --tw-prose-links: hsl(var(--primary));
+    --tw-prose-bold: hsl(var(--foreground));
+    --tw-prose-counters: hsl(var(--muted-foreground));
+    --tw-prose-bullets: hsl(var(--primary) / 0.72);
+    --tw-prose-hr: hsl(var(--border));
+    --tw-prose-quotes: hsl(var(--foreground));
+    --tw-prose-quote-borders: hsl(var(--primary) / 0.55);
+    --tw-prose-captions: hsl(var(--muted-foreground));
+    --tw-prose-code: hsl(var(--foreground));
+    --tw-prose-pre-code: hsl(var(--foreground));
+    --tw-prose-pre-bg: hsl(var(--card));
+    --tw-prose-th-borders: hsl(var(--border));
+    --tw-prose-td-borders: hsl(var(--border) / 0.8);
+  }
+
+  .blog-prose :where(h2, h3, h4) {
+    scroll-margin-top: 7rem;
+  }
+
+  .blog-prose :where(a) {
+    text-decoration-color: hsl(var(--primary) / 0.4);
+    text-underline-offset: 0.2em;
+    transition: color 150ms ease;
+  }
+
+  .blog-prose :where(a:hover) {
+    color: hsl(var(--primary) / 0.78);
+  }
+
+  .blog-prose :where(blockquote) {
+    border-radius: 0 0.9rem 0.9rem 0;
+    background: hsl(var(--primary) / 0.055);
+    padding: 0.8rem 1.25rem;
+  }
+
+  .blog-prose :where(:not(pre) > code) {
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.4rem;
+    background: hsl(var(--muted) / 0.7);
+    padding: 0.15rem 0.35rem;
+    font-weight: 600;
+  }
+
+  .blog-prose :where(:not(pre) > code)::before,
+  .blog-prose :where(:not(pre) > code)::after {
+    content: none;
+  }
+
+  .blog-prose :where(pre) {
+    overflow-x: auto;
+    border: 1px solid hsl(var(--border) / 0.8);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-shadow: 0 18px 40px -34px hsl(220 35% 12% / 0.28);
+  }
+
+  .blog-prose :where(img) {
+    border: 1px solid hsl(var(--border) / 0.8);
+    border-radius: 1rem;
+  }
+
+  .blog-prose :where(table) {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .astro-code,
+  .astro-code span {
+    color: var(--shiki-light);
+    background-color: var(--shiki-light-bg);
+  }
+
+  .dark .astro-code,
+  .dark .astro-code span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

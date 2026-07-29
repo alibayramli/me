@@ -1,10 +1,20 @@
 import { Mail } from 'lucide-react'
 import { GitHubIcon, LinkedInIcon } from '@/components/brand-icons'
-import { getTrackedElementProps } from '@/lib/observability'
-import { NAV_ITEMS, SITE_PROFILE } from '@/lib/portfolio-data'
+import { NAV_ITEMS, SITE_PROFILE, withBasePath } from '@/lib/portfolio-data'
 
-const Footer = () => {
+type FooterProps = {
+  page?: 'blog' | 'home'
+}
+
+const Footer = ({ page = 'home' }: FooterProps) => {
   const capabilitySummary = SITE_PROFILE.heroCapabilities.join(' / ')
+  const resolveHref = (href: string) => {
+    if (href.startsWith('#')) {
+      return page === 'home' ? href : `${withBasePath('')}${href}`
+    }
+
+    return withBasePath(href)
+  }
 
   return (
     <footer className="border-t border-border/70 px-6 py-8">
@@ -18,15 +28,7 @@ const Footer = () => {
 
         <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
           {NAV_ITEMS.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="hover:text-foreground"
-              {...getTrackedElementProps('navigation_click', {
-                placement: 'footer_nav',
-                targetSection: item.href.replace(/^#/, ''),
-              })}
-            >
+            <a key={item.label} href={resolveHref(item.href)} className="hover:text-foreground">
               {item.label}
             </a>
           ))}
@@ -37,10 +39,6 @@ const Footer = () => {
             href={`mailto:${SITE_PROFILE.email}`}
             className="text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Send email"
-            {...getTrackedElementProps('contact_click', {
-              channel: 'email',
-              source: 'footer',
-            })}
           >
             <Mail className="h-5 w-5" />
           </a>
@@ -50,10 +48,6 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Visit GitHub profile"
-            {...getTrackedElementProps('profile_link_click', {
-              source: 'footer',
-              target: 'github',
-            })}
           >
             <GitHubIcon className="h-5 w-5" />
           </a>
@@ -63,10 +57,6 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Visit LinkedIn profile"
-            {...getTrackedElementProps('profile_link_click', {
-              source: 'footer',
-              target: 'linkedin',
-            })}
           >
             <LinkedInIcon className="h-5 w-5" />
           </a>

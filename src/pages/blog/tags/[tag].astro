@@ -1,0 +1,63 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content'
+import { ArrowLeft } from 'lucide-react'
+import PostCard from '@/components/blog/PostCard.astro'
+import BlogLayout from '@/layouts/BlogLayout.astro'
+import { getTagMap, isPublishedPost, slugifyTag } from '@/lib/blog'
+import { SITE_PROFILE, withBasePath } from '@/lib/portfolio-data'
+
+type Props = {
+  label: string
+  posts: CollectionEntry<'blog'>[]
+}
+
+export async function getStaticPaths() {
+  const now = new Date()
+  const allPosts = await getCollection('blog')
+  const posts = allPosts.filter((post) => import.meta.env.DEV || isPublishedPost(post, now))
+  const tags = getTagMap(posts)
+
+  return [...tags].map(([tag, label]) => ({
+    params: { tag },
+    props: {
+      label,
+      posts: posts
+        .filter((post) => post.data.tags.some((value) => slugifyTag(value) === tag))
+        .sort((left, right) => right.data.publishDate.getTime() - left.data.publishDate.getTime()),
+    },
+  }))
+}
+
+const { label, posts } = Astro.props
+const title = `${label} articles | ${SITE_PROFILE.name}`
+const description = `Articles by ${SITE_PROFILE.name} about ${label}, developer platforms, and product-minded engineering.`
+---
+
+<BlogLayout title={title} description={description}>
+  <section class="px-6 pb-24 pt-36 md:pt-40">
+    <div class="mx-auto max-w-6xl">
+      <a
+        href={withBasePath('blog/')}
+        class="mb-9 inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        All posts
+      </a>
+
+      <div class="max-w-3xl">
+        <div class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
+          Topic
+        </div>
+        <h1 class="text-4xl font-bold leading-tight md:text-6xl">{label}</h1>
+        <p class="mt-5 text-lg leading-8 text-muted-foreground">
+          {posts.length}
+          {posts.length === 1 ? 'article' : 'articles'} on {label}.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        {posts.map((post) => <PostCard post={post} showDraft={import.meta.env.DEV} />)}
+      </div>
+    </div>
+  </section>
+</BlogLayout>

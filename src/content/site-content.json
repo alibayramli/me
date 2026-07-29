@@ -57,6 +57,7 @@
     { "label": "Impact", "href": "#impact" },
     { "label": "Experience", "href": "#experience" },
     { "label": "Projects", "href": "#projects" },
+    { "label": "Blog", "href": "blog/" },
     { "label": "Contact", "href": "#contact" }
   ],
   "proofMetrics": [
@@ -97,8 +98,8 @@
     {
       "icon": "workflow",
       "eyebrow": "Delivery Engineering",
-      "title": "CI/CD, cloud, and observability",
-      "description": "GitLab CI/CD, Terraform, EKS, and runtime visibility that help changes ship safely and stay measurable."
+      "title": "CI/CD, cloud, and delivery",
+      "description": "GitLab CI/CD, Terraform, EKS, and repeatable deployment workflows that help changes ship safely."
     }
   ],
   "about": {
@@ -135,12 +136,8 @@
         "icon": "gauge",
         "eyebrow": "Delivery",
         "title": "Delivery and runtime foundations",
-        "description": "I can extend product work into CI/CD, infrastructure, and observability when delivery needs stronger foundations.",
-        "points": [
-          "GitLab CI/CD, Terraform",
-          "Docker, Kubernetes, EKS",
-          "New Relic, OpenTelemetry, Grafana"
-        ]
+        "description": "I can extend product work into CI/CD, infrastructure, and deployment when delivery needs stronger foundations.",
+        "points": ["GitLab CI/CD, Terraform", "Docker, Kubernetes, EKS", "AWS, EKS, and Helm"]
       }
     ]
   },
@@ -198,7 +195,7 @@
         "Lead golden paths, scorecards, and catalog workflows for a Backstage.io IDP within an engineering organization of 1,000+ developers.",
         "Deliver custom plugins and Azure AI-assisted catalog validation, improving service metadata quality, discoverability, and developer self-service.",
         "Onboarded and mentored newer team members across developer portal and platform work.",
-        "Extended delivery foundations with GitLab CI/CD, Terraform, EKS, Helm, and New Relic."
+        "Extended delivery foundations with GitLab CI/CD, Terraform, EKS, and Helm."
       ],
       "tech": [
         "React",
@@ -210,7 +207,6 @@
         "EKS",
         "Helm",
         "GitLab CI/CD",
-        "New Relic",
         "Azure AI"
       ],
       "resumeTech": [
@@ -264,30 +260,21 @@
   ],
   "projects": [
     {
-      "title": "Platform DevOps Lab",
-      "label": "Production-shaped engineering lab",
-      "description": "A production-shaped lab showing how I structure React, Node.js, PostgreSQL, observability, local tooling, and Kubernetes starter workflows together.",
-      "result": "Demonstrates how I build beyond the happy path: app code, delivery workflows, telemetry, and local developer experience in one system.",
-      "resumeLine": "Production-shaped full-stack lab covering React, Node.js, PostgreSQL, observability, local tooling, and Kubernetes starter workflows.",
-      "tech": [
-        "React",
-        "Node.js",
-        "PostgreSQL",
-        "Docker Compose",
-        "Kubernetes",
-        "OpenTelemetry",
-        "Prometheus",
-        "Grafana",
-        "Tempo"
-      ],
+      "title": "Portfolio & Blog Platform",
+      "label": "Astro content platform",
+      "description": "The portfolio you are viewing: a statically generated Astro site that combines an interactive React portfolio with a Markdown-based technical blog.",
+      "result": "Creates one maintainable publishing platform for portfolio content, long-form articles, code samples, discoverability, and downloadable resume assets.",
+      "resumeLine": "Astro portfolio and Markdown blog platform with typed content, RSS, SEO, code highlighting, and automated deployment.",
+      "tech": ["Astro", "React", "TypeScript", "Markdown", "Tailwind CSS", "GitHub Actions"],
       "links": {
-        "github": "https://github.com/alibayramli/platform-devops-lab"
+        "live": "https://alibayramli.github.io/me/",
+        "github": "https://github.com/alibayramli/me"
       },
-      "icon": "cloud",
+      "icon": "code",
       "caseStudy": [
-        "Built a TypeScript full-stack app with modular Express services, PostgreSQL, Drizzle ORM, and a React frontend organized by feature domains.",
-        "Added end-to-end observability with Prometheus metrics, OpenTelemetry tracing, Tempo, Grafana dashboards, and structured JSON logs.",
-        "Added Docker Compose workflows, Makefile shortcuts, CI quality checks, and Kubernetes starter manifests to support hands-on delivery practice."
+        "Built the site with Astro static routes and focused React islands, keeping interactive sections responsive without turning the full portfolio into a client-side application.",
+        "Added Markdown publishing with typed content collections, tags, syntax-highlighted code, RSS, sitemap generation, canonical metadata, social previews, and draft controls.",
+        "Centralized profile, experience, and project data so the website, social card, and one-page resume can be regenerated from consistent source content."
       ],
       "metrics": []
     },
@@ -356,7 +343,7 @@
         "Backend & Data: Node.js, Python, Express, PostgreSQL, MongoDB, REST APIs",
         "Delivery & Platforms: Backstage.io, AWS, Terraform, Docker, Kubernetes, GitLab CI/CD"
       ],
-      "projectTitles": ["Platform DevOps Lab", "FX Notifier"],
+      "projectTitles": ["FX Notifier", "Portfolio & Blog Platform"],
       "experienceOverrides": {
         "XM.com": {
           "bullets": [
@@ -386,9 +373,9 @@
       "skillLines": [
         "Developer Platforms: Backstage.io, Developer Portals, Service Catalogs, Golden Paths, Scorecards, DevEx",
         "Software Engineering: React, Angular, Node.js, Python, PostgreSQL, REST APIs, Azure AI",
-        "Cloud & Delivery: GitLab CI/CD, Docker, Kubernetes, Helm, Terraform, AWS, EKS, New Relic"
+        "Cloud & Delivery: GitLab CI/CD, Docker, Kubernetes, Helm, Terraform, AWS, EKS"
       ],
-      "projectTitles": ["Backstage.io IDP Integration", "Platform DevOps Lab"],
+      "projectTitles": ["Backstage.io IDP Integration", "Portfolio & Blog Platform"],
       "experienceOverrides": {
         "XM.com": {
           "bullets": [
@@ -406,8 +393,7 @@
             "Terraform",
             "AWS",
             "EKS",
-            "Helm",
-            "New Relic"
+            "Helm"
           ]
         }
       }

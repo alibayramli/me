@@ -1,0 +1,14 @@
+---
+import PortfolioApp from '@/components/PortfolioApp'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import { getBlogPosts, toPostSummary } from '@/lib/blog'
+
+const latestPosts = (await getBlogPosts({ includeDrafts: false })).slice(0, 3).map(toPostSummary)
+const title = 'Ali Bayramli | Full-Stack Developer'
+const description =
+  'Portfolio of Ali Bayramli, an experienced full-stack developer building internal developer platforms and broker-facing products across fintech and enterprise.'
+---
+
+<BaseLayout title={title} description={description} preloadProfileImage>
+  <PortfolioApp client:load posts={latestPosts} />
+</BaseLayout>

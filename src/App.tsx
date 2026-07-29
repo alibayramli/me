@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import AnimatedBackground from '@/components/sections/AnimatedBackground'
 import About from '@/components/sections/About'
 import Contact from '@/components/sections/Contact'
@@ -9,37 +8,14 @@ import Impact from '@/components/sections/Impact'
 import Navigation from '@/components/sections/Navigation'
 import Projects from '@/components/sections/Projects'
 import Skills from '@/components/sections/Skills'
-import { useSectionViewTracking, useTelemetryClickTracking } from '@/hooks/use-observability'
+import Blog from '@/components/sections/Blog'
+import type { BlogPostSummary } from '@/lib/blog-types'
 
-type Theme = 'light' | 'dark'
-const THEME_STORAGE_KEY = 'portfolio-theme'
+type AppProps = {
+  posts: BlogPostSummary[]
+}
 
-function App() {
-  useSectionViewTracking()
-  useTelemetryClickTracking()
-
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === 'undefined') {
-      return 'light'
-    }
-
-    const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY)
-    if (storedTheme === 'light' || storedTheme === 'dark') {
-      return storedTheme
-    }
-
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  })
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', theme === 'dark')
-    window.localStorage.setItem(THEME_STORAGE_KEY, theme)
-  }, [theme])
-
-  const toggleTheme = () => {
-    setTheme((current) => (current === 'dark' ? 'light' : 'dark'))
-  }
-
+function App({ posts }: AppProps) {
   return (
     <div className="relative min-h-screen">
       <a
@@ -49,7 +25,7 @@ function App() {
         Skip to content
       </a>
       <AnimatedBackground />
-      <Navigation theme={theme} onToggleTheme={toggleTheme} />
+      <Navigation page="home" />
       <main id="main-content">
         <Hero />
         <About />
@@ -57,9 +33,10 @@ function App() {
         <Skills />
         <Experience />
         <Projects />
+        {posts.length > 0 ? <Blog posts={posts} /> : null}
         <Contact />
       </main>
-      <Footer />
+      <Footer page="home" />
     </div>
   )
 }

@@ -4,7 +4,6 @@ import { GitHubIcon, LinkedInIcon } from '@/components/brand-icons'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { getTrackedElementProps, trackEvent } from '@/lib/observability'
 import { HERO_FOCUS, SITE_PROFILE } from '@/lib/portfolio-data'
 
 const MOBILE_CAPABILITY_LABELS: Record<string, string> = {
@@ -56,26 +55,13 @@ const Hero = () => {
                 className="w-full px-7 text-primary-foreground hover:bg-primary/90 sm:w-auto"
                 asChild
               >
-                <a
-                  href={SITE_PROFILE.resumePdfUrl}
-                  download
-                  {...getTrackedElementProps('resume_download', {
-                    format: 'pdf',
-                    source: 'hero',
-                  })}
-                >
+                <a href={SITE_PROFILE.resumePdfUrl} download>
                   <Download className="mr-2 h-4 w-4" />
                   Download Resume
                 </a>
               </Button>
               <Button size="lg" variant="outline" className="w-full sm:w-auto" asChild>
-                <a
-                  href="#experience"
-                  {...getTrackedElementProps('experience_cta_click', {
-                    source: 'hero',
-                    targetSection: 'experience',
-                  })}
-                >
+                <a href="#experience">
                   View Experience
                   <MoveRight className="ml-2 h-4 w-4" />
                 </a>
@@ -86,13 +72,7 @@ const Hero = () => {
                 className="w-full border-primary/20 bg-primary/[0.04] text-foreground hover:bg-primary/[0.08] sm:w-auto"
                 asChild
               >
-                <a
-                  href={`mailto:${SITE_PROFILE.email}`}
-                  {...getTrackedElementProps('contact_click', {
-                    channel: 'email',
-                    source: 'hero',
-                  })}
-                >
+                <a href={`mailto:${SITE_PROFILE.email}`}>
                   <Mail className="mr-2 h-4 w-4" />
                   Email Me
                 </a>
@@ -118,17 +98,7 @@ const Hero = () => {
                       fetchPriority="high"
                       loading="eager"
                       decoding="async"
-                      onError={() => {
-                        setImageFailed(true)
-                        trackEvent(
-                          'asset_fallback',
-                          {
-                            asset: 'profile_image',
-                            source: 'hero',
-                          },
-                          'ui',
-                        )
-                      }}
+                      onError={() => setImageFailed(true)}
                     />
                   )}
                 </div>
@@ -158,29 +128,13 @@ const Hero = () => {
 
                 <div className="mt-5 flex flex-wrap gap-2">
                   <Button size="sm" variant="outline" asChild>
-                    <a
-                      href={SITE_PROFILE.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      {...getTrackedElementProps('profile_link_click', {
-                        source: 'hero',
-                        target: 'linkedin',
-                      })}
-                    >
+                    <a href={SITE_PROFILE.linkedin} target="_blank" rel="noopener noreferrer">
                       <LinkedInIcon className="mr-2 h-4 w-4" />
                       LinkedIn
                     </a>
                   </Button>
                   <Button size="sm" variant="outline" asChild>
-                    <a
-                      href={SITE_PROFILE.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      {...getTrackedElementProps('profile_link_click', {
-                        source: 'hero',
-                        target: 'github',
-                      })}
-                    >
+                    <a href={SITE_PROFILE.github} target="_blank" rel="noopener noreferrer">
                       <GitHubIcon className="mr-2 h-4 w-4" />
                       GitHub
                     </a>

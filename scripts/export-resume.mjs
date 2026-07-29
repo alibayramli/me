@@ -744,7 +744,7 @@ const fallbackVariant = {
   title: baseProfile.resumeTitle,
   summary: baseProfile.resumeSummary,
   skillLines: baseProfile.resumeSkillLines,
-  projectTitles: ['Platform DevOps Lab', 'FX Notifier'],
+  projectTitles: ['FX Notifier', 'Portfolio & Blog Platform'],
   experienceOverrides: {},
 }
 

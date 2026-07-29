@@ -1,6 +1,5 @@
-import { Component, type ErrorInfo, type ReactNode } from 'react'
+import { Component, type ReactNode } from 'react'
 import { SITE_PROFILE } from '@/lib/portfolio-data'
-import { trackError } from '@/lib/observability'
 
 type AppErrorBoundaryProps = {
   children: ReactNode
@@ -19,16 +18,6 @@ class AppErrorBoundary extends Component<AppErrorBoundaryProps, AppErrorBoundary
     return { error }
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    trackError(error, {
-      context: {
-        componentStack: errorInfo.componentStack,
-        source: 'app_error_boundary',
-      },
-      type: 'ReactErrorBoundary',
-    })
-  }
-
   render() {
     if (!this.state.error) {
       return this.props.children
@@ -42,8 +31,7 @@ class AppErrorBoundary extends Component<AppErrorBoundaryProps, AppErrorBoundary
           </div>
           <h1 className="mb-4 text-3xl font-bold">The portfolio hit an unexpected client error.</h1>
           <p className="mb-6 text-sm text-muted-foreground">
-            If Grafana observability is configured for this build, the failure should already be
-            visible there.
+            Try reloading the page. If the issue continues, you can send me a quick note.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
             <button

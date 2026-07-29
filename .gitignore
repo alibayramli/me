@@ -31,6 +31,9 @@ Thumbs.db
 # Vite
 .vite/
 
+# Astro
+.astro/
+
 # Logs
 *.log
 

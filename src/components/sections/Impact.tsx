@@ -68,7 +68,7 @@ const Impact = () => {
                 {[
                   'Service discoverability, platform adoption, and clearer developer paths.',
                   'Lower review overhead through automation and better validation steps.',
-                  'Release confidence through stronger observability and repeatable delivery flows.',
+                  'Release confidence through stronger delivery checks and repeatable workflows.',
                 ].map((item) => (
                   <li key={item} className="card-list-item">
                     <span className="card-list-bullet" aria-hidden="true" />

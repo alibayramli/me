@@ -3,7 +3,6 @@ import { GitHubIcon, LinkedInIcon } from '@/components/brand-icons'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { getTrackedElementProps } from '@/lib/observability'
 import { SITE_PROFILE } from '@/lib/portfolio-data'
 
 const Contact = () => {
@@ -28,27 +27,13 @@ const Contact = () => {
 
               <div className="mb-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
                 <Button size="lg" className="w-full max-w-xs sm:w-auto" asChild>
-                  <a
-                    href={`mailto:${SITE_PROFILE.email}`}
-                    {...getTrackedElementProps('contact_click', {
-                      channel: 'email',
-                      source: 'contact_cta',
-                    })}
-                  >
+                  <a href={`mailto:${SITE_PROFILE.email}`}>
                     <Mail className="mr-2 h-4 w-4" />
                     Email Me
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className="w-full max-w-xs sm:w-auto" asChild>
-                  <a
-                    href={SITE_PROFILE.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    {...getTrackedElementProps('profile_link_click', {
-                      source: 'contact_cta',
-                      target: 'linkedin',
-                    })}
-                  >
+                  <a href={SITE_PROFILE.linkedin} target="_blank" rel="noopener noreferrer">
                     <LinkedInIcon className="mr-2 h-4 w-4" />
                     LinkedIn
                   </a>
@@ -64,10 +49,6 @@ const Contact = () => {
                     <a
                       href={`mailto:${SITE_PROFILE.email}`}
                       className="flex items-center gap-2 hover:text-foreground"
-                      {...getTrackedElementProps('contact_click', {
-                        channel: 'email',
-                        source: 'contact_card',
-                      })}
                     >
                       <Mail className="h-4 w-4 text-primary/80" />
                       {SITE_PROFILE.email}
@@ -98,10 +79,6 @@ const Contact = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 hover:text-foreground"
-                      {...getTrackedElementProps('profile_link_click', {
-                        source: 'contact_card',
-                        target: 'github',
-                      })}
                     >
                       <GitHubIcon className="h-4 w-4 text-primary/80" />
                       GitHub /alibayramli
@@ -111,10 +88,6 @@ const Contact = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 hover:text-foreground"
-                      {...getTrackedElementProps('profile_link_click', {
-                        source: 'contact_card',
-                        target: 'linkedin',
-                      })}
                     >
                       <LinkedInIcon className="h-4 w-4 text-primary/80" />
                       LinkedIn /in/alibayramli

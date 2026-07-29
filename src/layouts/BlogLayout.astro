@@ -1,0 +1,35 @@
+---
+import AnimatedBackground from '@/components/sections/AnimatedBackground'
+import Footer from '@/components/sections/Footer'
+import Navigation from '@/components/sections/Navigation'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+type Props = {
+  title: string
+  description: string
+  image?: string
+  imageAlt?: string
+  pageType?: 'article' | 'website'
+  publishDate?: string
+  updatedDate?: string
+  tags?: string[]
+  structuredData?: Record<string, unknown>
+}
+---
+
+<BaseLayout {...Astro.props}>
+  <div class="relative min-h-screen">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+    >
+      Skip to content
+    </a>
+    <AnimatedBackground />
+    <Navigation client:load page="blog" />
+    <main id="main-content" class="relative">
+      <slot />
+    </main>
+    <Footer page="blog" />
+  </div>
+</BaseLayout>

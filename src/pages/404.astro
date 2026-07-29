@@ -1,0 +1,35 @@
+---
+import BlogLayout from '@/layouts/BlogLayout.astro'
+import { withBasePath } from '@/lib/portfolio-data'
+---
+
+<BlogLayout
+  title="Page not found | Ali Bayramli"
+  description="The requested page could not be found."
+>
+  <section class="flex min-h-[72vh] items-center px-6 pb-24 pt-36">
+    <div class="mx-auto w-full max-w-3xl">
+      <div class="glass rounded-3xl border border-border/70 p-8 md:p-12">
+        <div class="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">404</div>
+        <h1 class="mt-4 text-4xl font-bold md:text-5xl">This page is not in the catalog.</h1>
+        <p class="mt-5 text-lg leading-8 text-muted-foreground">
+          The link may be outdated, or the page may have moved.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a
+            href={withBasePath('')}
+            class="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
+          >
+            Go to portfolio
+          </a>
+          <a
+            href={withBasePath('blog/')}
+            class="rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-accent"
+          >
+            Browse blog
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BlogLayout>

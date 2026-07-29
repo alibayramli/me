@@ -1,4 +1,5 @@
 import js from '@eslint/js'
+import eslintPluginAstro from 'eslint-plugin-astro'
 import globals from 'globals'
 import jsxA11y from 'eslint-plugin-jsx-a11y'
 import reactHooks from 'eslint-plugin-react-hooks'
@@ -7,7 +8,8 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['.astro', 'dist']),
+  ...eslintPluginAstro.configs['flat/recommended'],
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
