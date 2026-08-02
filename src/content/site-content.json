@@ -264,7 +264,7 @@
       "label": "Astro content platform",
       "description": "The portfolio you are viewing: a statically generated Astro site that combines an interactive React portfolio with a Markdown-based technical blog.",
       "result": "Creates one maintainable publishing platform for portfolio content, long-form articles, code samples, discoverability, and downloadable resume assets.",
-      "resumeLine": "Astro portfolio and Markdown blog platform with typed content, RSS, SEO, code highlighting, and automated deployment.",
+      "resumeLine": "Portfolio and blog showcasing projects, practical experience, challenges solved, impact, and professional growth.",
       "tech": ["Astro", "React", "TypeScript", "Markdown", "Tailwind CSS", "GitHub Actions"],
       "links": {
         "live": "https://alibayramli.github.io/me/",
