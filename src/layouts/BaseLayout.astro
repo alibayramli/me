@@ -96,6 +96,18 @@ const safeStructuredData = structuredData
         <script is:inline type="application/ld+json" set:html={safeStructuredData} />
       ) : null
     }
+    {
+      import.meta.env.PROD ? (
+        <script
+          is:inline
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="13692720-bcf6-4452-b93b-764a873c1a3f"
+          data-domains="alibayramli.github.io"
+          data-do-not-track="true"
+        />
+      ) : null
+    }
     <script is:inline>
       ;(() => {
         try {

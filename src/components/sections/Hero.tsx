@@ -4,6 +4,7 @@ import { GitHubIcon, LinkedInIcon } from '@/components/brand-icons'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { trackAnalyticsEvent } from '@/lib/analytics'
 import { HERO_FOCUS, SITE_PROFILE } from '@/lib/portfolio-data'
 
 const MOBILE_CAPABILITY_LABELS: Record<string, string> = {
@@ -55,7 +56,16 @@ const Hero = () => {
                 className="w-full px-7 text-primary-foreground hover:bg-primary/90 sm:w-auto"
                 asChild
               >
-                <a href={SITE_PROFILE.resumePdfUrl} download>
+                <a
+                  href={SITE_PROFILE.resumePdfUrl}
+                  download
+                  onClick={() =>
+                    trackAnalyticsEvent('resume-download', {
+                      format: 'pdf',
+                      placement: 'hero',
+                    })
+                  }
+                >
                   <Download className="mr-2 h-4 w-4" />
                   Download Resume
                 </a>
@@ -72,7 +82,11 @@ const Hero = () => {
                 className="w-full border-primary/20 bg-primary/[0.04] text-foreground hover:bg-primary/[0.08] sm:w-auto"
                 asChild
               >
-                <a href={`mailto:${SITE_PROFILE.email}`}>
+                <a
+                  href={`mailto:${SITE_PROFILE.email}`}
+                  data-umami-event="email-click"
+                  data-umami-event-placement="hero"
+                >
                   <Mail className="mr-2 h-4 w-4" />
                   Email Me
                 </a>
@@ -128,13 +142,27 @@ const Hero = () => {
 
                 <div className="mt-5 flex flex-wrap gap-2">
                   <Button size="sm" variant="outline" asChild>
-                    <a href={SITE_PROFILE.linkedin} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={SITE_PROFILE.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-umami-event="profile-link-click"
+                      data-umami-event-platform="linkedin"
+                      data-umami-event-placement="hero-card"
+                    >
                       <LinkedInIcon className="mr-2 h-4 w-4" />
                       LinkedIn
                     </a>
                   </Button>
                   <Button size="sm" variant="outline" asChild>
-                    <a href={SITE_PROFILE.github} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={SITE_PROFILE.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-umami-event="profile-link-click"
+                      data-umami-event-platform="github"
+                      data-umami-event-placement="hero-card"
+                    >
                       <GitHubIcon className="mr-2 h-4 w-4" />
                       GitHub
                     </a>

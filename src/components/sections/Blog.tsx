@@ -61,6 +61,9 @@ const Blog = ({ posts }: BlogProps) => (
                 <a
                   href={post.url}
                   className="transition-colors after:absolute after:inset-0 hover:text-primary"
+                  data-umami-event="article-open"
+                  data-umami-event-article={post.url}
+                  data-umami-event-placement="home-card"
                 >
                   {post.title}
                 </a>

@@ -1,0 +1,75 @@
+<span
+  class="not-prose pointer-events-none absolute left-0 top-3/4 h-px w-px"
+  data-article-progress-marker
+  aria-hidden="true"></span>
+
+<script>
+  type UmamiWindow = Window & {
+    umami?: {
+      track: (eventName: string) => void
+    }
+  }
+
+  const startArticleProgressTracking = () => {
+    const marker = document.querySelector<HTMLElement>('[data-article-progress-marker]')
+
+    if (!marker) {
+      return
+    }
+
+    let reached = false
+    let tracked = false
+
+    const trackIfReady = () => {
+      if (!reached || tracked) {
+        return
+      }
+
+      const umami = (window as UmamiWindow).umami
+
+      if (!umami) {
+        return
+      }
+
+      tracked = true
+      umami.track('article-read-75')
+    }
+
+    const markReached = (activeObserver?: IntersectionObserver) => {
+      reached = true
+      activeObserver?.disconnect()
+      trackIfReady()
+    }
+
+    document
+      .querySelector<HTMLScriptElement>('script[data-website-id]')
+      ?.addEventListener('load', trackIfReady, { once: true })
+
+    if (marker.getBoundingClientRect().top <= window.innerHeight) {
+      markReached()
+      return
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      return
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      const passedMarker = entries.some(
+        (entry) => entry.isIntersecting || entry.boundingClientRect.top <= window.innerHeight,
+      )
+
+      if (passedMarker) {
+        markReached(observer)
+      }
+    })
+
+    observer.observe(marker)
+  }
+
+  if (document.readyState === 'complete') {
+    startArticleProgressTracking()
+  } else {
+    window.addEventListener('load', startArticleProgressTracking, { once: true })
+  }
+</script>

@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets'
 import { getCollection, render, type CollectionEntry } from 'astro:content'
 import { ArrowLeft, Clock3 } from 'lucide-react'
+import ArticleReadTracker from '@/components/blog/ArticleReadTracker.astro'
 import BlogLayout from '@/layouts/BlogLayout.astro'
 import {
   formatBlogDate,
@@ -134,8 +135,9 @@ const structuredData = {
         ) : null
       }
 
-      <div class="blog-prose prose prose-slate mt-12 max-w-none dark:prose-invert">
+      <div class="blog-prose prose prose-slate relative mt-12 max-w-none dark:prose-invert">
         <Content />
+        <ArticleReadTracker />
       </div>
 
       <footer class="mt-16 rounded-3xl border border-border/70 bg-card/75 p-7">
@@ -148,12 +150,16 @@ const structuredData = {
           <a
             href={`mailto:${SITE_PROFILE.email}`}
             class="inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            data-umami-event="email-click"
+            data-umami-event-placement="article-footer"
           >
             Email me
           </a>
           <a
             href={withBasePath('blog/')}
             class="inline-flex rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-accent"
+            data-umami-event="blog-index-open"
+            data-umami-event-placement="article-footer"
           >
             More posts
           </a>

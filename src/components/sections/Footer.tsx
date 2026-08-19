@@ -39,6 +39,8 @@ const Footer = ({ page = 'home' }: FooterProps) => {
             href={`mailto:${SITE_PROFILE.email}`}
             className="text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Send email"
+            data-umami-event="email-click"
+            data-umami-event-placement="site-footer"
           >
             <Mail className="h-5 w-5" />
           </a>
@@ -48,6 +50,9 @@ const Footer = ({ page = 'home' }: FooterProps) => {
             rel="noopener noreferrer"
             className="text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Visit GitHub profile"
+            data-umami-event="profile-link-click"
+            data-umami-event-platform="github"
+            data-umami-event-placement="site-footer"
           >
             <GitHubIcon className="h-5 w-5" />
           </a>
@@ -57,6 +62,9 @@ const Footer = ({ page = 'home' }: FooterProps) => {
             rel="noopener noreferrer"
             className="text-muted-foreground transition-colors hover:text-foreground"
             aria-label="Visit LinkedIn profile"
+            data-umami-event="profile-link-click"
+            data-umami-event-platform="linkedin"
+            data-umami-event-placement="site-footer"
           >
             <LinkedInIcon className="h-5 w-5" />
           </a>

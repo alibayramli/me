@@ -27,13 +27,24 @@ const Contact = () => {
 
               <div className="mb-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
                 <Button size="lg" className="w-full max-w-xs sm:w-auto" asChild>
-                  <a href={`mailto:${SITE_PROFILE.email}`}>
+                  <a
+                    href={`mailto:${SITE_PROFILE.email}`}
+                    data-umami-event="email-click"
+                    data-umami-event-placement="contact-primary"
+                  >
                     <Mail className="mr-2 h-4 w-4" />
                     Email Me
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className="w-full max-w-xs sm:w-auto" asChild>
-                  <a href={SITE_PROFILE.linkedin} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={SITE_PROFILE.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-umami-event="profile-link-click"
+                    data-umami-event-platform="linkedin"
+                    data-umami-event-placement="contact-primary"
+                  >
                     <LinkedInIcon className="mr-2 h-4 w-4" />
                     LinkedIn
                   </a>
@@ -49,6 +60,8 @@ const Contact = () => {
                     <a
                       href={`mailto:${SITE_PROFILE.email}`}
                       className="flex items-center gap-2 hover:text-foreground"
+                      data-umami-event="email-click"
+                      data-umami-event-placement="contact-details"
                     >
                       <Mail className="h-4 w-4 text-primary/80" />
                       {SITE_PROFILE.email}
@@ -79,6 +92,9 @@ const Contact = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 hover:text-foreground"
+                      data-umami-event="profile-link-click"
+                      data-umami-event-platform="github"
+                      data-umami-event-placement="contact-details"
                     >
                       <GitHubIcon className="h-4 w-4 text-primary/80" />
                       GitHub /alibayramli
@@ -88,6 +104,9 @@ const Contact = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 hover:text-foreground"
+                      data-umami-event="profile-link-click"
+                      data-umami-event-platform="linkedin"
+                      data-umami-event-placement="contact-details"
                     >
                       <LinkedInIcon className="h-4 w-4 text-primary/80" />
                       LinkedIn /in/alibayramli

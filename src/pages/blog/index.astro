@@ -50,7 +50,7 @@ const description =
         posts.length > 0 ? (
           <div class="grid gap-6 md:grid-cols-2">
             {posts.map((post) => (
-              <PostCard post={post} showDraft={import.meta.env.DEV} />
+              <PostCard post={post} placement="blog-index" showDraft={import.meta.env.DEV} />
             ))}
           </div>
         ) : (

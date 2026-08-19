@@ -56,7 +56,11 @@ const description = `Articles by ${SITE_PROFILE.name} about ${label}, developer 
       </div>
 
       <div class="mt-12 grid gap-6 md:grid-cols-2">
-        {posts.map((post) => <PostCard post={post} showDraft={import.meta.env.DEV} />)}
+        {
+          posts.map((post) => (
+            <PostCard post={post} placement="tag-index" showDraft={import.meta.env.DEV} />
+          ))
+        }
       </div>
     </div>
   </section>

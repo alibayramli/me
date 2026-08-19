@@ -6,10 +6,11 @@ import { withBasePath } from '@/lib/portfolio-data'
 
 type Props = {
   post: CollectionEntry<'blog'>
+  placement: 'blog-index' | 'tag-index'
   showDraft?: boolean
 }
 
-const { post, showDraft = false } = Astro.props
+const { post, placement, showDraft = false } = Astro.props
 const readingMinutes = getReadingMinutes(post.body)
 ---
 
@@ -40,6 +41,9 @@ const readingMinutes = getReadingMinutes(post.body)
     <a
       href={getPostUrl(post)}
       class="transition-colors after:absolute after:inset-0 hover:text-primary"
+      data-umami-event="article-open"
+      data-umami-event-article={getPostUrl(post)}
+      data-umami-event-placement={placement}
     >
       {post.data.title}
     </a>

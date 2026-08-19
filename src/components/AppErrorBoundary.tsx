@@ -47,6 +47,8 @@ class AppErrorBoundary extends Component<AppErrorBoundaryProps, AppErrorBoundary
             <a
               href={`mailto:${SITE_PROFILE.email}`}
               className="inline-flex items-center justify-center rounded-full border border-border px-5 py-2.5 text-sm font-semibold"
+              data-umami-event="email-click"
+              data-umami-event-placement="error-fallback"
             >
               Report issue
             </a>

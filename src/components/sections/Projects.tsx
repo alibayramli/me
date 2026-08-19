@@ -59,6 +59,10 @@ const Projects = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-sm text-primary hover:underline"
+                          data-umami-event="project-link-click"
+                          data-umami-event-project={project.title}
+                          data-umami-event-destination="live"
+                          data-umami-event-placement="card-header"
                         >
                           Live
                         </a>
@@ -69,6 +73,10 @@ const Projects = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-sm text-muted-foreground hover:text-foreground"
+                          data-umami-event="project-link-click"
+                          data-umami-event-project={project.title}
+                          data-umami-event-destination="github"
+                          data-umami-event-placement="card-header"
                         >
                           GitHub
                         </a>
@@ -136,6 +144,10 @@ const Projects = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-1 text-sm text-primary hover:underline"
+                        data-umami-event="project-link-click"
+                        data-umami-event-project={project.title}
+                        data-umami-event-destination="live"
+                        data-umami-event-placement="card-footer"
                       >
                         <ExternalLink className="h-4 w-4" />
                         Live Demo
@@ -147,6 +159,10 @@ const Projects = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+                        data-umami-event="project-link-click"
+                        data-umami-event-project={project.title}
+                        data-umami-event-destination="github"
+                        data-umami-event-placement="card-footer"
                       >
                         <GitHubIcon className="h-4 w-4" />
                         Source Code
