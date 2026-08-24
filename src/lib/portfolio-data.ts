@@ -1,44 +1,16 @@
 import { createElement, type ComponentType, type ReactNode } from 'react'
-import {
-  BellRing,
-  Boxes,
-  Cloud,
-  Code2,
-  Gauge,
-  Layers,
-  Server,
-  Sparkles,
-  TrendingUp,
-  Workflow,
-  Zap,
-} from 'lucide-react'
+import { BellRing, Code2, Layers, Server, TrendingUp, Workflow } from 'lucide-react'
 import siteContent from '@/content/site-content.json'
 
-type IconKey =
-  | 'bell'
-  | 'box'
-  | 'cloud'
-  | 'code'
-  | 'gauge'
-  | 'layers'
-  | 'server'
-  | 'sparkles'
-  | 'trending'
-  | 'workflow'
-  | 'zap'
+type IconKey = 'bell' | 'code' | 'layers' | 'server' | 'trending' | 'workflow'
 
 const iconMap: Record<IconKey, ComponentType<{ className?: string }>> = {
   bell: BellRing,
-  box: Boxes,
-  cloud: Cloud,
   code: Code2,
-  gauge: Gauge,
   layers: Layers,
   server: Server,
-  sparkles: Sparkles,
   trending: TrendingUp,
   workflow: Workflow,
-  zap: Zap,
 }
 
 export const withBasePath = (assetPath: string) =>
@@ -81,28 +53,6 @@ export type ProofMetric = {
   value: string
   label: string
   note: string
-}
-
-export type HeroFocusItem = {
-  icon: ReactNode
-  eyebrow: string
-  title: string
-  description: string
-}
-
-export type AboutCard = {
-  icon: ReactNode
-  eyebrow: string
-  title: string
-  description: string
-  points: string[]
-}
-
-export type AboutSection = {
-  eyebrow: string
-  title: string
-  paragraphs: string[]
-  cards: AboutCard[]
 }
 
 export type SkillCategory = {
@@ -148,6 +98,8 @@ export type Project = {
   company?: string
   caseStudy: string[]
   metrics?: ProjectMetric[]
+  featured?: boolean
+  homepageOrder?: number
 }
 
 export const SITE_PROFILE: SiteProfile = {
@@ -160,19 +112,6 @@ export const SITE_PROFILE: SiteProfile = {
 export const NAV_ITEMS: NavItem[] = siteContent.navigation
 
 export const PROOF_METRICS: ProofMetric[] = siteContent.proofMetrics
-
-export const HERO_FOCUS: HeroFocusItem[] = siteContent.heroFocus.map((item) => ({
-  ...item,
-  icon: renderIcon(item.icon, 'h-5 w-5'),
-}))
-
-export const ABOUT_SECTION: AboutSection = {
-  ...siteContent.about,
-  cards: siteContent.about.cards.map((card) => ({
-    ...card,
-    icon: renderIcon(card.icon, 'h-5 w-5'),
-  })),
-}
 
 export const SKILL_CATEGORIES: SkillCategory[] = siteContent.skillCategories.map((category) => ({
   ...category,

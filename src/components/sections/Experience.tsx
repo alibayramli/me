@@ -1,89 +1,92 @@
-import { Award, Briefcase, MapPin } from 'lucide-react'
-import { Badge } from '@/components/ui/badge'
+import { ChevronDown, MapPin } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { EXPERIENCES } from '@/lib/portfolio-data'
 
 const Experience = () => {
   return (
-    <section id="experience" className="scroll-mt-24 px-6 pb-24 pt-[4.5rem] md:pb-24 md:pt-20">
+    <section id="experience" className="scroll-mt-24 px-6 py-16 md:py-20">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-5xl xl:max-w-[54rem]">
-          <div className="mb-12 max-w-3xl">
-            <Badge variant="outline" className="mb-4 border-primary/50 text-primary">
-              <Briefcase className="mr-1 h-3 w-3" />
-              Experience
-            </Badge>
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-              Work history with measurable outcomes
-            </h2>
-            <p className="max-w-2xl text-muted-foreground">
-              Full-stack delivery across fintech, SaaS, and enterprise, with repeated ownership in
-              internal tools, workflow-heavy UI, and platform-adjacent systems.
-            </p>
-          </div>
+          <h2 className="mb-10 text-3xl font-bold md:text-4xl">Experience</h2>
 
           <div className="space-y-5">
-            {EXPERIENCES.map((exp) => (
-              <Card
-                key={`${exp.company}-${exp.period}`}
-                className={`glass border-0 transition-transform duration-300 hover:-translate-y-1 ${
-                  exp.highlight ? 'border border-primary/25' : ''
-                }`}
-              >
-                <CardContent className="p-6">
-                  <div className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                    <div>
-                      <div className="mb-2 flex flex-wrap items-center gap-2">
-                        <h3 className="text-xl font-bold">{exp.company}</h3>
-                        {exp.highlight && (
-                          <Badge className="bg-background/80 text-foreground/85 text-xs">
-                            <Award className="mr-1 h-3 w-3" />
-                            Current
-                          </Badge>
-                        )}
-                      </div>
-                      <div className="mb-2 text-sm font-semibold text-foreground/85">
-                        {exp.role}
-                      </div>
-                      <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                        {exp.description}
-                      </p>
-                      <div className="mt-4">
-                        <div className="mb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary/80">
-                          Key Outcome
+            {EXPERIENCES.map((exp) => {
+              const extraAchievements = exp.achievements
+              const coreTools = exp.tech.slice(0, 6)
+              const additionalTools = exp.tech.slice(6)
+
+              return (
+                <Card
+                  key={`${exp.company}-${exp.period}`}
+                  className={`glass border-0 ${exp.highlight ? 'border border-primary/25' : ''}`}
+                >
+                  <CardContent className="p-6 md:p-7">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                      <div>
+                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                          <h3 className="text-xl font-bold">{exp.company}</h3>
+                          {exp.highlight && (
+                            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-primary/80">
+                              Current
+                            </span>
+                          )}
                         </div>
-                        <p className="text-sm font-medium text-foreground/85">{exp.impact}</p>
+                        <p className="mt-1 text-sm font-semibold text-foreground/85">{exp.role}</p>
+                      </div>
+
+                      <div className="shrink-0 text-sm text-muted-foreground sm:text-right">
+                        <div>{exp.period}</div>
+                        <div className="mt-1 flex items-center gap-1 sm:justify-end">
+                          <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+                          {exp.location}
+                        </div>
                       </div>
                     </div>
 
-                    <div className="shrink-0 space-y-2 text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground/80 lg:text-right">
-                      <div>{exp.period}</div>
-                      <div className="flex items-center gap-1 normal-case tracking-normal lg:justify-end">
-                        <MapPin className="h-3 w-3" />
-                        {exp.location}
-                      </div>
-                    </div>
-                  </div>
+                    <p className="mt-5 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+                      {exp.description}
+                    </p>
 
-                  <ul className="card-list mb-5 grid gap-3">
-                    {exp.achievements.map((achievement) => (
-                      <li key={achievement} className="card-list-item text-sm">
-                        <span className="card-list-bullet" aria-hidden="true" />
-                        <span className="text-muted-foreground">{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
+                    <p className="mt-4 border-l-2 border-primary/50 pl-4 text-sm font-medium leading-relaxed text-foreground/90">
+                      {exp.impact}
+                    </p>
 
-                  <div className="flex flex-wrap gap-2">
-                    {exp.tech.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="bg-background/70 text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                    <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
+                      <span className="font-semibold text-foreground/80">Tools:</span>{' '}
+                      {coreTools.join(', ')}
+                    </p>
+
+                    {(extraAchievements.length > 0 || additionalTools.length > 0) && (
+                      <details className="group mt-5 border-t border-border/70 pt-4">
+                        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-foreground/85 marker:content-none">
+                          More details
+                          <ChevronDown
+                            className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180"
+                            aria-hidden="true"
+                          />
+                        </summary>
+                        {extraAchievements.length > 0 && (
+                          <ul className="card-list mt-4 grid gap-3">
+                            {extraAchievements.map((achievement) => (
+                              <li key={achievement} className="card-list-item text-sm">
+                                <span className="card-list-bullet" aria-hidden="true" />
+                                <span className="text-muted-foreground">{achievement}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                        {additionalTools.length > 0 && (
+                          <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+                            <span className="font-semibold text-foreground/80">Other tools:</span>{' '}
+                            {additionalTools.join(', ')}
+                          </p>
+                        )}
+                      </details>
+                    )}
+                  </CardContent>
+                </Card>
+              )
+            })}
           </div>
         </div>
       </div>

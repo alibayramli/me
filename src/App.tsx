@@ -1,5 +1,4 @@
 import AnimatedBackground from '@/components/sections/AnimatedBackground'
-import About from '@/components/sections/About'
 import Contact from '@/components/sections/Contact'
 import Experience from '@/components/sections/Experience'
 import Footer from '@/components/sections/Footer'
@@ -17,7 +16,7 @@ type AppProps = {
 
 function App({ posts }: AppProps) {
   return (
-    <div className="relative min-h-screen">
+    <div className="relative isolate min-h-screen">
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:rounded-full focus:bg-primary focus:text-primary-foreground"
@@ -28,11 +27,10 @@ function App({ posts }: AppProps) {
       <Navigation page="home" />
       <main id="main-content">
         <Hero />
-        <About />
         <Impact />
-        <Skills />
         <Experience />
         <Projects />
+        <Skills />
         {posts.length > 0 ? <Blog posts={posts} /> : null}
         <Contact />
       </main>

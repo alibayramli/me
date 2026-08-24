@@ -3,10 +3,10 @@ import PortfolioApp from '@/components/PortfolioApp'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { getBlogPosts, toPostSummary } from '@/lib/blog'
 
-const latestPosts = (await getBlogPosts({ includeDrafts: false })).slice(0, 3).map(toPostSummary)
-const title = 'Ali Bayramli | Full-Stack Developer'
+const latestPosts = (await getBlogPosts({ includeDrafts: false })).slice(0, 1).map(toPostSummary)
+const title = 'Ali Bayramli | Senior Full-Stack Engineer'
 const description =
-  'Portfolio of Ali Bayramli, an experienced full-stack engineer building developer platforms, automation tooling, and modern web applications across fintech and enterprise.'
+  'Portfolio of Ali Bayramli, a senior full-stack engineer with 8+ years building developer platforms and internal tools across fintech and enterprise.'
 ---
 
 <BaseLayout title={title} description={description} preloadProfileImage>

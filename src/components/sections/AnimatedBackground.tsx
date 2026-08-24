@@ -1,6 +1,6 @@
 const AnimatedBackground = () => {
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute top-[-6%] left-[8%] h-[360px] w-[360px] rounded-full bg-primary/8 blur-[120px] animate-pulse-glow" />
       <div
         className="absolute bottom-[-8%] right-[10%] h-[320px] w-[320px] rounded-full bg-slate-400/8 blur-[120px] animate-pulse-glow dark:bg-slate-200/[0.04]"

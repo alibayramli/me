@@ -50,10 +50,15 @@ if (requestedVariantId && targetConfigPath) {
 const siteContent = JSON.parse(readFileSync(siteContentPath, 'utf8'))
 const {
   profile: baseProfile,
+  skillCategories = [],
   experiences: baseExperiences,
   projects,
   resumeVariants = [],
 } = siteContent
+
+const defaultResumeSkillLines = skillCategories.map(
+  (category) => `${category.title}: ${category.skills.join(', ')}`,
+)
 
 let profile = baseProfile
 let experiences = baseExperiences
@@ -743,7 +748,7 @@ const fallbackVariant = {
   outputBaseName: 'Ali_Bayramli_Resume',
   title: baseProfile.resumeTitle,
   summary: baseProfile.resumeSummary,
-  skillLines: baseProfile.resumeSkillLines,
+  skillLines: defaultResumeSkillLines,
   projectTitles: ['FX Notifier', 'Portfolio & Blog Platform'],
   experienceOverrides: {},
 }
@@ -764,16 +769,38 @@ if (requestedVariantId && variantsToExport.length === 0) {
   throw new Error(`Unknown resume variant: ${requestedVariantId}`)
 }
 
+const validateExperienceTechOverrides = (variant) => {
+  for (const [company, override] of Object.entries(variant.experienceOverrides ?? {})) {
+    const experience = baseExperiences.find((item) => item.company === company)
+
+    if (!experience) {
+      throw new Error(`Unknown experience override company: ${company}`)
+    }
+
+    const unsupportedTech = (override.tech ?? []).filter(
+      (technology) => !experience.tech.includes(technology),
+    )
+
+    if (unsupportedTech.length > 0) {
+      throw new Error(
+        `${company} resume override contains technologies missing from the portfolio: ${unsupportedTech.join(', ')}`,
+      )
+    }
+  }
+}
+
 for (const variant of variantsToExport) {
   if (!/^[A-Za-z0-9._-]+$/.test(variant.outputBaseName ?? '')) {
     throw new Error(`Invalid outputBaseName: ${variant.outputBaseName}`)
   }
 
+  validateExperienceTechOverrides(variant)
+
   profile = {
     ...baseProfile,
     resumeTitle: variant.title ?? baseProfile.resumeTitle,
     resumeSummary: variant.summary ?? baseProfile.resumeSummary,
-    resumeSkillLines: variant.skillLines ?? baseProfile.resumeSkillLines,
+    resumeSkillLines: variant.skillLines ?? defaultResumeSkillLines,
   }
   experiences = baseExperiences.map((experience) => {
     const override = variant.experienceOverrides?.[experience.company]
