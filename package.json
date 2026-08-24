@@ -10,13 +10,14 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "analytics:check": "node scripts/check-analytics.mjs",
     "og:generate": "node scripts/generate-og-card.mjs",
     "preview": "astro preview",
     "resume": "node scripts/export-resume.mjs --variant full-stack --output-dir public/resume",
     "resume:targeted": "node scripts/export-resume.mjs --target .resume-targets/current.json --output-dir output/resumes",
     "prepare": "husky",
     "precommit:staged": "lint-staged",
-    "check": "npm run format:check && npm run lint && npm run build"
+    "check": "npm run format:check && npm run lint && npm run build && npm run analytics:check"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.1",

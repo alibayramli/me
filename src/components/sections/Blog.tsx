@@ -29,6 +29,8 @@ const Blog = ({ posts }: BlogProps) => {
           <a
             href={withBasePath('blog/')}
             className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary/80"
+            data-umami-event="blog-index-open"
+            data-umami-event-placement="home-blog-header"
           >
             View all
             <ArrowRight className="h-4 w-4" />
