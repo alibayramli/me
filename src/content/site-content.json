@@ -1,26 +1,21 @@
 {
   "profile": {
     "name": "Ali Bayramli",
-    "title": "Senior Full-Stack Engineer",
-    "resumeTitle": "Full-Stack / Platform Engineer",
-    "headline": "I build developer platforms and internal tools that remove repetitive work.",
-    "summary": "8+ years building internal platforms and web applications at XM.com, Morgan Stanley, and ExxonMobil.",
-    "resumeSummary": "Experienced full-stack developer with 8+ years delivering internal platforms and modern web applications across fintech and enterprise. Combines product engineering with developer-platform ownership across frontend, backend, data, cloud, and delivery.",
-    "heroCapabilities": ["Developer platforms", "Internal tools", "Full-stack engineering"],
-    "availability": "Open to remote senior full-time or contract roles",
-    "contactHeadline": "Open to remote senior full-time or contract roles in full-stack and platform engineering.",
+    "title": "Software Engineer",
+    "headline": "I build web applications and developer-focused solutions.",
+    "summary": "Experienced Software Engineer with 8+ years in the field and a strong focus on full-stack development, building web applications and developer-focused solutions. Skilled in internal developer platforms, automation, and improving DevEx.",
+    "focusAreas": ["Full-stack development", "Developer platforms", "Automation"],
+    "availability": "Open to remote software engineering roles and projects",
+    "contactHeadline": "Open to remote software engineering roles and projects.",
     "location": "Baku, Azerbaijan",
-    "remote": "Remote, full-time or contract",
     "phone": "+994773183356",
     "email": "bayramliialii@gmail.com",
     "linkedin": "https://www.linkedin.com/in/alibayramli",
     "github": "https://github.com/alibayramli",
     "siteUrl": "https://alibayramli.github.io/me/",
     "resumePdf": "resume/Ali_Bayramli_Resume.pdf",
-    "resumeDocx": "resume/Ali_Bayramli_Resume.docx",
     "profileImage": "profile-photo.jpeg",
-    "languages": ["English", "Azerbaijani", "French (intermediate)"],
-    "resumeLanguages": ["English - Fluent", "Azerbaijani - Native", "French - Intermediate"],
+    "languages": ["English - Fluent", "Azerbaijani - Native", "French - Intermediate"],
     "education": [
       {
         "institution": "Eötvös Loránd University",
@@ -35,70 +30,39 @@
     { "label": "Blog Posts", "href": "blog/" },
     { "label": "Contact", "href": "#contact" }
   ],
-  "proofMetrics": [
-    {
-      "value": "~3,000",
-      "label": "Estimated hours saved/month",
-      "note": "XM.com - automated provisioning, configuration, and permissions"
-    },
-    {
-      "value": "~15",
-      "label": "Applications modernized",
-      "note": "Morgan Stanley - desktop workflows moved to the web"
-    },
-    {
-      "value": "~$100K",
-      "label": "Annual cost avoided",
-      "note": "ExxonMobil - replaced third-party email tooling"
-    }
-  ],
   "skillCategories": [
     {
       "title": "Frontend",
       "icon": "code",
-      "summary": "Web interfaces and stateful applications.",
-      "skills": ["React", "Angular", "TypeScript"],
-      "highlight": true
+      "skills": ["React", "Angular", "JavaScript", "TypeScript"]
     },
     {
       "title": "Backend and APIs",
       "icon": "server",
-      "summary": "Services, integrations, and data layers.",
-      "skills": ["Node.js", "Python", "PostgreSQL", "REST APIs", "AI SDKs"],
-      "highlight": true
+      "skills": ["Node.js", "Python", "PostgreSQL", "REST APIs", "AI SDKs"]
     },
     {
-      "title": "Platform Engineering",
+      "title": "Developer Experience",
       "icon": "layers",
-      "summary": "Developer portals and repeatable service workflows.",
-      "skills": ["Backstage.io", "Developer Portals", "Service Catalogs", "Golden Paths"]
+      "skills": ["Backstage.io", "Self-Service Portals", "Service Catalogs", "Golden Paths"]
     },
     {
-      "title": "Cloud and Delivery",
+      "title": "Cloud and CI/CD",
       "icon": "workflow",
-      "summary": "Infrastructure and release automation.",
-      "skills": ["AWS", "Terraform", "Kubernetes", "GitLab CI/CD"]
+      "skills": ["Docker", "Kubernetes", "Helm", "Argo CD", "Terraform", "Jenkins", "GitLab CI/CD"]
     }
   ],
   "experiences": [
     {
       "company": "XM.com",
       "role": "Senior Full-Stack Developer",
-      "shortRole": "Senior Full-Stack",
       "period": "Oct 2023 - Present",
       "location": "Remote",
-      "description": "Build and maintain Backstage templates, plugins, and catalog workflows for an engineering organization of 1,000+ developers.",
-      "impact": "Estimated ~3,000 engineering hours saved each month through automated provisioning, configuration, and permissions.",
-      "resumeLine": "Own and maintain software templates for the internal Backstage.io developer platform, saving ~3,000 engineering hours monthly by automating provisioning, configuration, and permissions.",
-      "resumeBullets": [
-        "Own and maintain software templates for the internal Backstage.io developer platform, saving ~3,000 engineering hours monthly by automating provisioning, configuration, and permissions.",
+      "bullets": [
+        "Design and maintain software templates for the internal Backstage.io developer platform, saving ~3,000 engineering hours monthly by automating provisioning, configuration, and permissions.",
         "Lead golden paths, scorecards, and catalog workflows for a Backstage.io IDP within an engineering organization of 1,000+ developers.",
+        "Mentor and onboard new team members, helping them become productive across the codebase and tooling.",
         "Build custom Backstage plugins with the Azure AI SDK to validate catalog metadata."
-      ],
-      "achievements": [
-        "Lead golden paths, scorecards, and catalog workflows across the internal developer platform.",
-        "Build custom Backstage plugins with the Azure AI SDK to validate catalog metadata.",
-        "Mentor newer team members and contribute to GitLab CI/CD, Terraform, EKS, and Helm delivery work."
       ],
       "tech": [
         "Backstage.io",
@@ -107,160 +71,75 @@
         "Node.js",
         "PostgreSQL",
         "Azure AI SDK",
-        "AWS",
         "EKS",
         "Helm",
         "Terraform",
+        "Argo CD",
         "GitLab CI/CD"
       ],
-      "highlight": true
+      "proofMetric": {
+        "value": "~3,000",
+        "label": "Engineering hours saved/month",
+        "note": "XM.com - automated provisioning, configuration, and permissions"
+      }
     },
     {
       "company": "Morgan Stanley",
       "role": "Front-End Developer",
-      "shortRole": "Front-End Dev",
       "period": "Sep 2021 - Sep 2023",
       "location": "Budapest, Hungary",
-      "description": "Modernized broker-facing desktop applications as internally maintained Angular web tools.",
-      "impact": "~15 applications migrated, removing per-desktop deployment and update work.",
-      "resumeLine": "Migrated ~15 legacy desktop applications to internally maintained Angular web UIs, giving brokers browser-based access and eliminating per-desktop deployment and update work.",
-      "resumeBullets": [
-        "Migrated ~15 legacy desktop applications to internally maintained Angular web UIs, giving brokers browser-based access and eliminating per-desktop deployment and update work."
+      "bullets": [
+        "Participated in migrating 15+ legacy desktop apps to modern web applications, eliminating broker-side installation and delivering firm clients a modern wealth management experience."
       ],
-      "achievements": ["Built data grids and real-time workflows with Angular, RxJS, and AG Grid."],
-      "tech": ["Angular", "RxJS", "SCSS", "AG Grid", "Jest", "Karma", "Jenkins"],
-      "resumeTech": ["Angular", "AG Grid", "RxJS", "Jest", "Jenkins", "SCSS"]
+      "tech": ["Angular", "AG Grid", "RxJS", "Jenkins", "Jest", "Karma", "Jasmine", "BitBucket"],
+      "proofMetric": {
+        "value": "15+",
+        "label": "Legacy desktop apps migrated",
+        "note": "Morgan Stanley - modern web applications"
+      }
     },
     {
       "company": "ExxonMobil",
       "role": "Full-Stack Developer",
-      "shortRole": "Full-Stack Dev",
       "period": "May 2018 - Aug 2021",
       "location": "Budapest, Hungary",
-      "description": "Built internal web tools for enterprise publishing and automated email generation.",
-      "impact": "Approximately $100K in annual vendor costs avoided by replacing third-party email tooling.",
-      "resumeLine": "Avoided ~$100,000 annually in third-party tooling costs by moving email generation and styling to an internally maintained platform.",
-      "resumeBullets": [
-        "Avoided ~$100,000 annually in third-party tooling costs by moving email generation and styling to an internally maintained platform."
+      "bullets": [
+        "Helped reduce ~$100K in annual third-party tooling costs by moving email generation and styling to an internally maintained web platform."
       ],
-      "achievements": [],
-      "tech": ["SharePoint APIs", "Vue.js", "Vuex", "Vuetify", "Node.js", "MongoDB", "AWS S3"],
-      "resumeTech": ["Vue.js", "Node.js", "MongoDB", "AWS S3", "Vuetify", "SharePoint APIs"]
+      "tech": ["Vue.js", "Node.js", "Vuex", "MongoDB", "Amazon S3", "SharePoint APIs"],
+      "proofMetric": {
+        "value": "~$100K",
+        "label": "Annual tooling costs reduced",
+        "note": "ExxonMobil - internally maintained web platform"
+      }
     }
   ],
   "projects": [
     {
       "title": "Portfolio & Blog Platform",
-      "featured": true,
-      "homepageOrder": 1,
-      "label": "Astro content platform",
-      "description": "Built this Astro and React site with Markdown publishing, RSS, SEO metadata, and generated resume assets.",
-      "result": "A portfolio platform that brings together my projects, skills, experience, and technical blog posts in one place.",
-      "resumeLine": "Portfolio and blog showcasing projects, practical experience, challenges solved, impact, and professional growth.",
+      "description": "Portfolio and blog showcasing projects, practical experience, challenges solved, impact, and professional growth.",
       "tech": ["Astro", "React", "TypeScript", "Markdown", "Tailwind CSS", "GitHub Actions"],
       "links": {
         "github": "https://github.com/alibayramli/me"
       },
-      "icon": "code",
       "caseStudy": [
         "Built the portfolio with Astro static routes, a React homepage, and Markdown-based blog pages generated at build time.",
         "Added Markdown publishing with typed content collections, tags, syntax-highlighted code, RSS, sitemap generation, canonical metadata, social previews, and draft controls.",
         "Centralized profile, experience, and project data so the website, social card, and one-page resume can be regenerated from consistent source content."
-      ],
-      "metrics": []
-    },
-    {
-      "title": "Backstage.io IDP Integration",
-      "label": "Developer portal project",
-      "description": "Backstage.io template automation, custom plugins, and Azure AI SDK validation for catalog metadata across a 1,000+ developer organization.",
-      "result": "Saves ~3,000 engineering hours monthly through automated provisioning, configuration, and permissions.",
-      "resumeLine": "Backstage.io templates saving ~3,000 engineering hours monthly within an organization of 1,000+ developers.",
-      "tech": ["Backstage.io", "React", "Node.js", "Azure AI SDK"],
-      "icon": "layers",
-      "company": "XM.com",
-      "caseStudy": [
-        "Own and maintain software templates for an internal Backstage.io platform within an organization of 1,000+ developers.",
-        "Save ~3,000 engineering hours monthly by automating resource provisioning, configuration, and permissions.",
-        "Build custom Backstage plugins with the Azure AI SDK to validate catalog metadata."
-      ],
-      "metrics": [
-        { "label": "Engineering time", "value": "~3,000 hrs/mo" },
-        { "label": "Developers served", "value": "1,000+" }
       ]
     },
     {
       "title": "FX Notifier",
-      "featured": true,
-      "homepageOrder": 2,
-      "label": "Python automation",
-      "description": "A Python service that validates FX rates and posts scheduled weekday updates to Telegram.",
-      "result": "Automates a manual reporting routine with retry logic, tests, and GitHub Actions.",
-      "resumeLine": "Python automation for weekday Telegram FX updates with validation, derived rates, and scheduling.",
+      "description": "Python automation for weekday Telegram FX updates with validation, derived rates, and scheduling.",
       "tech": ["Python", "Requests", "python-telegram-bot", "Pytest", "GitHub Actions"],
       "links": {
         "github": "https://github.com/alibayramli/fx-notifier"
       },
-      "icon": "bell",
       "caseStudy": [
         "Built an FX service layer with config validation and retry and backoff for network resilience.",
         "Implemented deterministic AZN derivation via EUR to USD and a configurable USD to AZN peg.",
         "Set up weekday GitHub Actions runs with shared local and CI checks before Telegram delivery."
-      ],
-      "metrics": []
-    },
-    {
-      "title": "Trading.com Platform",
-      "label": "Product launch project",
-      "description": "Angular frontend development for a broker launch in European and Australian markets.",
-      "result": "Delivered state management and localization foundations for the multi-region launch.",
-      "resumeLine": "Multi-region Angular launch work with state management and i18n support for market expansion.",
-      "tech": ["Angular", "NgRx", "i18n", "Angular Material", "REST APIs"],
-      "icon": "trending",
-      "company": "XM.com",
-      "caseStudy": [
-        "Built Angular UI foundations for rollout across European and Australian markets.",
-        "Implemented NgRx state management for data-heavy interfaces.",
-        "Delivered localization support for both regions."
       ]
-    }
-  ],
-  "resumeVariants": [
-    {
-      "id": "full-stack",
-      "label": "Full-Stack",
-      "outputBaseName": "Ali_Bayramli_Resume",
-      "title": "Full-Stack / Platform Engineer",
-      "summary": "Experienced full-stack developer with 8+ years delivering internal platforms and modern web applications across fintech and enterprise. Combines product engineering with developer-platform ownership across frontend, backend, data, cloud, and delivery.",
-      "projectTitles": ["FX Notifier", "Portfolio & Blog Platform"]
-    },
-    {
-      "id": "developer-platforms",
-      "label": "Developer Platforms",
-      "outputBaseName": "Ali_Bayramli_Platform_Resume",
-      "title": "Senior Software Engineer | Developer Platforms",
-      "summary": "Senior software engineer with 8+ years building internal developer platforms, developer portals, and workflow-heavy products across fintech and enterprise. Led Backstage.io architecture, golden paths, scorecards, and AI SDK integrations for catalog validation, working across full-stack development, CI/CD, Terraform, AWS, EKS, and Helm to improve developer experience and delivery.",
-      "skillLines": [
-        "Developer Platforms: Backstage.io, Developer Portals, Service Catalogs, Golden Paths, Scorecards, DevEx",
-        "Software Engineering: React, Angular, Node.js, Python, PostgreSQL, REST APIs, AI SDKs",
-        "Cloud & Delivery: GitLab CI/CD, Docker, Kubernetes, Helm, Terraform, AWS, EKS"
-      ],
-      "projectTitles": ["Backstage.io IDP Integration", "Portfolio & Blog Platform"],
-      "experienceOverrides": {
-        "XM.com": {
-          "tech": [
-            "Backstage.io",
-            "TypeScript",
-            "React",
-            "Node.js",
-            "Azure AI SDK",
-            "GitLab CI/CD",
-            "Terraform",
-            "AWS",
-            "EKS",
-            "Helm"
-          ]
-        }
-      }
     }
   ]
 }

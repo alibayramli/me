@@ -1,4 +1,4 @@
-import { ChevronDown, MapPin } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { EXPERIENCES } from '@/lib/portfolio-data'
 
@@ -11,21 +11,20 @@ const Experience = () => {
 
           <div className="space-y-5">
             {EXPERIENCES.map((exp) => {
-              const extraAchievements = exp.achievements
-              const coreTools = exp.tech.slice(0, 6)
-              const additionalTools = exp.tech.slice(6)
+              const [primaryBullet, ...supportingBullets] = exp.bullets
+              const isCurrentRole = exp.period.endsWith('Present')
 
               return (
                 <Card
                   key={`${exp.company}-${exp.period}`}
-                  className={`glass border-0 ${exp.highlight ? 'border border-primary/25' : ''}`}
+                  className={`glass border-0 ${isCurrentRole ? 'border border-primary/25' : ''}`}
                 >
                   <CardContent className="p-6 md:p-7">
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       <div>
                         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                           <h3 className="text-xl font-bold">{exp.company}</h3>
-                          {exp.highlight && (
+                          {isCurrentRole && (
                             <span className="text-xs font-semibold uppercase tracking-[0.14em] text-primary/80">
                               Current
                             </span>
@@ -43,46 +42,25 @@ const Experience = () => {
                       </div>
                     </div>
 
-                    <p className="mt-5 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-                      {exp.description}
-                    </p>
-
                     <p className="mt-4 border-l-2 border-primary/50 pl-4 text-sm font-medium leading-relaxed text-foreground/90">
-                      {exp.impact}
+                      {primaryBullet}
                     </p>
 
-                    <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
-                      <span className="font-semibold text-foreground/80">Tools:</span>{' '}
-                      {coreTools.join(', ')}
-                    </p>
-
-                    {(extraAchievements.length > 0 || additionalTools.length > 0) && (
-                      <details className="group mt-5 border-t border-border/70 pt-4">
-                        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-foreground/85 marker:content-none">
-                          More details
-                          <ChevronDown
-                            className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180"
-                            aria-hidden="true"
-                          />
-                        </summary>
-                        {extraAchievements.length > 0 && (
-                          <ul className="card-list mt-4 grid gap-3">
-                            {extraAchievements.map((achievement) => (
-                              <li key={achievement} className="card-list-item text-sm">
-                                <span className="card-list-bullet" aria-hidden="true" />
-                                <span className="text-muted-foreground">{achievement}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                        {additionalTools.length > 0 && (
-                          <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                            <span className="font-semibold text-foreground/80">Other tools:</span>{' '}
-                            {additionalTools.join(', ')}
-                          </p>
-                        )}
-                      </details>
+                    {supportingBullets.length > 0 && (
+                      <ul className="card-list mt-5 grid gap-3">
+                        {supportingBullets.map((bullet) => (
+                          <li key={bullet} className="card-list-item text-sm">
+                            <span className="card-list-bullet" aria-hidden="true" />
+                            <span className="text-muted-foreground">{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
                     )}
+
+                    <p className="mt-5 border-t border-border/70 pt-4 text-xs leading-relaxed text-muted-foreground">
+                      <span className="font-semibold text-foreground/80">Technologies:</span>{' '}
+                      {exp.tech.join(', ')}
+                    </p>
                   </CardContent>
                 </Card>
               )

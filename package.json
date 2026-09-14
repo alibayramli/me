@@ -13,7 +13,7 @@
     "analytics:check": "node scripts/check-analytics.mjs",
     "og:generate": "node scripts/generate-og-card.mjs",
     "preview": "astro preview",
-    "resume": "node scripts/export-resume.mjs --variant full-stack --output-dir public/resume",
+    "resume": "node scripts/export-resume.mjs --output-dir public/resume",
     "resume:targeted": "node scripts/export-resume.mjs --target .resume-targets/current.json --output-dir output/resumes",
     "prepare": "husky",
     "precommit:staged": "lint-staged",

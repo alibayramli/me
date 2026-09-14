@@ -9,7 +9,7 @@ const svgPath = resolve(outputDir, 'og-card.svg')
 const pngPath = resolve(outputDir, 'og-card.png')
 
 const siteContent = JSON.parse(readFileSync(siteContentPath, 'utf8'))
-const { profile } = siteContent
+const { profile, skillCategories } = siteContent
 
 const escapeXml = (value) =>
   String(value)
@@ -19,7 +19,9 @@ const escapeXml = (value) =>
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;')
 
-const capabilitySummary = profile.heroCapabilities.join(' / ')
+const technologySummary = skillCategories.map((category) => category.skills[0]).join(' / ')
+const experienceMatch = profile.summary.match(/\d+\+\s+years/i)
+const experienceSummary = [experienceMatch?.[0], ...profile.focusAreas].filter(Boolean).join(' / ')
 
 const svg = `<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -34,9 +36,8 @@ const svg = `<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" x
   <rect x="92" y="84" width="1016" height="462" rx="28" fill="#FFFFFF" fill-opacity="0.58" stroke="#D5DEE9" />
   <text x="126" y="160" fill="#4B74AD" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="4">${escapeXml(profile.name.toUpperCase())}</text>
   <text x="126" y="246" fill="#172235" font-family="'Segoe UI', Arial, sans-serif" font-size="60" font-weight="700">${escapeXml(profile.title)}</text>
-  <text x="126" y="308" fill="#3F546D" font-family="'Segoe UI', Arial, sans-serif" font-size="30">${escapeXml(capabilitySummary)}</text>
-  <text x="126" y="398" fill="#1E2C42" font-family="'Segoe UI', Arial, sans-serif" font-size="28" font-weight="700">Backstage.io / React / Angular / Node.js / Python</text>
-  <text x="126" y="448" fill="#4A5C73" font-family="'Segoe UI', Arial, sans-serif" font-size="26">8+ years / Fintech / Enterprise</text>
+  <text x="126" y="398" fill="#1E2C42" font-family="'Segoe UI', Arial, sans-serif" font-size="28" font-weight="700">${escapeXml(technologySummary)}</text>
+  <text x="126" y="448" fill="#4A5C73" font-family="'Segoe UI', Arial, sans-serif" font-size="26">${escapeXml(experienceSummary)}</text>
   <rect x="126" y="490" width="376" height="38" rx="19" fill="#E7EFF8" />
   <text x="152" y="515" fill="#4B74AD" font-family="'Segoe UI', Arial, sans-serif" font-size="21" font-weight="700">alibayramli.github.io/me/</text>
 </svg>

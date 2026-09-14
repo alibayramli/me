@@ -2,11 +2,11 @@
 import PortfolioApp from '@/components/PortfolioApp'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { getBlogPosts, toPostSummary } from '@/lib/blog'
+import { SITE_PROFILE } from '@/lib/portfolio-data'
 
 const latestPosts = (await getBlogPosts({ includeDrafts: false })).slice(0, 1).map(toPostSummary)
-const title = 'Ali Bayramli | Senior Full-Stack Engineer'
-const description =
-  'Portfolio of Ali Bayramli, a senior full-stack engineer with 8+ years building developer platforms and internal tools across fintech and enterprise.'
+const title = `${SITE_PROFILE.name} | ${SITE_PROFILE.title}`
+const description = `${SITE_PROFILE.name}: ${SITE_PROFILE.summary}`
 ---
 
 <BaseLayout title={title} description={description} preloadProfileImage>

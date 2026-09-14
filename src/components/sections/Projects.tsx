@@ -3,19 +3,6 @@ import { GitHubIcon } from '@/components/brand-icons'
 import { Card, CardContent } from '@/components/ui/card'
 import { PROJECTS } from '@/lib/portfolio-data'
 
-type FeaturedProject = (typeof PROJECTS)[number] & {
-  featured?: boolean
-  homepageOrder?: number
-}
-
-const FEATURED_PROJECTS = (PROJECTS as FeaturedProject[])
-  .filter((project) => project.featured === true)
-  .sort(
-    (firstProject, secondProject) =>
-      (firstProject.homepageOrder ?? Number.MAX_SAFE_INTEGER) -
-      (secondProject.homepageOrder ?? Number.MAX_SAFE_INTEGER),
-  )
-
 const Projects = () => {
   return (
     <section id="projects" className="scroll-mt-24 px-6 py-16 md:py-20">
@@ -23,24 +10,13 @@ const Projects = () => {
         <h2 className="mb-10 text-3xl font-bold md:text-4xl">Selected projects</h2>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {FEATURED_PROJECTS.map((project) => (
+          {PROJECTS.map((project) => (
             <Card key={project.title} className="glass overflow-hidden border-0">
               <CardContent className="flex h-full flex-col p-6 md:p-7">
-                <div>
-                  {project.company && (
-                    <p className="mb-2 text-xs font-semibold uppercase tracking-[0.14em] text-primary/75">
-                      {project.company}
-                    </p>
-                  )}
-                  <h3 className="text-xl font-bold">{project.title}</h3>
-                </div>
+                <h3 className="text-xl font-bold">{project.title}</h3>
 
                 <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                   {project.description}
-                </p>
-
-                <p className="mt-4 border-l-2 border-primary/50 pl-4 text-sm font-medium leading-relaxed text-foreground/90">
-                  {project.result}
                 </p>
 
                 <p className="mt-5 text-xs leading-relaxed text-muted-foreground">

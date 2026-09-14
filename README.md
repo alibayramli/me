@@ -15,6 +15,19 @@ The production build validates Astro pages and blog content before generating th
 npm run check
 ```
 
+## Portfolio and resume content
+
+`src/content/site-content.json` is the canonical source for the portfolio, social card, and public
+resume. Update profile details, skills, experience bullets, technologies, projects, languages, and
+education there, then regenerate the resume and social card:
+
+```bash
+npm run resume
+npm run og:generate
+```
+
+The resume command writes the matching one-page Word and PDF files to `public/resume/`.
+
 ## Creating a blog post
 
 1. Copy `src/content/blog/post-template.md` to

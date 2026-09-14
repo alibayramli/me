@@ -1,15 +1,13 @@
 import { createElement, type ComponentType, type ReactNode } from 'react'
-import { BellRing, Code2, Layers, Server, TrendingUp, Workflow } from 'lucide-react'
+import { Code2, Layers, Server, Workflow } from 'lucide-react'
 import siteContent from '@/content/site-content.json'
 
-type IconKey = 'bell' | 'code' | 'layers' | 'server' | 'trending' | 'workflow'
+type IconKey = 'code' | 'layers' | 'server' | 'workflow'
 
 const iconMap: Record<IconKey, ComponentType<{ className?: string }>> = {
-  bell: BellRing,
   code: Code2,
   layers: Layers,
   server: Server,
-  trending: TrendingUp,
   workflow: Workflow,
 }
 
@@ -31,21 +29,16 @@ export type SiteProfile = {
   title: string
   headline: string
   summary: string
-  heroCapabilities: string[]
   availability: string
   contactHeadline: string
   location: string
-  remote: string
   email: string
   linkedin: string
   github: string
   siteUrl: string
   resumePdf: string
-  resumeDocx: string
   profileImage: string
-  languages: string[]
   resumePdfUrl: string
-  resumeDocxUrl: string
   profileImageUrl: string
 }
 
@@ -58,23 +51,17 @@ export type ProofMetric = {
 export type SkillCategory = {
   title: string
   icon: ReactNode
-  summary: string
   skills: string[]
-  highlight?: boolean
 }
 
 export type Experience = {
   company: string
   role: string
-  shortRole: string
   period: string
   location: string
-  description: string
-  impact: string
-  achievements: string[]
+  bullets: string[]
   tech: string[]
-  resumeTech?: string[]
-  highlight?: boolean
+  proofMetric: ProofMetric
 }
 
 export type ProjectLink = {
@@ -82,36 +69,25 @@ export type ProjectLink = {
   github?: string
 }
 
-export type ProjectMetric = {
-  label: string
-  value: string
-}
-
 export type Project = {
   title: string
   description: string
-  label: string
-  result: string
   tech: string[]
   links?: ProjectLink
-  icon: ReactNode
-  company?: string
   caseStudy: string[]
-  metrics?: ProjectMetric[]
-  featured?: boolean
-  homepageOrder?: number
 }
 
 export const SITE_PROFILE: SiteProfile = {
   ...siteContent.profile,
   resumePdfUrl: withBasePath(siteContent.profile.resumePdf),
-  resumeDocxUrl: withBasePath(siteContent.profile.resumeDocx),
   profileImageUrl: withBasePath(siteContent.profile.profileImage),
 }
 
 export const NAV_ITEMS: NavItem[] = siteContent.navigation
 
-export const PROOF_METRICS: ProofMetric[] = siteContent.proofMetrics
+export const PROOF_METRICS: ProofMetric[] = siteContent.experiences.map(
+  (experience) => experience.proofMetric,
+)
 
 export const SKILL_CATEGORIES: SkillCategory[] = siteContent.skillCategories.map((category) => ({
   ...category,
@@ -120,7 +96,4 @@ export const SKILL_CATEGORIES: SkillCategory[] = siteContent.skillCategories.map
 
 export const EXPERIENCES: Experience[] = siteContent.experiences
 
-export const PROJECTS: Project[] = siteContent.projects.map((project) => ({
-  ...project,
-  icon: renderIcon(project.icon, 'h-6 w-6'),
-}))
+export const PROJECTS: Project[] = siteContent.projects

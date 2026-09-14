@@ -38,14 +38,9 @@ const readCliArgument = (name) => {
   return value
 }
 
-const requestedVariantId = readCliArgument('--variant')
 const targetConfigPath = readCliArgument('--target')
 const requestedOutputDir = readCliArgument('--output-dir')
 const outputDir = requestedOutputDir ? resolve(rootDir, requestedOutputDir) : defaultOutputDir
-
-if (requestedVariantId && targetConfigPath) {
-  throw new Error('Use either --variant or --target, not both')
-}
 
 const siteContent = JSON.parse(readFileSync(siteContentPath, 'utf8'))
 const {
@@ -53,7 +48,6 @@ const {
   skillCategories = [],
   experiences: baseExperiences,
   projects,
-  resumeVariants = [],
 } = siteContent
 
 const defaultResumeSkillLines = skillCategories.map(
@@ -62,7 +56,7 @@ const defaultResumeSkillLines = skillCategories.map(
 
 let profile = baseProfile
 let experiences = baseExperiences
-let selectedProjects = []
+let selectedProjects = projects
 
 const LAYOUT = {
   color: '111111',
@@ -156,8 +150,6 @@ const formatCssNumber = (value) => {
 const pt = (value) => `${formatCssNumber(value)}pt`
 const halfPointsToCss = (value) => pt(halfPointsToPt(value))
 const twipsToCss = (value) => pt(twipsToPt(value))
-const lineHeight = (lineTwips, fontHalfPoints) =>
-  formatCssNumber(twipsToPt(lineTwips) / halfPointsToPt(fontHalfPoints))
 const contactColumnPercentages = (() => {
   const totalWidth = LAYOUT.tableColumnWidths.reduce((sum, width) => sum + width, 0)
 
@@ -369,11 +361,6 @@ const createSectionTitle = (value) =>
   })
 
 const createExperienceNodes = (experience) => {
-  const bullets = experience.resumeBullets?.length
-    ? experience.resumeBullets
-    : [experience.resumeLine]
-  const resumeTech = experience.resumeTech?.length ? experience.resumeTech : experience.tech
-
   return [
     makeParagraph({
       children: [makeRun(experience.company, { bold: true, size: LAYOUT.sizes.company })],
@@ -386,7 +373,7 @@ const createExperienceNodes = (experience) => {
       spacing: { after: LAYOUT.spacing.roleAfter, line: LAYOUT.line.body },
       keepNext: true,
     }),
-    ...createBullets(bullets),
+    ...createBullets(experience.bullets),
     makeParagraph({
       spacing: {
         before: LAYOUT.spacing.techBefore,
@@ -399,7 +386,7 @@ const createExperienceNodes = (experience) => {
           bold: true,
           size: LAYOUT.sizes.tech,
         }),
-        makeRun(` ${resumeTech.join(', ')}`, {
+        makeRun(` ${experience.tech.join(', ')}`, {
           size: LAYOUT.sizes.tech,
         }),
       ],
@@ -408,7 +395,7 @@ const createExperienceNodes = (experience) => {
 }
 
 const createProjectNodes = (project) => {
-  const descriptionChildren = [makeRun(project.resumeLine)]
+  const descriptionChildren = [makeRun(project.description)]
 
   if (project.links?.github) {
     descriptionChildren.push(makeRun('', { break: 1 }))
@@ -461,17 +448,12 @@ const renderPdfHtml = () => {
     </ul>`
 
   const renderExperience = (experience) => {
-    const bullets = experience.resumeBullets?.length
-      ? experience.resumeBullets
-      : [experience.resumeLine]
-    const resumeTech = experience.resumeTech?.length ? experience.resumeTech : experience.tech
-
     return `
       <div class="entry">
         <p class="company">${text(experience.company)}</p>
         <p class="role">${text(experience.role)} (${text(experience.period)})</p>
-        ${renderBullets(bullets)}
-        <p class="tech"><strong>Technologies:</strong> ${text(resumeTech.join(', '))}</p>
+        ${renderBullets(experience.bullets)}
+        <p class="tech"><strong>Technologies:</strong> ${text(experience.tech.join(', '))}</p>
       </div>`
   }
 
@@ -483,7 +465,7 @@ const renderPdfHtml = () => {
     return `
       <div class="entry">
         <p class="company">${text(project.title)}</p>
-        <p class="project-detail">${text(project.resumeLine)}${source}</p>
+        <p class="project-detail">${text(project.description)}${source}</p>
       </div>`
   }
 
@@ -619,7 +601,7 @@ const renderPdfHtml = () => {
   </head>
   <body>
     <main class="resume">
-      <h1>${text(profile.name)}, ${text(profile.resumeTitle)}</h1>
+      <h1>${text(profile.name)}, ${text(profile.title)}</h1>
       <table class="contact-table" role="presentation">
         <colgroup>
           ${contactColumnPercentages.map((width) => `<col style="width:${width}%">`).join('')}
@@ -627,7 +609,7 @@ const renderPdfHtml = () => {
         ${renderContactRows()}
       </table>
 
-      <p class="summary">${text(profile.resumeSummary)}</p>
+      <p class="summary">${text(profile.summary)}</p>
 
       <p class="section-title">SKILLS</p>
       ${renderBullets(profile.resumeSkillLines)}
@@ -639,7 +621,7 @@ const renderPdfHtml = () => {
       ${selectedProjects.map(renderProject).join('')}
 
       <p class="section-title">LANGUAGES</p>
-      <p class="single-line">${text(profile.resumeLanguages.join(' | '))}</p>
+      <p class="single-line">${text(profile.languages.join(' | '))}</p>
 
       <p class="section-title">EDUCATION</p>
       <p class="single-line">${text(
@@ -670,7 +652,7 @@ const createDocxDocument = () =>
           makeParagraph({
             spacing: { after: LAYOUT.spacing.titleAfter, line: LAYOUT.line.title },
             children: [
-              makeRun(`${profile.name}, ${profile.resumeTitle}`, {
+              makeRun(`${profile.name}, ${profile.title}`, {
                 bold: true,
                 size: LAYOUT.sizes.title,
               }),
@@ -678,7 +660,7 @@ const createDocxDocument = () =>
           }),
           createContactTable(),
           makeParagraph({
-            text: profile.resumeSummary,
+            text: profile.summary,
             spacing: {
               before: LAYOUT.spacing.summaryBefore,
               after: LAYOUT.spacing.summaryAfter,
@@ -693,7 +675,7 @@ const createDocxDocument = () =>
           ...selectedProjects.flatMap(createProjectNodes),
           createSectionTitle('LANGUAGES'),
           makeParagraph({
-            text: profile.resumeLanguages.join(' | '),
+            text: profile.languages.join(' | '),
             spacing: { after: LAYOUT.spacing.singleLineAfter, line: LAYOUT.line.body },
           }),
           createSectionTitle('EDUCATION'),
@@ -742,32 +724,19 @@ const exportPdf = async (pdfPath) => {
 
 mkdirSync(outputDir, { recursive: true })
 
-const fallbackVariant = {
-  id: 'full-stack',
-  label: 'Full-Stack',
+const canonicalResume = {
+  label: 'Canonical resume',
   outputBaseName: 'Ali_Bayramli_Resume',
-  title: baseProfile.resumeTitle,
-  summary: baseProfile.resumeSummary,
+  title: baseProfile.title,
+  summary: baseProfile.summary,
   skillLines: defaultResumeSkillLines,
-  projectTitles: ['FX Notifier', 'Portfolio & Blog Platform'],
+  projectTitles: projects.map(({ title }) => title),
   experienceOverrides: {},
 }
 
-const availableVariants = resumeVariants.length ? resumeVariants : [fallbackVariant]
-let variantsToExport
-
-if (targetConfigPath) {
-  const absoluteTargetPath = resolve(rootDir, targetConfigPath)
-  variantsToExport = [JSON.parse(readFileSync(absoluteTargetPath, 'utf8'))]
-} else if (requestedVariantId) {
-  variantsToExport = availableVariants.filter((variant) => variant.id === requestedVariantId)
-} else {
-  variantsToExport = availableVariants
-}
-
-if (requestedVariantId && variantsToExport.length === 0) {
-  throw new Error(`Unknown resume variant: ${requestedVariantId}`)
-}
+const variantsToExport = targetConfigPath
+  ? [JSON.parse(readFileSync(resolve(rootDir, targetConfigPath), 'utf8'))]
+  : [canonicalResume]
 
 const validateExperienceTechOverrides = (variant) => {
   for (const [company, override] of Object.entries(variant.experienceOverrides ?? {})) {
@@ -798,8 +767,8 @@ for (const variant of variantsToExport) {
 
   profile = {
     ...baseProfile,
-    resumeTitle: variant.title ?? baseProfile.resumeTitle,
-    resumeSummary: variant.summary ?? baseProfile.resumeSummary,
+    title: variant.title ?? baseProfile.title,
+    summary: variant.summary ?? baseProfile.summary,
     resumeSkillLines: variant.skillLines ?? defaultResumeSkillLines,
   }
   experiences = baseExperiences.map((experience) => {
@@ -811,8 +780,8 @@ for (const variant of variantsToExport) {
 
     return {
       ...experience,
-      resumeBullets: override.bullets ?? experience.resumeBullets,
-      resumeTech: override.tech ?? experience.resumeTech,
+      bullets: override.bullets ?? experience.bullets,
+      tech: override.tech ?? experience.tech,
     }
   })
   selectedProjects = variant.projectTitles
