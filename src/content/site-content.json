@@ -1,9 +1,9 @@
 {
   "profile": {
     "name": "Ali Bayramli",
-    "title": "Software Engineer",
+    "title": "Senior Software Engineer",
     "headline": "I build web applications and developer-focused solutions.",
-    "summary": "Experienced Software Engineer with 8+ years in the field and a strong focus on full-stack development, building web applications and developer-focused solutions. Skilled in internal developer platforms, automation, and improving DevEx.",
+    "summary": "Senior Software Engineer with 8+ years in the field and a strong focus on full-stack development, building web applications and developer-focused solutions. Skilled in internal developer platforms, automation, and improving DevEx.",
     "focusAreas": ["Full-stack development", "Developer platforms", "Automation"],
     "availability": "Open to remote software engineering roles and projects",
     "contactHeadline": "Open to remote software engineering roles and projects.",
@@ -59,7 +59,7 @@
       "period": "Oct 2023 - Present",
       "location": "Remote",
       "bullets": [
-        "Design and maintain software templates for the internal Backstage.io developer platform, saving ~3,000 engineering hours monthly by automating provisioning, configuration, and permissions.",
+        "Design and maintain software templates for the internal Backstage.io developer platform, saving ~3,000 engineering hours monthly by automating provisioning, configuration, and access management.",
         "Lead golden paths, scorecards, and catalog workflows for a Backstage.io IDP within an engineering organization of 1,000+ developers.",
         "Mentor and onboard new team members, helping them become productive across the codebase and tooling.",
         "Build custom Backstage plugins with the Azure AI SDK to validate catalog metadata."
@@ -80,7 +80,7 @@
       "proofMetric": {
         "value": "~3,000",
         "label": "Engineering hours saved/month",
-        "note": "XM.com - automated provisioning, configuration, and permissions"
+        "note": "XM.com - automated provisioning, configuration, and access management."
       }
     },
     {
@@ -89,7 +89,8 @@
       "period": "Sep 2021 - Sep 2023",
       "location": "Budapest, Hungary",
       "bullets": [
-        "Participated in migrating 15+ legacy desktop apps to modern web applications, eliminating broker-side installation and delivering firm clients a modern wealth management experience."
+        "Implemented responsive data grids and real-time UI updates with Angular and AG Grid.",
+        "Contributed to migrating 15+ legacy desktop apps to modern web applications, eliminating broker-side installation and delivering firm clients a modern wealth management experience."
       ],
       "tech": ["Angular", "AG Grid", "RxJS", "Jenkins", "Jest", "Karma", "Jasmine", "BitBucket"],
       "proofMetric": {
@@ -104,6 +105,7 @@
       "period": "May 2018 - Aug 2021",
       "location": "Budapest, Hungary",
       "bullets": [
+        "Built a gamified employee engagement dashboard with Vue.js and Node.js.",
         "Helped reduce ~$100K in annual third-party tooling costs by moving email generation and styling to an internally maintained web platform."
       ],
       "tech": ["Vue.js", "Node.js", "Vuex", "MongoDB", "Amazon S3", "SharePoint APIs"],
