@@ -11,6 +11,7 @@ import {
   TableCell,
   TableLayoutType,
   TableRow,
+  TabStopType,
   TextRun,
   VerticalAlignTable,
   WidthType,
@@ -86,8 +87,9 @@ const LAYOUT = {
     contact: 22,
     section: 26,
     company: 24,
-    role: 24,
-    tech: 22,
+    role: 22,
+    date: 21,
+    tech: 21,
   },
   line: {
     title: 240,
@@ -110,12 +112,19 @@ const LAYOUT = {
     companyAfter: 20,
     roleAfter: 10,
     entryAfter: 125,
+    employerBefore: 240,
+    roleBefore: 140,
     projectBefore: 0,
     singleLineAfter: 30,
   },
   bullet: {
     left: 900,
     hanging: 260,
+  },
+  experience: {
+    inset: 180,
+    bulletLeft: 520,
+    bulletHanging: 220,
   },
   contactColumnInsets: [0, 350, 590],
   tableColumnWidths: [3300, 3300, 5306],
@@ -251,6 +260,7 @@ const makeParagraph = ({
   bullet,
   indent,
   keepNext,
+  tabStops,
 }) =>
   new Paragraph({
     alignment,
@@ -264,6 +274,7 @@ const makeParagraph = ({
     bullet,
     indent,
     keepNext,
+    tabStops,
     children: children ?? [makeRun(value)],
   })
 
@@ -324,14 +335,14 @@ const createContactTable = () =>
     ),
   })
 
-const createBullets = (items) =>
+const createBullets = (items, indent = LAYOUT.bullet) =>
   items.map((item) =>
     makeParagraph({
       text: item,
       bullet: { level: 0 },
       indent: {
-        left: LAYOUT.bullet.left,
-        hanging: LAYOUT.bullet.hanging,
+        left: indent.left,
+        hanging: indent.hanging,
       },
       spacing: {
         before: LAYOUT.spacing.bulletBefore,
@@ -360,24 +371,54 @@ const createSectionTitle = (value) =>
     ],
   })
 
-const createExperienceNodes = (experience) => {
+const createExperienceNodes = (experience, index) => {
+  const showCompany = index === 0 || experiences[index - 1].company !== experience.company
   return [
+    ...(showCompany
+      ? [
+          makeParagraph({
+            children: [makeRun(experience.company, { bold: true, size: LAYOUT.sizes.company })],
+            spacing: {
+              before: index > 0 ? LAYOUT.spacing.employerBefore : 0,
+              after: LAYOUT.spacing.companyAfter,
+              line: LAYOUT.line.body,
+            },
+            keepNext: true,
+          }),
+        ]
+      : []),
     makeParagraph({
-      children: [makeRun(experience.company, { bold: true, size: LAYOUT.sizes.company })],
-      spacing: { after: LAYOUT.spacing.companyAfter, line: LAYOUT.line.body },
-      keepNext: true,
-    }),
-    makeParagraph({
-      text: `${experience.role} (${experience.period})`,
+      children: [
+        makeRun(experience.role, {
+          bold: true,
+          size: LAYOUT.sizes.role,
+        }),
+        makeRun(`\t${experience.period}`, { size: LAYOUT.sizes.date }),
+      ],
+      indent: { left: LAYOUT.experience.inset },
+      tabStops: [
+        {
+          type: TabStopType.RIGHT,
+          position: LAYOUT.page.width - LAYOUT.page.margins.left - LAYOUT.page.margins.right,
+        },
+      ],
       run: { size: LAYOUT.sizes.role },
-      spacing: { after: LAYOUT.spacing.roleAfter, line: LAYOUT.line.body },
+      spacing: {
+        before: showCompany ? 0 : LAYOUT.spacing.roleBefore,
+        after: LAYOUT.spacing.roleAfter,
+        line: LAYOUT.line.body,
+      },
       keepNext: true,
     }),
-    ...createBullets(experience.bullets),
+    ...createBullets(experience.bullets, {
+      left: LAYOUT.experience.bulletLeft,
+      hanging: LAYOUT.experience.bulletHanging,
+    }),
     makeParagraph({
+      indent: { left: LAYOUT.experience.inset },
       spacing: {
         before: LAYOUT.spacing.techBefore,
-        after: LAYOUT.spacing.entryAfter,
+        after: 0,
         line: LAYOUT.line.tech,
       },
       run: { size: LAYOUT.sizes.tech },
@@ -447,11 +488,12 @@ const renderPdfHtml = () => {
       ${items.map((item) => `<li>${text(item)}</li>`).join('')}
     </ul>`
 
-  const renderExperience = (experience) => {
+  const renderExperience = (experience, index) => {
+    const showCompany = index === 0 || experiences[index - 1].company !== experience.company
     return `
-      <div class="entry">
-        <p class="company">${text(experience.company)}</p>
-        <p class="role">${text(experience.role)} (${text(experience.period)})</p>
+      <div class="experience-entry ${showCompany ? (index > 0 ? 'new-employer' : '') : 'next-role'}">
+        ${showCompany ? `<p class="company">${text(experience.company)}</p>` : ''}
+        <p class="role"><strong>${text(experience.role)}</strong><span class="date">${text(experience.period)}</span></p>
         ${renderBullets(experience.bullets)}
         <p class="tech"><strong>Technologies:</strong> ${text(experience.tech.join(', '))}</p>
       </div>`
@@ -548,6 +590,28 @@ const renderPdfHtml = () => {
         margin: 0 0 ${twipsToCss(PDF_LAYOUT.spacing.entryAfter)};
       }
 
+      .experience-entry {
+        padding-left: ${twipsToCss(LAYOUT.experience.inset)};
+        break-inside: avoid;
+      }
+
+      .experience-entry .company {
+        margin-left: -${twipsToCss(LAYOUT.experience.inset)};
+        margin-bottom: ${twipsToCss(LAYOUT.spacing.companyAfter)};
+      }
+
+      .new-employer {
+        margin-top: ${twipsToCss(LAYOUT.spacing.employerBefore)};
+      }
+
+      .next-role {
+        margin-top: ${twipsToCss(LAYOUT.spacing.roleBefore)};
+      }
+
+      .experience-entry .compact-list {
+        margin-left: ${twipsToCss(LAYOUT.experience.bulletLeft - LAYOUT.experience.inset)};
+      }
+
       .company,
       .role,
       .tech,
@@ -563,8 +627,18 @@ const renderPdfHtml = () => {
       }
 
       .role {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12pt;
         font-size: ${halfPointsToCss(LAYOUT.sizes.role)};
         margin-bottom: ${pt(PDF_LAYOUT.spacing.roleAfter)};
+      }
+
+      .date {
+        flex-shrink: 0;
+        font-size: ${halfPointsToCss(LAYOUT.sizes.date)};
+        font-weight: 400;
       }
 
       .role,
@@ -738,12 +812,22 @@ const variantsToExport = targetConfigPath
   ? [JSON.parse(readFileSync(resolve(rootDir, targetConfigPath), 'utf8'))]
   : [canonicalResume]
 
+const experienceKey = (experience) => `${experience.company}::${experience.role}`
+
 const validateExperienceTechOverrides = (variant) => {
-  for (const [company, override] of Object.entries(variant.experienceOverrides ?? {})) {
-    const experience = baseExperiences.find((item) => item.company === company)
+  for (const [key, override] of Object.entries(variant.experienceOverrides ?? {})) {
+    const matches = baseExperiences.filter(
+      (item) => experienceKey(item) === key || item.company === key,
+    )
+    if (matches.length > 1) {
+      throw new Error(
+        `Ambiguous experience override: ${key}. Use Company::Role to select one role.`,
+      )
+    }
+    const [experience] = matches
 
     if (!experience) {
-      throw new Error(`Unknown experience override company: ${company}`)
+      throw new Error(`Unknown experience override: ${key}`)
     }
 
     const unsupportedTech = (override.tech ?? []).filter(
@@ -752,7 +836,7 @@ const validateExperienceTechOverrides = (variant) => {
 
     if (unsupportedTech.length > 0) {
       throw new Error(
-        `${company} resume override contains technologies missing from the portfolio: ${unsupportedTech.join(', ')}`,
+        `${key} resume override contains technologies missing from the portfolio: ${unsupportedTech.join(', ')}`,
       )
     }
   }
@@ -772,7 +856,9 @@ for (const variant of variantsToExport) {
     resumeSkillLines: variant.skillLines ?? defaultResumeSkillLines,
   }
   experiences = baseExperiences.map((experience) => {
-    const override = variant.experienceOverrides?.[experience.company]
+    const override =
+      variant.experienceOverrides?.[experienceKey(experience)] ??
+      variant.experienceOverrides?.[experience.company]
 
     if (!override) {
       return experience

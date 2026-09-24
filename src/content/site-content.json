@@ -34,29 +34,29 @@
     {
       "title": "Frontend",
       "icon": "code",
-      "skills": ["React", "Angular", "JavaScript", "TypeScript"]
+      "skills": ["React", "Angular", "TypeScript", "JavaScript", "NgRx", "RxJS"]
     },
     {
       "title": "Backend and APIs",
       "icon": "server",
-      "skills": ["Node.js", "Python", "PostgreSQL", "REST APIs", "AI SDKs"]
+      "skills": ["Node.js", "Python", "PostgreSQL", "REST APIs"]
     },
     {
-      "title": "Developer Experience",
+      "title": "Developer Platforms",
       "icon": "layers",
-      "skills": ["Backstage.io", "Self-Service Portals", "Service Catalogs", "Golden Paths"]
+      "skills": ["Backstage.io", "Software Templates", "Service Catalogs", "Golden Paths"]
     },
     {
       "title": "Cloud and CI/CD",
       "icon": "workflow",
-      "skills": ["Docker", "Kubernetes", "Helm", "Argo CD", "Terraform", "Jenkins", "GitLab CI/CD"]
+      "skills": ["Docker", "Kubernetes", "Helm", "Argo CD", "Terraform", "GitLab CI/CD"]
     }
   ],
   "experiences": [
     {
       "company": "XM.com",
-      "role": "Senior Full-Stack Developer",
-      "period": "Oct 2023 - Present",
+      "role": "Senior Software Engineer",
+      "period": "Mar 2024 - Present",
       "location": "Remote",
       "bullets": [
         "Design and maintain software templates for the internal Backstage.io developer platform, saving ~3,000 engineering hours monthly by automating provisioning, configuration, and access management.",
@@ -82,6 +82,25 @@
         "label": "Engineering hours saved/month",
         "note": "XM.com - automated provisioning, configuration, and access management."
       }
+    },
+    {
+      "company": "XM.com",
+      "role": "Senior Frontend Developer",
+      "period": "Oct 2023 - Mar 2024",
+      "location": "Remote",
+      "bullets": [
+        "Contributed Angular architecture to Trading.com’s multi-region launch across Europe and Australia, built high-throughput UI kits for a leading forex broker.",
+        "Defined reusable Angular component APIs and integration guidelines, helping developers build consistent interfaces across trading applications."
+      ],
+      "tech": [
+        "Angular",
+        "TypeScript",
+        "NgRx",
+        "RxJS",
+        "JavaScript",
+        "Material-UI",
+        "Internationalization (i18n)"
+      ]
     },
     {
       "company": "Morgan Stanley",
@@ -128,19 +147,6 @@
         "Built the portfolio with Astro static routes, a React homepage, and Markdown-based blog pages generated at build time.",
         "Added Markdown publishing with typed content collections, tags, syntax-highlighted code, RSS, sitemap generation, canonical metadata, social previews, and draft controls.",
         "Centralized profile, experience, and project data so the website, social card, and one-page resume can be regenerated from consistent source content."
-      ]
-    },
-    {
-      "title": "FX Notifier",
-      "description": "Python automation for weekday Telegram FX updates with validation, derived rates, and scheduling.",
-      "tech": ["Python", "Requests", "python-telegram-bot", "Pytest", "GitHub Actions"],
-      "links": {
-        "github": "https://github.com/alibayramli/fx-notifier"
-      },
-      "caseStudy": [
-        "Built an FX service layer with config validation and retry and backoff for network resilience.",
-        "Implemented deterministic AZN derivation via EUR to USD and a configurable USD to AZN peg.",
-        "Set up weekday GitHub Actions runs with shared local and CI checks before Telegram delivery."
       ]
     }
   ]

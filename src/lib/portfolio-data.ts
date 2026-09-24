@@ -61,7 +61,7 @@ export type Experience = {
   location: string
   bullets: string[]
   tech: string[]
-  proofMetric: ProofMetric
+  proofMetric?: ProofMetric
 }
 
 export type ProjectLink = {
@@ -85,8 +85,8 @@ export const SITE_PROFILE: SiteProfile = {
 
 export const NAV_ITEMS: NavItem[] = siteContent.navigation
 
-export const PROOF_METRICS: ProofMetric[] = siteContent.experiences.map(
-  (experience) => experience.proofMetric,
+export const PROOF_METRICS: ProofMetric[] = siteContent.experiences.flatMap((experience) =>
+  experience.proofMetric ? [experience.proofMetric] : [],
 )
 
 export const SKILL_CATEGORIES: SkillCategory[] = siteContent.skillCategories.map((category) => ({
@@ -95,5 +95,19 @@ export const SKILL_CATEGORIES: SkillCategory[] = siteContent.skillCategories.map
 }))
 
 export const EXPERIENCES: Experience[] = siteContent.experiences
+
+// Keep consecutive roles at the same employer together, in career order.
+export const EXPERIENCE_GROUPS = EXPERIENCES.reduce<{ company: string; roles: Experience[] }[]>(
+  (groups, experience) => {
+    const previous = groups.at(-1)
+    if (previous?.company === experience.company) {
+      previous.roles.push(experience)
+    } else {
+      groups.push({ company: experience.company, roles: [experience] })
+    }
+    return groups
+  },
+  [],
+)
 
 export const PROJECTS: Project[] = siteContent.projects
