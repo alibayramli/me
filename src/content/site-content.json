@@ -97,9 +97,9 @@
         "Angular",
         "TypeScript",
         "NgRx",
+        "Signals",
         "RxJS",
         "JavaScript",
-        "Material-UI",
         "Internationalization (i18n)"
       ]
     },
