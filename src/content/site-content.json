@@ -59,7 +59,7 @@
       "period": "Mar 2024 - Present",
       "location": "Remote",
       "bullets": [
-        "Design and maintain software templates for the internal Backstage.io developer platform, saving ~3,000 engineering hours monthly by automating provisioning, configuration, and access management.",
+        "Design and maintain Backstage.io software templates that automate provisioning, configuration, and access management, saving ~3,000 engineering hours monthly.",
         "Lead golden paths, scorecards, and catalog workflows for a Backstage.io IDP within an engineering organization of 1,000+ developers.",
         "Mentor and onboard new team members, helping them become productive across the codebase and tooling.",
         "Build custom Backstage plugins with the Azure AI SDK to validate catalog metadata."
@@ -69,6 +69,7 @@
         "TypeScript",
         "React",
         "Node.js",
+        "Python",
         "PostgreSQL",
         "Azure AI SDK",
         "EKS",
