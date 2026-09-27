@@ -34,7 +34,7 @@
     {
       "title": "Frontend",
       "icon": "code",
-      "skills": ["React", "Angular", "TypeScript", "JavaScript", "NgRx", "RxJS"]
+      "skills": ["Angular", "React", "TypeScript", "JavaScript", "NgRx", "RxJS"]
     },
     {
       "title": "Backend and APIs",
@@ -86,11 +86,11 @@
     },
     {
       "company": "XM.com",
-      "role": "Senior Frontend Developer",
+      "role": "Senior Angular Developer",
       "period": "Oct 2023 - Mar 2024",
       "location": "Remote",
       "bullets": [
-        "Contributed Angular architecture to Trading.com’s multi-region launch across Europe and Australia, built high-throughput UI kits for a leading forex broker.",
+        "Contributed to Angular architecture for Trading.com’s multi-region launch across Europe and Australia; built high-throughput UI kits for a leading forex broker.",
         "Defined reusable Angular component APIs and integration guidelines, helping developers build consistent interfaces across trading applications."
       ],
       "tech": [
@@ -105,7 +105,7 @@
     },
     {
       "company": "Morgan Stanley",
-      "role": "Front-End Developer",
+      "role": "Angular Developer",
       "period": "Sep 2021 - Sep 2023",
       "location": "Budapest, Hungary",
       "bullets": [
