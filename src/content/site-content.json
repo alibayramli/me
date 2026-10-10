@@ -138,16 +138,16 @@
   ],
   "projects": [
     {
-      "title": "Portfolio & Blog Platform",
-      "description": "Portfolio and blog showcasing projects, practical experience, challenges solved, impact, and professional growth.",
-      "tech": ["Astro", "React", "TypeScript", "Markdown", "Tailwind CSS", "GitHub Actions"],
+      "title": "Template Pulse",
+      "description": "Built a Backstage plugin with React and Node.js to track software template adoption, success rates, and execution times, with searchable run history and permission-based access.",
+      "tech": ["Backstage.io", "React", "TypeScript", "Node.js", "SQLite", "REST APIs"],
       "links": {
-        "github": "https://github.com/alibayramli/me"
+        "github": "https://github.com/alibayramli/template-pulse"
       },
       "caseStudy": [
-        "Built the portfolio with Astro static routes, a React homepage, and Markdown-based blog pages generated at build time.",
-        "Added Markdown publishing with typed content collections, tags, syntax-highlighted code, RSS, sitemap generation, canonical metadata, social previews, and draft controls.",
-        "Centralized profile, experience, and project data so the website, social card, and one-page resume can be regenerated from consistent source content."
+        "Shows which software templates developers use, how often runs succeed, and how long they take.",
+        "Helps teams investigate problems with filters, searchable run history, and links to the original tasks.",
+        "Lets developers review their own activity and authorized team members see template usage across the organization."
       ]
     }
   ]

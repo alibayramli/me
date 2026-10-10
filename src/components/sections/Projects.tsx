@@ -27,7 +27,7 @@ const Projects = () => {
                 {project.caseStudy.length > 0 && (
                   <details className="group mt-5 border-t border-border/70 pt-4">
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-foreground/85 marker:content-none">
-                      Implementation details
+                      Project overview
                       <ChevronDown
                         className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180"
                         aria-hidden="true"
