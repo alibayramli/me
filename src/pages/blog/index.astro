@@ -12,16 +12,16 @@ const description =
 ---
 
 <BlogLayout title={title} description={description}>
-  <section class="px-6 pb-16 pt-36 md:pb-24 md:pt-40">
+  <section class="px-6 pb-10 pt-36 md:pb-12 md:pt-40">
     <div class="mx-auto max-w-6xl">
-      <div class="max-w-3xl">
+      <div class="max-w-4xl">
         <div class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
           Blog
         </div>
-        <h1 class="text-4xl font-bold leading-tight md:text-6xl">
+        <h1 class="text-3xl font-bold leading-tight md:text-5xl">
           Developer platforms, delivery systems, and the work between them.
         </h1>
-        <p class="mt-6 text-lg leading-8 text-muted-foreground md:text-xl">
+        <p class="mt-6 text-base leading-7 text-muted-foreground md:text-xl md:leading-8">
           Practical notes on Backstage, platform engineering, developer experience, and building
           internal products that teams actually use.
         </p>
@@ -32,7 +32,7 @@ const description =
           {[...tags].map(([slug, label]) => (
             <a
               href={withBasePath(`blog/tags/${slug}/`)}
-              class="rounded-full border border-border/80 bg-card/70 px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/35 hover:text-primary"
+              class="rounded-lg border border-border/80 bg-card/70 px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/35 hover:text-primary focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
             >
               {label}
             </a>
@@ -46,8 +46,15 @@ const description =
     <div class="mx-auto max-w-6xl">
       {posts.length > 0 ? (
         <div class="grid gap-6 md:grid-cols-2">
-          {posts.map((post) => (
-            <PostCard post={post} placement="blog-index" showDraft={import.meta.env.DEV} />
+          {posts.map((post, index) => (
+            <div class={index === 0 ? 'md:col-span-2' : undefined}>
+              <PostCard
+                post={post}
+                placement="blog-index"
+                featured={index === 0}
+                showDraft={import.meta.env.DEV}
+              />
+            </div>
           ))}
         </div>
       ) : (

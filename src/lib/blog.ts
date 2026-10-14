@@ -1,6 +1,9 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
+import { slugifyTag } from '@/lib/blog-format'
 import type { BlogPostSummary } from '@/lib/blog-types'
 import { withBasePath } from '@/lib/portfolio-data'
+
+export { formatBlogDate, slugifyTag } from '@/lib/blog-format'
 
 const WORDS_PER_MINUTE = 220
 
@@ -50,15 +53,6 @@ export function toPostSummary(post: BlogPost): BlogPostSummary {
   }
 }
 
-export function slugifyTag(tag: string) {
-  return tag
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-}
-
 export function getTagMap(posts: BlogPost[]) {
   const tags = new Map<string, string>()
 
@@ -72,13 +66,4 @@ export function getTagMap(posts: BlogPost[]) {
   }
 
   return tags
-}
-
-export function formatBlogDate(date: Date) {
-  return new Intl.DateTimeFormat('en', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-    timeZone: 'UTC',
-  }).format(date)
 }

@@ -38,7 +38,7 @@ const description = `Articles by ${SITE_PROFILE.name} about ${label}, developer 
     <div class="mx-auto max-w-6xl">
       <a
         href={withBasePath('blog/')}
-        class="mb-9 inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+        class="mb-9 inline-flex items-center gap-2 rounded-sm text-sm font-semibold text-muted-foreground transition-colors hover:text-primary focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
       >
         <ArrowLeft className="h-4 w-4" />
         All posts
@@ -50,14 +50,20 @@ const description = `Articles by ${SITE_PROFILE.name} about ${label}, developer 
         </div>
         <h1 class="text-4xl font-bold leading-tight md:text-6xl">{label}</h1>
         <p class="mt-5 text-lg leading-8 text-muted-foreground">
-          {posts.length}
-          {posts.length === 1 ? 'article' : 'articles'} on {label}.
+          {`${posts.length} ${posts.length === 1 ? 'article' : 'articles'} on ${label}.`}
         </p>
       </div>
 
       <div class="mt-12 grid gap-6 md:grid-cols-2">
-        {posts.map((post) => (
-          <PostCard post={post} placement="tag-index" showDraft={import.meta.env.DEV} />
+        {posts.map((post, index) => (
+          <div class={index === 0 ? 'md:col-span-2' : undefined}>
+            <PostCard
+              post={post}
+              placement="tag-index"
+              featured={index === 0}
+              showDraft={import.meta.env.DEV}
+            />
+          </div>
         ))}
       </div>
     </div>
