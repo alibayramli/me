@@ -63,17 +63,15 @@ const safeStructuredData = structuredData
     <meta property="og:site_name" content={SITE_PROFILE.name} />
     <meta property="og:image" content={socialImageUrl} />
     <meta property="og:image:alt" content={imageAlt} />
-    {
-      pageType === 'article' && publishDate ? (
-        <meta property="article:published_time" content={publishDate} />
-      ) : null
-    }
-    {
-      pageType === 'article' && updatedDate ? (
-        <meta property="article:modified_time" content={updatedDate} />
-      ) : null
-    }
-    {tags.map((tag) => <meta property="article:tag" content={tag} />)}
+    {pageType === 'article' && publishDate ? (
+      <meta property="article:published_time" content={publishDate} />
+    ) : null}
+    {pageType === 'article' && updatedDate ? (
+      <meta property="article:modified_time" content={updatedDate} />
+    ) : null}
+    {tags.map((tag) => (
+      <meta property="article:tag" content={tag} />
+    ))}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -86,28 +84,22 @@ const safeStructuredData = structuredData
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
     />
-    {
-      preloadProfileImage ? (
-        <link rel="preload" as="image" href={`${baseUrl}profile-photo.jpeg`} fetchpriority="high" />
-      ) : null
-    }
-    {
-      safeStructuredData ? (
-        <script is:inline type="application/ld+json" set:html={safeStructuredData} />
-      ) : null
-    }
-    {
-      import.meta.env.PROD ? (
-        <script
-          is:inline
-          defer
-          src="https://cloud.umami.is/script.js"
-          data-website-id="13692720-bcf6-4452-b93b-764a873c1a3f"
-          data-domains="alibayramli.github.io"
-          data-do-not-track="true"
-        />
-      ) : null
-    }
+    {preloadProfileImage ? (
+      <link rel="preload" as="image" href={`${baseUrl}profile-photo.jpeg`} fetchpriority="high" />
+    ) : null}
+    {safeStructuredData ? (
+      <script is:inline type="application/ld+json" set:html={safeStructuredData} />
+    ) : null}
+    {import.meta.env.PROD ? (
+      <script
+        is:inline
+        defer
+        src="https://cloud.umami.is/script.js"
+        data-website-id="13692720-bcf6-4452-b93b-764a873c1a3f"
+        data-domains="alibayramli.github.io"
+        data-do-not-track="true"
+      />
+    ) : null}
     <script is:inline>
       ;(() => {
         try {

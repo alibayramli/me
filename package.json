@@ -3,6 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=22.22.1"
+  },
+  "overrides": {
+    "@tailwindcss/typography": {
+      "postcss-selector-parser": "^7.1.6"
+    }
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
@@ -23,39 +31,39 @@
     "@astrojs/react": "^7.0.1",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
-    "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-slot": "^1.5.0",
     "@tailwindcss/typography": "^0.5.20",
     "astro": "^7.3.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.562.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "tailwind-merge": "^3.4.0"
+    "lucide-react": "^1.57.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "@eslint/js": "^9.39.1",
-    "@types/node": "^24.10.1",
-    "@types/react": "^19.2.5",
-    "@types/react-dom": "^19.2.3",
-    "autoprefixer": "^10.4.23",
-    "docx": "^9.6.0",
-    "eslint": "^9.39.1",
-    "eslint-plugin-astro": "^1.5.0",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.4.24",
-    "globals": "^16.5.0",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "docx": "^9.11.0",
+    "eslint": "^10.12.0",
+    "eslint-plugin-astro": "^3.2.1",
+    "eslint-plugin-jsx-a11y-x": "^0.2.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.13.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.3.2",
-    "postcss": "^8.5.6",
-    "prettier": "^3.8.1",
-    "prettier-plugin-astro": "^0.14.1",
-    "puppeteer": "^24.38.0",
-    "tailwindcss": "^3.4.19",
+    "lint-staged": "^17.6.0",
+    "postcss": "^8.5.30",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.1",
+    "puppeteer": "^25.14.0",
+    "tailwindcss": "^4.3.3",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "~5.9.3",
-    "typescript-eslint": "^8.46.4"
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.71.2",
+    "@tailwindcss/postcss": "^4.3.3"
   }
 }

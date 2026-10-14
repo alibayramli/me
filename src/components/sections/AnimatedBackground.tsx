@@ -6,7 +6,7 @@ const AnimatedBackground = () => {
         className="absolute bottom-[-8%] right-[10%] h-[320px] w-[320px] rounded-full bg-slate-400/8 blur-[120px] animate-pulse-glow dark:bg-slate-200/[0.04]"
         style={{ animationDelay: '1.4s' }}
       />
-      <div className="absolute inset-x-0 top-0 h-[520px] bg-gradient-to-b from-white/40 to-transparent dark:from-white/[0.02]" />
+      <div className="absolute inset-x-0 top-0 h-[520px] bg-linear-to-b from-white/40 to-transparent dark:from-white/[0.02]" />
       <div
         className="absolute inset-0 opacity-[0.025] dark:hidden"
         style={{

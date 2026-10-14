@@ -88,7 +88,7 @@ const Projects = () => {
                           className={cn(
                             'flex items-center gap-1 text-sm text-primary hover:underline',
                             isFeatured &&
-                              'gap-2 rounded-lg border border-primary/25 px-4 py-2.5 font-semibold transition-colors hover:bg-primary/10 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary',
+                              'gap-2 rounded-lg border border-primary/25 px-4 py-2.5 font-semibold transition-colors hover:bg-primary/10 hover:no-underline focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary',
                           )}
                           data-umami-event="project-link-click"
                           data-umami-event-project={project.title}
@@ -107,7 +107,7 @@ const Projects = () => {
                           className={cn(
                             'flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground',
                             isFeatured &&
-                              'gap-2 rounded-lg border border-border bg-background/40 px-4 py-2.5 font-semibold text-foreground/90 transition-colors hover:bg-accent/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary',
+                              'gap-2 rounded-lg border border-border bg-background/40 px-4 py-2.5 font-semibold text-foreground/90 transition-colors hover:bg-accent/70 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary',
                           )}
                           data-umami-event="project-link-click"
                           data-umami-event-project={project.title}
