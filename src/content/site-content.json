@@ -2,8 +2,8 @@
   "profile": {
     "name": "Ali Bayramli",
     "title": "Senior Software Engineer",
-    "headline": "I build web applications and developer-focused solutions.",
-    "summary": "Senior Software Engineer with 8+ years in the field and a strong focus on full-stack development, building web applications and developer-focused solutions. Skilled in internal developer platforms, automation, and improving DevEx.",
+    "headline": "I build web applications and Backstage developer platforms.",
+    "summary": "Senior Software Engineer with 8+ years building web applications, including trading interfaces built with Angular and internal developer platforms built on Backstage. I design reusable components and automate provisioning, configuration, and access management.",
     "focusAreas": ["Full-stack development", "Developer platforms", "Automation"],
     "availability": "Open to remote software engineering roles and projects",
     "contactHeadline": "Open to remote software engineering roles and projects.",
@@ -59,10 +59,10 @@
       "period": "Mar 2024 - Present",
       "location": "Remote",
       "bullets": [
-        "Design and maintain Backstage.io software templates that automate provisioning, configuration, and access management, saving ~3,000 engineering hours monthly.",
-        "Lead golden paths, scorecards, and catalog workflows for a Backstage.io IDP within an engineering organization of 1,000+ developers.",
-        "Mentor and onboard new team members, helping them become productive across the codebase and tooling.",
-        "Build custom Backstage plugins with the Azure AI SDK to validate catalog metadata."
+        "Design Backstage templates with shared provisioning, configuration, and access automation, reducing duplication and saving ~3,000 engineering hours monthly.",
+        "Lead development of golden paths, scorecards, and service catalog workflows for a Backstage internal developer platform (IDP) in an organization of 1,000+ developers.",
+        "Build Backstage plugins that use the Azure AI SDK to validate service catalog metadata.",
+        "Mentor new team members on the codebase and development tools."
       ],
       "tech": [
         "Backstage.io",
@@ -72,7 +72,7 @@
         "Python",
         "PostgreSQL",
         "Azure AI SDK",
-        "EKS",
+        "Amazon EKS (AWS)",
         "Helm",
         "Terraform",
         "Argo CD",
@@ -90,8 +90,8 @@
       "period": "Oct 2023 - Mar 2024",
       "location": "Remote",
       "bullets": [
-        "Contributed to Angular architecture for Trading.com’s multi-region launch across Europe and Australia; built high-throughput UI kits for a leading forex broker.",
-        "Defined reusable Angular component APIs and integration guidelines, helping developers build consistent interfaces across trading applications."
+        "Contributed to the Angular architecture and built reusable UI components for Trading.com’s launch in Europe and Australia.",
+        "Defined Angular component APIs that kept trading rules in each application, allowing teams to reuse components across products."
       ],
       "tech": [
         "Angular",
@@ -109,8 +109,8 @@
       "period": "Sep 2021 - Sep 2023",
       "location": "Budapest, Hungary",
       "bullets": [
-        "Implemented responsive data grids and real-time UI updates with Angular and AG Grid.",
-        "Contributed to migrating 15+ legacy desktop apps to modern web applications, eliminating broker-side installation and delivering firm clients a modern wealth management experience."
+        "Helped migrate 15+ wealth management applications from desktop to web, keeping existing backend APIs to support an incremental rollout.",
+        "Implemented responsive data grids and real-time UI updates with Angular and AG Grid."
       ],
       "tech": ["Angular", "AG Grid", "RxJS", "Jenkins", "Jest", "Karma", "Jasmine", "BitBucket"],
       "proofMetric": {
@@ -125,8 +125,8 @@
       "period": "May 2018 - Aug 2021",
       "location": "Budapest, Hungary",
       "bullets": [
-        "Built a gamified employee engagement dashboard with Vue.js and Node.js.",
-        "Helped reduce ~$100K in annual third-party tooling costs by moving email generation and styling to an internally maintained web platform."
+        "Helped move email generation and styling to an internal web platform, reducing annual third-party tooling costs by ~$100K.",
+        "Built a gamified employee engagement dashboard with Vue.js and Node.js."
       ],
       "tech": ["Vue.js", "Node.js", "Vuex", "MongoDB", "Amazon S3", "SharePoint APIs"],
       "proofMetric": {

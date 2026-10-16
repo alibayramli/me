@@ -1,21 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import {
-  AlignmentType,
-  BorderStyle,
-  Document,
-  ExternalHyperlink,
-  Packer,
-  Paragraph,
-  Table,
-  TableCell,
-  TableLayoutType,
-  TableRow,
-  TabStopType,
-  TextRun,
-  VerticalAlignTable,
-  WidthType,
-} from 'docx'
+import { Document, ExternalHyperlink, Packer, Paragraph, TabStopType, TextRun } from 'docx'
 import puppeteer from 'puppeteer'
 
 const rootDir = resolve(import.meta.dirname, '..')
@@ -101,7 +86,7 @@ const LAYOUT = {
   },
   spacing: {
     titleAfter: 60,
-    contactCellBottom: 10,
+    contactAfter: 10,
     summaryBefore: 145,
     summaryAfter: 90,
     sectionBefore: 190,
@@ -126,17 +111,6 @@ const LAYOUT = {
     bulletLeft: 520,
     bulletHanging: 220,
   },
-  contactColumnInsets: [0, 350, 590],
-  tableColumnWidths: [3300, 3300, 5306],
-}
-
-const TABLE_BORDERS = {
-  top: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
-  bottom: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
-  left: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
-  right: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
-  insideHorizontal: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
-  insideVertical: { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' },
 }
 
 const displayUrl = (url) => url.replace(/^https?:\/\/(?:www\.)?/, '').replace(/\/$/, '')
@@ -159,11 +133,6 @@ const formatCssNumber = (value) => {
 const pt = (value) => `${formatCssNumber(value)}pt`
 const halfPointsToCss = (value) => pt(halfPointsToPt(value))
 const twipsToCss = (value) => pt(twipsToPt(value))
-const contactColumnPercentages = (() => {
-  const totalWidth = LAYOUT.tableColumnWidths.reduce((sum, width) => sum + width, 0)
-
-  return LAYOUT.tableColumnWidths.map((width) => formatCssNumber((width / totalWidth) * 100))
-})()
 const PDF_LAYOUT = {
   lineHeight: {
     title: '1.02',
@@ -185,11 +154,6 @@ const PDF_LAYOUT = {
     roleAfter: 2,
     entryAfter: 140,
     singleLineAfter: 45,
-  },
-  contactPadding: {
-    columnGap: 8,
-    secondColumnInset: 14,
-    thirdColumnInset: 24,
   },
 }
 
@@ -278,62 +242,35 @@ const makeParagraph = ({
     children: children ?? [makeRun(value)],
   })
 
-const createContactCell = (cell, alignment, widthPercentage, columnIndex) =>
-  new TableCell({
-    width: { size: widthPercentage, type: WidthType.PERCENTAGE },
-    margins: {
-      top: 0,
-      right: 0,
-      bottom: LAYOUT.spacing.contactCellBottom,
-      left: LAYOUT.contactColumnInsets[columnIndex] ?? 0,
-    },
-    borders: TABLE_BORDERS,
-    verticalAlign: VerticalAlignTable.CENTER,
-    children: [
-      makeParagraph({
-        alignment,
-        spacing: { after: 0, line: LAYOUT.line.contact },
-        run: { size: LAYOUT.sizes.contact },
-        children: cell
-          ? [
-              ...(cell.label
-                ? [
-                    makeRun(`${cell.label}:`, { size: LAYOUT.sizes.contact }),
-                    makeRun(' ', { size: LAYOUT.sizes.contact }),
-                  ]
-                : []),
-              cell.href
-                ? makeLink(cell.text, cell.href, {
-                    size: LAYOUT.sizes.contact,
-                  })
-                : makeRun(cell.text, { size: LAYOUT.sizes.contact }),
-            ]
-          : [makeRun('', { size: LAYOUT.sizes.contact })],
-      }),
-    ],
-  })
+const createContactParagraphs = () => {
+  const totalWidth = LAYOUT.page.width - LAYOUT.page.margins.left - LAYOUT.page.margins.right
+  const colWidth = Math.round(totalWidth / 3)
 
-const createContactTable = () =>
-  new Table({
-    width: { size: 100, type: WidthType.PERCENTAGE },
-    columnWidths: LAYOUT.tableColumnWidths,
-    layout: TableLayoutType.FIXED,
-    margins: { top: 0, right: 0, bottom: 0, left: 0 },
-    borders: TABLE_BORDERS,
-    rows: contactRows.map(
-      (cells) =>
-        new TableRow({
-          children: cells.map((cell, index) =>
-            createContactCell(
-              cell,
-              AlignmentType.LEFT,
-              Number(contactColumnPercentages[index]),
-              index,
-            ),
-          ),
-        }),
-    ),
-  })
+  return contactRows.map((cells) =>
+    makeParagraph({
+      spacing: { after: LAYOUT.spacing.contactAfter, line: LAYOUT.line.contact },
+      run: { size: LAYOUT.sizes.contact },
+      tabStops: [
+        { type: TabStopType.LEFT, position: colWidth },
+        { type: TabStopType.LEFT, position: colWidth * 2 },
+      ],
+      children: cells.flatMap((cell, index) => [
+        ...(index > 0 ? [makeRun('\t', { size: LAYOUT.sizes.contact })] : []),
+        ...(cell.label
+          ? [
+              makeRun(`${cell.label}:`, { size: LAYOUT.sizes.contact }),
+              makeRun(' ', { size: LAYOUT.sizes.contact }),
+            ]
+          : []),
+        cell.href
+          ? makeLink(cell.text, cell.href, {
+              size: LAYOUT.sizes.contact,
+            })
+          : makeRun(cell.text, { size: LAYOUT.sizes.contact }),
+      ]),
+    }),
+  )
+}
 
 const createBullets = (items, indent = LAYOUT.bullet) =>
   items.map((item) =>
@@ -463,25 +400,17 @@ const createProjectNodes = (project) => {
 
 const inlineLink = (url, label) => `<a href="${text(url)}">${text(label)}</a>`
 
-const renderContactCell = (cell) => {
-  if (!cell) {
-    return ''
-  }
-
-  const value = cell.href ? inlineLink(cell.href, cell.text) : text(cell.text)
-  return cell.label ? `<span class="contact-label">${text(cell.label)}:</span> ${value}` : value
-}
-
 const renderPdfHtml = () => {
-  const renderContactRows = () =>
-    contactRows
-      .map(
-        (cells) => `
-          <tr>
-            ${cells.map((cell) => `<td>${renderContactCell(cell)}</td>`).join('')}
-          </tr>`,
-      )
-      .join('')
+  const renderContactGrid = () => `
+    <div class="contact-grid">
+      ${contactRows
+        .flat()
+        .map(
+          (cell) => `
+        <div>${cell.label ? `<span class="contact-label">${text(cell.label)}:</span> ` : ''}${cell.href ? inlineLink(cell.href, cell.text) : text(cell.text)}</div>`,
+        )
+        .join('')}
+    </div>`
 
   const renderBullets = (items) => `
     <ul class="compact-list">
@@ -541,31 +470,13 @@ const renderPdfHtml = () => {
         font-weight: 700;
       }
 
-      .contact-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 0;
-        table-layout: fixed;
-      }
-
-      .contact-table td {
-        padding: 0 ${pt(PDF_LAYOUT.contactPadding.columnGap)} ${twipsToCss(LAYOUT.spacing.contactCellBottom)} 0;
-        vertical-align: top;
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 0 12pt;
+        margin-bottom: ${twipsToCss(LAYOUT.spacing.contactAfter)};
         font-size: ${halfPointsToCss(LAYOUT.sizes.contact)};
         line-height: ${PDF_LAYOUT.lineHeight.contact};
-        white-space: nowrap;
-      }
-
-      .contact-table td:last-child {
-        padding-right: 0;
-      }
-
-      .contact-table td:nth-child(2) {
-        padding-left: ${pt(PDF_LAYOUT.contactPadding.secondColumnInset)};
-      }
-
-      .contact-table td:nth-child(3) {
-        padding-left: ${pt(PDF_LAYOUT.contactPadding.thirdColumnInset)};
       }
 
       .contact-label {
@@ -606,10 +517,6 @@ const renderPdfHtml = () => {
 
       .next-role {
         margin-top: ${twipsToCss(LAYOUT.spacing.roleBefore)};
-      }
-
-      .experience-entry .compact-list {
-        margin-left: ${twipsToCss(LAYOUT.experience.bulletLeft - LAYOUT.experience.inset)};
       }
 
       .company,
@@ -655,7 +562,7 @@ const renderPdfHtml = () => {
 
       .compact-list {
         margin: ${twipsToCss(PDF_LAYOUT.spacing.bulletBefore)} 0 0 ${twipsToCss(
-          LAYOUT.bullet.left - LAYOUT.bullet.hanging,
+          LAYOUT.bullet.left + LAYOUT.bullet.hanging,
         )};
         padding: 0;
       }
@@ -676,12 +583,7 @@ const renderPdfHtml = () => {
   <body>
     <main class="resume">
       <h1>${text(profile.name)}, ${text(profile.title)}</h1>
-      <table class="contact-table" role="presentation">
-        <colgroup>
-          ${contactColumnPercentages.map((width) => `<col style="width:${width}%">`).join('')}
-        </colgroup>
-        ${renderContactRows()}
-      </table>
+      ${renderContactGrid()}
 
       <p class="summary">${text(profile.summary)}</p>
 
@@ -732,7 +634,7 @@ const createDocxDocument = () =>
               }),
             ],
           }),
-          createContactTable(),
+          ...createContactParagraphs(),
           makeParagraph({
             text: profile.summary,
             spacing: {
