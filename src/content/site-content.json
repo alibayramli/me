@@ -34,7 +34,7 @@
     {
       "title": "Frontend",
       "icon": "code",
-      "skills": ["Angular", "React", "TypeScript", "JavaScript", "NgRx", "RxJS"]
+      "skills": ["Angular", "React.js", "TypeScript", "JavaScript", "NgRx", "RxJS"]
     },
     {
       "title": "Backend and APIs",
@@ -67,7 +67,7 @@
       "tech": [
         "Backstage.io",
         "TypeScript",
-        "React",
+        "React.js",
         "Node.js",
         "Python",
         "PostgreSQL",
@@ -97,7 +97,7 @@
         "Angular",
         "TypeScript",
         "NgRx",
-        "Signals",
+        "Angular Signals",
         "RxJS",
         "JavaScript",
         "Internationalization (i18n)"
@@ -139,8 +139,8 @@
   "projects": [
     {
       "title": "Template Pulse",
-      "description": "Built a Backstage plugin with React and Node.js to track software template adoption, success rates, and execution times, with searchable run history and permission-based access.",
-      "tech": ["Backstage.io", "React", "TypeScript", "Node.js", "SQLite", "REST APIs"],
+      "description": "Built a Backstage plugin with React.js and Node.js to track software template adoption, success rates, and execution times, with searchable run history and permission-based access.",
+      "tech": ["Backstage.io", "React.js", "TypeScript", "Node.js", "SQLite", "REST APIs"],
       "links": {
         "github": "https://github.com/alibayramli/template-pulse"
       },
