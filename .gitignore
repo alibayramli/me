@@ -15,7 +15,10 @@ output/resumes/
 public/resume/*
 !public/resume/Ali_Bayramli_Resume.docx
 !public/resume/Ali_Bayramli_Resume.pdf
-/.agents/skills/targeted-resume/
+
+# Local agent instructions and skills
+/AGENTS.md
+/.agents/
 
 # Env files
 .env

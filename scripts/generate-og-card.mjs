@@ -9,7 +9,7 @@ const svgPath = resolve(outputDir, 'og-card.svg')
 const pngPath = resolve(outputDir, 'og-card.png')
 
 const siteContent = JSON.parse(readFileSync(siteContentPath, 'utf8'))
-const { profile, skillCategories } = siteContent
+const { profile } = siteContent
 
 const escapeXml = (value) =>
   String(value)
@@ -19,7 +19,7 @@ const escapeXml = (value) =>
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;')
 
-const technologySummary = skillCategories.map((category) => category.skills[0]).join(' / ')
+const technologySummary = profile.primaryTechnologies.join(' / ')
 const experienceMatch = profile.summary.match(/\d+\+\s+years/i)
 const experienceSummary = [experienceMatch?.[0], ...profile.focusAreas].filter(Boolean).join(' / ')
 

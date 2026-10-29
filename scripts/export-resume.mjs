@@ -69,7 +69,7 @@ const LAYOUT = {
   sizes: {
     body: 22,
     title: 30,
-    contact: 22,
+    contact: 20,
     section: 26,
     company: 24,
     role: 22,
@@ -82,11 +82,12 @@ const LAYOUT = {
     section: 220,
     body: 220,
     tech: 220,
-    contact: 220,
+    contact: 260,
   },
   spacing: {
     titleAfter: 60,
-    contactAfter: 10,
+    availabilityAfter: 60,
+    contactAfter: 20,
     summaryBefore: 145,
     summaryAfter: 90,
     sectionBefore: 190,
@@ -112,6 +113,10 @@ const LAYOUT = {
     bulletHanging: 220,
   },
 }
+
+const contactColumnWidth = Math.round(
+  (LAYOUT.page.width - LAYOUT.page.margins.left - LAYOUT.page.margins.right) * 0.32,
+)
 
 const displayUrl = (url) => url.replace(/^https?:\/\/(?:www\.)?/, '').replace(/\/$/, '')
 const displayRepo = (url) => url.replace(/^https?:\/\/github\.com\//, '').replace(/\/$/, '')
@@ -140,7 +145,7 @@ const PDF_LAYOUT = {
     summary: '1.04',
     section: '1.02',
     tech: '1.03',
-    contact: '1.05',
+    contact: '1.18',
   },
   spacing: {
     summaryBefore: 170,
@@ -159,7 +164,6 @@ const PDF_LAYOUT = {
 
 const buildContactRows = (currentProfile) => [
   [
-    { label: 'Location', text: currentProfile.location },
     {
       label: 'Phone',
       text: currentProfile.phone,
@@ -173,14 +177,17 @@ const buildContactRows = (currentProfile) => [
   ],
   [
     {
+      label: 'Portfolio',
       text: displayUrl(currentProfile.siteUrl),
       href: currentProfile.siteUrl,
     },
     {
+      label: 'GitHub',
       text: displayUrl(currentProfile.github),
       href: currentProfile.github,
     },
     {
+      label: 'LinkedIn',
       text: displayUrl(currentProfile.linkedin),
       href: currentProfile.linkedin,
     },
@@ -188,6 +195,7 @@ const buildContactRows = (currentProfile) => [
 ]
 
 let contactRows = buildContactRows(profile)
+const availabilityLine = () => `${profile.location} | ${profile.availability}`
 
 const makeRun = (value, overrides = {}) =>
   new TextRun({
@@ -243,33 +251,38 @@ const makeParagraph = ({
   })
 
 const createContactParagraphs = () => {
-  const totalWidth = LAYOUT.page.width - LAYOUT.page.margins.left - LAYOUT.page.margins.right
-  const colWidth = Math.round(totalWidth / 3)
-
-  return contactRows.map((cells) =>
+  return [
     makeParagraph({
-      spacing: { after: LAYOUT.spacing.contactAfter, line: LAYOUT.line.contact },
-      run: { size: LAYOUT.sizes.contact },
-      tabStops: [
-        { type: TabStopType.LEFT, position: colWidth },
-        { type: TabStopType.LEFT, position: colWidth * 2 },
-      ],
-      children: cells.flatMap((cell, index) => [
-        ...(index > 0 ? [makeRun('\t', { size: LAYOUT.sizes.contact })] : []),
-        ...(cell.label
-          ? [
-              makeRun(`${cell.label}:`, { size: LAYOUT.sizes.contact }),
-              makeRun(' ', { size: LAYOUT.sizes.contact }),
-            ]
-          : []),
-        cell.href
-          ? makeLink(cell.text, cell.href, {
-              size: LAYOUT.sizes.contact,
-            })
-          : makeRun(cell.text, { size: LAYOUT.sizes.contact }),
-      ]),
+      children: [makeRun(availabilityLine(), { size: LAYOUT.sizes.contact })],
+      spacing: { after: LAYOUT.spacing.availabilityAfter, line: LAYOUT.line.contact },
+      keepNext: true,
     }),
-  )
+    ...contactRows.map((cells) =>
+      makeParagraph({
+        spacing: { after: LAYOUT.spacing.contactAfter, line: LAYOUT.line.contact },
+        run: { size: LAYOUT.sizes.contact },
+        keepNext: true,
+        tabStops: [
+          { type: TabStopType.LEFT, position: contactColumnWidth },
+          { type: TabStopType.LEFT, position: contactColumnWidth * 2 },
+        ],
+        children: cells.flatMap((cell, index) => [
+          ...(index > 0 ? [makeRun('\t', { size: LAYOUT.sizes.contact })] : []),
+          ...(cell.label
+            ? [
+                makeRun(`${cell.label}:`, { size: LAYOUT.sizes.contact }),
+                makeRun(' ', { size: LAYOUT.sizes.contact }),
+              ]
+            : []),
+          cell.href
+            ? makeLink(cell.text, cell.href, {
+                size: LAYOUT.sizes.contact,
+              })
+            : makeRun(cell.text, { size: LAYOUT.sizes.contact }),
+        ]),
+      }),
+    ),
+  ]
 }
 
 const createBullets = (items, indent = LAYOUT.bullet) =>
@@ -314,7 +327,10 @@ const createExperienceNodes = (experience, index) => {
     ...(showCompany
       ? [
           makeParagraph({
-            children: [makeRun(experience.company, { bold: true, size: LAYOUT.sizes.company })],
+            children: [
+              makeRun(experience.company, { bold: true, size: LAYOUT.sizes.company }),
+              makeRun(` | ${experience.location}`, { size: LAYOUT.sizes.company }),
+            ],
             spacing: {
               before: index > 0 ? LAYOUT.spacing.employerBefore : 0,
               after: LAYOUT.spacing.companyAfter,
@@ -375,9 +391,16 @@ const createExperienceNodes = (experience, index) => {
 const createProjectNodes = (project) => {
   const descriptionChildren = [makeRun(project.description)]
 
-  if (project.links?.github) {
+  if (project.links?.live) {
     descriptionChildren.push(makeRun('', { break: 1 }))
-    descriptionChildren.push(makeRun('GitHub: '))
+    descriptionChildren.push(makeLink('Live demo', project.links.live))
+  }
+
+  if (project.links?.github) {
+    if (!project.links.live) {
+      descriptionChildren.push(makeRun('', { break: 1 }))
+    }
+    descriptionChildren.push(makeRun(project.links.live ? ' | GitHub: ' : 'GitHub: '))
     descriptionChildren.push(makeLink(displayRepo(project.links.github), project.links.github))
   }
 
@@ -402,15 +425,19 @@ const inlineLink = (url, label) => `<a href="${text(url)}">${text(label)}</a>`
 
 const renderPdfHtml = () => {
   const renderContactGrid = () => `
-    <div class="contact-grid">
-      ${contactRows
-        .flat()
+    <p class="availability">${text(availabilityLine())}</p>
+    ${contactRows
+      .map(
+        (cells) => `<div class="contact-grid">
+      ${cells
         .map(
           (cell) => `
         <div>${cell.label ? `<span class="contact-label">${text(cell.label)}:</span> ` : ''}${cell.href ? inlineLink(cell.href, cell.text) : text(cell.text)}</div>`,
         )
         .join('')}
-    </div>`
+    </div>`,
+      )
+      .join('')}`
 
   const renderBullets = (items) => `
     <ul class="compact-list">
@@ -421,7 +448,7 @@ const renderPdfHtml = () => {
     const showCompany = index === 0 || experiences[index - 1].company !== experience.company
     return `
       <div class="experience-entry ${showCompany ? (index > 0 ? 'new-employer' : '') : 'next-role'}">
-        ${showCompany ? `<p class="company">${text(experience.company)}</p>` : ''}
+        ${showCompany ? `<p class="company"><span>${text(experience.company)}</span><span class="location"> | ${text(experience.location)}</span></p>` : ''}
         <p class="role"><strong>${text(experience.role)}</strong><span class="date">${text(experience.period)}</span></p>
         ${renderBullets(experience.bullets)}
         <p class="tech"><strong>Technologies:</strong> ${text(experience.tech.join(', '))}</p>
@@ -429,9 +456,13 @@ const renderPdfHtml = () => {
   }
 
   const renderProject = (project) => {
-    const source = project.links?.github
-      ? `<br />GitHub: ${inlineLink(project.links.github, displayRepo(project.links.github))}`
-      : ''
+    const links = [
+      project.links?.live ? inlineLink(project.links.live, 'Live demo') : '',
+      project.links?.github
+        ? `GitHub: ${inlineLink(project.links.github, displayRepo(project.links.github))}`
+        : '',
+    ].filter(Boolean)
+    const source = links.length > 0 ? `<br />${links.join(' | ')}` : ''
 
     return `
       <div class="entry">
@@ -472,9 +503,14 @@ const renderPdfHtml = () => {
 
       .contact-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 0 12pt;
+        grid-template-columns: repeat(2, ${twipsToCss(contactColumnWidth)}) minmax(0, 1fr);
         margin-bottom: ${twipsToCss(LAYOUT.spacing.contactAfter)};
+        font-size: ${halfPointsToCss(LAYOUT.sizes.contact)};
+        line-height: ${PDF_LAYOUT.lineHeight.contact};
+      }
+
+      .availability {
+        margin: 0 0 ${twipsToCss(LAYOUT.spacing.availabilityAfter)};
         font-size: ${halfPointsToCss(LAYOUT.sizes.contact)};
         line-height: ${PDF_LAYOUT.lineHeight.contact};
       }
@@ -545,6 +581,10 @@ const renderPdfHtml = () => {
       .date {
         flex-shrink: 0;
         font-size: ${halfPointsToCss(LAYOUT.sizes.date)};
+        font-weight: 400;
+      }
+
+      .location {
         font-weight: 400;
       }
 
@@ -627,6 +667,7 @@ const createDocxDocument = () =>
         children: [
           makeParagraph({
             spacing: { after: LAYOUT.spacing.titleAfter, line: LAYOUT.line.title },
+            keepNext: true,
             children: [
               makeRun(`${profile.name}, ${profile.title}`, {
                 bold: true,

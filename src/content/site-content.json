@@ -1,13 +1,14 @@
 {
   "profile": {
     "name": "Ali Bayramli",
-    "title": "Senior Software Engineer",
-    "headline": "I build web applications and Backstage developer platforms.",
-    "summary": "Senior Software Engineer with 8+ years building web applications, including trading interfaces built with Angular and internal developer platforms built on Backstage. I design reusable components and automate provisioning, configuration, and access management.",
-    "focusAreas": ["Full-stack development", "Developer platforms", "Automation"],
-    "availability": "Open to remote software engineering roles and projects",
-    "contactHeadline": "Open to remote software engineering roles and projects.",
-    "location": "Baku, Azerbaijan",
+    "title": "Senior Full-Stack Engineer",
+    "headline": "I build web applications with Angular, React and Node.js.",
+    "summary": "Senior Full-Stack Engineer with 8+ years building and modernizing enterprise web applications, trading platforms and internal developer tooling. Experienced in leading technical initiatives, designing reusable architectures and automating engineering processes.",
+    "focusAreas": ["Web applications", "Internal tools", "Automation"],
+    "primaryTechnologies": ["Angular", "React", "TypeScript", "Node.js"],
+    "availability": "Available for in-office and remote B2B roles",
+    "contactHeadline": "I'm available for in-office and remote B2B roles using Angular, React or Node.js.",
+    "location": "Azerbaijan (UTC+4)",
     "phone": "+994773183356",
     "email": "bayramliialii@gmail.com",
     "linkedin": "https://www.linkedin.com/in/alibayramli",
@@ -39,17 +40,12 @@
     {
       "title": "Backend and APIs",
       "icon": "server",
-      "skills": ["Node.js", "Python", "PostgreSQL", "REST APIs"]
+      "skills": ["Node.js", "REST APIs", "PostgreSQL", "Python"]
     },
     {
-      "title": "Developer Platforms",
+      "title": "Engineering Tooling",
       "icon": "layers",
-      "skills": ["Backstage.io", "Software Templates", "Service Catalogs", "Golden Paths"]
-    },
-    {
-      "title": "Cloud and CI/CD",
-      "icon": "workflow",
-      "skills": ["Docker", "Kubernetes", "Helm", "Argo CD", "Terraform", "GitLab CI/CD"]
+      "skills": ["GitLab CI/CD", "Backstage", "Internal Developer Portals (IDP)"]
     }
   ],
   "experiences": [
@@ -59,29 +55,24 @@
       "period": "Mar 2024 - Present",
       "location": "Remote",
       "bullets": [
-        "Design Backstage templates with shared provisioning, configuration, and access automation, reducing duplication and saving ~3,000 engineering hours monthly.",
-        "Lead development of golden paths, scorecards, and service catalog workflows for a Backstage internal developer platform (IDP) in an organization of 1,000+ developers.",
-        "Build Backstage plugins that use the Azure AI SDK to validate service catalog metadata.",
+        "Build Backstage plugins with React, TypeScript and Node.js, including AI-assisted validation of service catalog metadata.",
+        "Design reusable software templates that automate provisioning, configuration and access management, supporting automation estimated to save ~3,000 engineering hours per month.",
+        "Lead development of service catalog features and scorecards for an internal developer portal in an organization of 1,000+ developers.",
         "Mentor new team members on the codebase and development tools."
       ],
       "tech": [
-        "Backstage.io",
         "TypeScript",
         "React.js",
         "Node.js",
-        "Python",
         "PostgreSQL",
-        "Azure AI SDK",
-        "Amazon EKS (AWS)",
-        "Helm",
-        "Terraform",
-        "Argo CD",
+        "Backstage.io",
+        "Python",
         "GitLab CI/CD"
       ],
       "proofMetric": {
         "value": "~3,000",
         "label": "Engineering hours saved/month",
-        "note": "XM.com - automated provisioning, configuration, and access management."
+        "note": "XM.com - contributed reusable templates and setup automation."
       }
     },
     {
@@ -90,8 +81,7 @@
       "period": "Oct 2023 - Mar 2024",
       "location": "Remote",
       "bullets": [
-        "Contributed to the Angular architecture and built reusable UI components for Trading.com’s launch in Europe and Australia.",
-        "Defined Angular component APIs that kept trading rules in each application, allowing teams to reuse components across products."
+        "Designed reusable Angular components for Trading.com's expansion into European and Australian markets, separating market-specific trading rules from shared UI logic."
       ],
       "tech": [
         "Angular",
@@ -99,7 +89,6 @@
         "NgRx",
         "Angular Signals",
         "RxJS",
-        "JavaScript",
         "Internationalization (i18n)"
       ]
     },
@@ -107,23 +96,23 @@
       "company": "Morgan Stanley",
       "role": "Angular Developer",
       "period": "Sep 2021 - Sep 2023",
-      "location": "Budapest, Hungary",
+      "location": "Budapest, Hungary (Hybrid)",
       "bullets": [
-        "Helped migrate 15+ wealth management applications from desktop to web, keeping existing backend APIs to support an incremental rollout.",
-        "Implemented responsive data grids and real-time UI updates with Angular and AG Grid."
+        "Contributed to modernizing 15+ wealth-management applications by rebuilding complex desktop functionality as Angular web interfaces.",
+        "Built reusable Angular solutions for wealth-management interfaces handling large amounts of financial data, including advanced AG Grid configurations and real-time updates with RxJS."
       ],
-      "tech": ["Angular", "AG Grid", "RxJS", "Jenkins", "Jest", "Karma", "Jasmine", "BitBucket"],
+      "tech": ["Angular", "AG Grid", "RxJS", "Jest"],
       "proofMetric": {
         "value": "15+",
-        "label": "Legacy desktop apps migrated",
-        "note": "Morgan Stanley - modern web applications"
+        "label": "Applications migrated",
+        "note": "Morgan Stanley - contributed Angular UI work to the desktop-to-web migration."
       }
     },
     {
       "company": "ExxonMobil",
       "role": "Full-Stack Developer",
       "period": "May 2018 - Aug 2021",
-      "location": "Budapest, Hungary",
+      "location": "Budapest, Hungary (On-site)",
       "bullets": [
         "Helped move email generation and styling to an internal web platform, reducing annual third-party tooling costs by ~$100K.",
         "Built a gamified employee engagement dashboard with Vue.js and Node.js."
@@ -132,22 +121,23 @@
       "proofMetric": {
         "value": "~$100K",
         "label": "Annual tooling costs reduced",
-        "note": "ExxonMobil - internally maintained web platform"
+        "note": "ExxonMobil - helped replace third-party email tooling with an internal web platform."
       }
     }
   ],
   "projects": [
     {
       "title": "Template Pulse",
-      "description": "Built a Backstage plugin with React.js and Node.js to track software template adoption, success rates, and execution times, with searchable run history and permission-based access.",
-      "tech": ["Backstage.io", "React.js", "TypeScript", "Node.js", "SQLite", "REST APIs"],
+      "description": "Built a full-stack Backstage plugin with React, TypeScript and Node.js to track software template usage and run history, with searchable results and permission-based access. Designed it as an installable plugin that can be integrated into existing Backstage developer portals.",
+      "tech": ["React.js", "TypeScript", "Node.js", "Backstage.io", "SQLite", "REST APIs"],
       "links": {
+        "live": "https://alibayramli.github.io/template-pulse-demo/",
         "github": "https://github.com/alibayramli/template-pulse"
       },
       "caseStudy": [
-        "Shows which software templates developers use, how often runs succeed, and how long they take.",
-        "Helps teams investigate problems with filters, searchable run history, and links to the original tasks.",
-        "Lets developers review their own activity and authorized team members see template usage across the organization."
+        "Built a React dashboard to compare template usage, success rates and run times, with filters for date, template, user and team.",
+        "Added backend permission checks so developers can see their own runs and authorized users can view activity across the organization.",
+        "Added a database history module so analytics can include all stored template runs."
       ]
     }
   ]
