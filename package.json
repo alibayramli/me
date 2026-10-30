@@ -22,7 +22,6 @@
     "og:generate": "node scripts/generate-og-card.mjs",
     "preview": "astro preview",
     "resume": "node scripts/export-resume.mjs --output-dir public/resume",
-    "resume:targeted": "node scripts/export-resume.mjs --target .resume-targets/current.json --output-dir output/resumes",
     "prepare": "husky",
     "precommit:staged": "lint-staged",
     "check": "npm run format:check && npm run lint && npm run build && npm run analytics:check"

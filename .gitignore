@@ -8,10 +8,9 @@ pnpm-debug.log*
 # Build output
 dist/
 build/
-output/resumes/
 
 # Local role-specific resume inputs and generated files
-.resume-targets/
+/targeted-resumes/
 public/resume/*
 !public/resume/Ali_Bayramli_Resume.docx
 !public/resume/Ali_Bayramli_Resume.pdf
