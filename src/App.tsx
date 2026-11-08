@@ -1,12 +1,9 @@
-import AnimatedBackground from '@/components/sections/AnimatedBackground'
 import Contact from '@/components/sections/Contact'
 import Experience from '@/components/sections/Experience'
 import Footer from '@/components/sections/Footer'
 import Hero from '@/components/sections/Hero'
-import Impact from '@/components/sections/Impact'
 import Navigation from '@/components/sections/Navigation'
 import Projects from '@/components/sections/Projects'
-import Skills from '@/components/sections/Skills'
 import Blog from '@/components/sections/Blog'
 import type { BlogPostSummary } from '@/lib/blog-types'
 
@@ -23,14 +20,11 @@ function App({ posts }: AppProps) {
       >
         Skip to content
       </a>
-      <AnimatedBackground />
       <Navigation page="home" />
       <main id="main-content">
         <Hero />
-        <Impact />
-        <Experience />
         <Projects />
-        <Skills />
+        <Experience />
         {posts.length > 0 ? <Blog posts={posts} /> : null}
         <Contact />
       </main>

@@ -1,140 +1,84 @@
 import { ChevronDown, ExternalLink } from 'lucide-react'
 import { GitHubIcon } from '@/components/brand-icons'
-import { Card, CardContent } from '@/components/ui/card'
 import { PROJECTS } from '@/lib/portfolio-data'
-import { cn } from '@/lib/utils'
 
-const ProjectHighlights = ({ items }: { items: string[] }) => (
-  <ul className="card-list mt-4 space-y-4 text-sm leading-relaxed text-muted-foreground">
-    {items.map((item) => (
-      <li key={item} className="card-list-item">
-        <span className="card-list-bullet" aria-hidden="true" />
-        <span>{item}</span>
-      </li>
-    ))}
-  </ul>
-)
+const Projects = () => (
+  <section id="projects" className="scroll-mt-24 px-6 py-8 md:py-10">
+    <div className="mx-auto max-w-6xl">
+      <h2 className="mb-6 text-3xl font-bold md:text-4xl">Projects</h2>
 
-const Projects = () => {
-  const isFeatured = PROJECTS.length === 1
+      <div className="divide-y divide-border/70 border-y border-border/70">
+        {PROJECTS.map((project) => (
+          <article
+            key={project.title}
+            className="grid gap-4 py-6 md:grid-cols-[12rem_minmax(0,1fr)] md:gap-10"
+          >
+            <h3 className="text-xl font-semibold">{project.title}</h3>
+            <div>
+              <p className="max-w-2xl text-base leading-7 text-foreground/90">
+                {project.description}
+              </p>
+              <p className="mt-3 text-xs leading-6 text-muted-foreground">
+                {project.tech.join(' / ')}
+              </p>
 
-  return (
-    <section id="projects" className="scroll-mt-24 px-6 py-16 md:py-20">
-      <div className="mx-auto max-w-6xl">
-        <h2 className="mb-10 text-3xl font-bold md:text-4xl">Selected projects</h2>
-
-        <div className={cn('grid grid-cols-1 gap-6', !isFeatured && 'md:grid-cols-2')}>
-          {PROJECTS.map((project) => (
-            <Card
-              key={project.title}
-              className={cn('glass overflow-hidden border-0', isFeatured && 'rounded-3xl py-0')}
-            >
-              <CardContent
-                className={cn(
-                  'h-full p-6 md:p-7',
-                  isFeatured && 'md:p-8 lg:p-10',
-                  isFeatured &&
-                    project.caseStudy.length > 0 &&
-                    'grid gap-8 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-12',
-                )}
-              >
-                <div className="flex h-full min-w-0 flex-col">
-                  <h3 className={cn('text-xl font-bold', isFeatured && 'text-2xl md:text-3xl')}>
-                    {project.title}
-                  </h3>
-
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                    {project.description}
-                  </p>
-
-                  {isFeatured ? (
-                    <ul aria-label="Built with" className="mt-5 flex flex-wrap gap-2">
-                      {project.tech.map((tech) => (
-                        <li
-                          key={tech}
-                          className="rounded-md border border-border/70 bg-background/40 px-2.5 py-1 text-xs text-muted-foreground"
-                        >
-                          {tech}
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
-                      <span className="font-semibold text-foreground/80">Built with:</span>{' '}
-                      {project.tech.slice(0, 4).join(', ')}
-                    </p>
+              {project.links && (
+                <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3">
+                  {project.links.live && (
+                    <a
+                      href={project.links.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-sm text-sm font-semibold text-primary underline-offset-4 hover:underline focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                      data-umami-event="project-link-click"
+                      data-umami-event-project={project.title}
+                      data-umami-event-destination="live"
+                      data-umami-event-placement="card-footer"
+                    >
+                      Try the demo
+                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                    </a>
                   )}
-
-                  {!isFeatured && project.caseStudy.length > 0 && (
-                    <details className="group mt-5 border-t border-border/70 pt-4">
-                      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-semibold text-foreground/85 marker:content-none">
-                        Project overview
-                        <ChevronDown
-                          className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180"
-                          aria-hidden="true"
-                        />
-                      </summary>
-                      <ProjectHighlights items={project.caseStudy} />
-                    </details>
-                  )}
-
-                  {project.links && (
-                    <div className="mt-auto flex flex-wrap gap-4 pt-6">
-                      {project.links.live && (
-                        <a
-                          href={project.links.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={cn(
-                            'flex items-center gap-1 text-sm text-primary hover:underline',
-                            isFeatured &&
-                              'gap-2 rounded-lg border border-primary/25 px-4 py-2.5 font-semibold transition-colors hover:bg-primary/10 hover:no-underline focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary',
-                          )}
-                          data-umami-event="project-link-click"
-                          data-umami-event-project={project.title}
-                          data-umami-event-destination="live"
-                          data-umami-event-placement="card-footer"
-                        >
-                          <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                          Live Demo
-                        </a>
-                      )}
-                      {project.links.github && (
-                        <a
-                          href={project.links.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={cn(
-                            'flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground',
-                            isFeatured &&
-                              'gap-2 rounded-lg border border-border bg-background/40 px-4 py-2.5 font-semibold text-foreground/90 transition-colors hover:bg-accent/70 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary',
-                          )}
-                          data-umami-event="project-link-click"
-                          data-umami-event-project={project.title}
-                          data-umami-event-destination="github"
-                          data-umami-event-placement="card-footer"
-                        >
-                          <GitHubIcon className="h-4 w-4" aria-hidden="true" />
-                          Source Code
-                        </a>
-                      )}
-                    </div>
+                  {project.links.github && (
+                    <a
+                      href={project.links.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-sm text-sm font-semibold text-muted-foreground underline-offset-4 hover:text-foreground hover:underline focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                      data-umami-event="project-link-click"
+                      data-umami-event-project={project.title}
+                      data-umami-event-destination="github"
+                      data-umami-event-placement="card-footer"
+                    >
+                      <GitHubIcon className="h-4 w-4" aria-hidden="true" />
+                      Source code
+                    </a>
                   )}
                 </div>
+              )}
 
-                {isFeatured && project.caseStudy.length > 0 && (
-                  <div className="border-t border-border/70 pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-0 lg:pl-12">
-                    <h4 className="text-sm font-semibold text-foreground/90">Project highlights</h4>
-                    <ProjectHighlights items={project.caseStudy} />
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+              {project.caseStudy.length > 0 && (
+                <details className="group mt-5">
+                  <summary className="inline-flex cursor-pointer list-none items-center gap-2 rounded-sm text-sm font-medium text-primary marker:content-none focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
+                    Implementation details
+                    <ChevronDown
+                      className="h-4 w-4 transition-transform group-open:rotate-180"
+                      aria-hidden="true"
+                    />
+                  </summary>
+                  <ul className="mt-4 max-w-2xl list-disc space-y-3 pl-5 text-sm leading-7 text-muted-foreground">
+                    {project.caseStudy.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+            </div>
+          </article>
+        ))}
       </div>
-    </section>
-  )
-}
+    </div>
+  </section>
+)
 
 export default Projects

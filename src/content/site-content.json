@@ -3,7 +3,8 @@
     "name": "Ali Bayramli",
     "title": "Senior Full-Stack Engineer",
     "headline": "I build web applications with Angular, React and Node.js.",
-    "summary": "Senior Full-Stack Engineer with 8+ years building and modernizing enterprise web applications, trading platforms and internal developer tooling. Experienced in leading technical initiatives, designing reusable architectures and automating engineering processes.",
+    "summary": "8+ years building trading interfaces, financial applications and internal tools. Currently at XM.com; previously at Morgan Stanley and ExxonMobil.",
+    "resumeSummary": "Senior Full-Stack Engineer with 8+ years building and modernizing enterprise web applications, trading platforms and internal developer tooling. Experienced in leading technical initiatives, designing reusable architectures and automating service setup.",
     "focusAreas": ["Web applications", "Internal tools", "Automation"],
     "primaryTechnologies": ["Angular", "React", "TypeScript", "Node.js"],
     "availability": "Available for in-office and remote B2B roles",
@@ -26,8 +27,8 @@
     ]
   },
   "navigation": [
-    { "label": "Experience", "href": "#experience" },
     { "label": "Projects", "href": "#projects" },
+    { "label": "Experience", "href": "#experience" },
     { "label": "Blog Posts", "href": "blog/" },
     { "label": "Contact", "href": "#contact" }
   ],
@@ -55,9 +56,9 @@
       "period": "Mar 2024 - Present",
       "location": "Remote",
       "bullets": [
-        "Build Backstage plugins with React, TypeScript and Node.js, including AI-assisted validation of service catalog metadata.",
-        "Design reusable software templates that automate provisioning, configuration and access management, supporting automation estimated to save ~3,000 engineering hours per month.",
-        "Lead development of service catalog features and scorecards for an internal developer portal in an organization of 1,000+ developers.",
+        "Build React and Node.js features for XM.com's internal developer portal, including service catalog tools and AI-assisted metadata validation.",
+        "Create reusable software templates for provisioning, configuration and access management, contributing to automation estimated to save ~3,000 engineering hours per month.",
+        "Lead work on service catalog features and scorecards for an organization of 1,000+ developers.",
         "Mentor new team members on the codebase and development tools."
       ],
       "tech": [
@@ -73,7 +74,13 @@
         "value": "~3,000",
         "label": "Engineering hours saved/month",
         "note": "XM.com - contributed reusable templates and setup automation."
-      }
+      },
+      "resumeBullets": [
+        "Build Backstage plugins with React, TypeScript and Node.js, including AI-assisted validation of service catalog metadata.",
+        "Design reusable software templates that automate provisioning, configuration and access management, supporting automation estimated to save ~3,000 engineering hours per month.",
+        "Lead development of service catalog features and scorecards for an internal developer portal in an organization of 1,000+ developers.",
+        "Mentor new team members on the codebase and development tools."
+      ]
     },
     {
       "company": "XM.com",
@@ -81,7 +88,7 @@
       "period": "Oct 2023 - Mar 2024",
       "location": "Remote",
       "bullets": [
-        "Designed reusable Angular components for Trading.com's expansion into European and Australian markets, separating market-specific trading rules from shared UI logic."
+        "Designed reusable Angular components for Trading.com's European and Australian expansion, keeping market-specific trading rules separate from shared UI code."
       ],
       "tech": [
         "Angular",
@@ -90,6 +97,9 @@
         "Angular Signals",
         "RxJS",
         "Internationalization (i18n)"
+      ],
+      "resumeBullets": [
+        "Designed reusable Angular components for Trading.com's expansion into European and Australian markets, separating market-specific trading rules from shared UI logic."
       ]
     },
     {
@@ -98,15 +108,19 @@
       "period": "Sep 2021 - Sep 2023",
       "location": "Budapest, Hungary (Hybrid)",
       "bullets": [
-        "Contributed to modernizing 15+ wealth-management applications by rebuilding complex desktop functionality as Angular web interfaces.",
-        "Built reusable Angular solutions for wealth-management interfaces handling large amounts of financial data, including advanced AG Grid configurations and real-time updates with RxJS."
+        "Helped move 15+ wealth-management applications from desktop software to Angular web interfaces.",
+        "Built reusable, data-heavy Angular interfaces with AG Grid and real-time updates using RxJS."
       ],
       "tech": ["Angular", "AG Grid", "RxJS", "Jest"],
       "proofMetric": {
         "value": "15+",
         "label": "Applications migrated",
         "note": "Morgan Stanley - contributed Angular UI work to the desktop-to-web migration."
-      }
+      },
+      "resumeBullets": [
+        "Contributed to modernizing 15+ wealth-management applications by rebuilding complex desktop functionality as Angular web interfaces.",
+        "Built reusable Angular solutions for wealth-management interfaces handling large amounts of financial data, including advanced AG Grid configurations and real-time updates with RxJS."
+      ]
     },
     {
       "company": "ExxonMobil",
@@ -114,7 +128,7 @@
       "period": "May 2018 - Aug 2021",
       "location": "Budapest, Hungary (On-site)",
       "bullets": [
-        "Helped move email generation and styling to an internal web platform, reducing annual third-party tooling costs by ~$100K.",
+        "Helped replace third-party email tooling with an internal web platform, reducing annual costs by ~$100K.",
         "Built a gamified employee engagement dashboard with Vue.js and Node.js."
       ],
       "tech": ["Vue.js", "Node.js", "Vuex", "MongoDB", "Amazon S3", "SharePoint APIs"],
@@ -122,23 +136,28 @@
         "value": "~$100K",
         "label": "Annual tooling costs reduced",
         "note": "ExxonMobil - helped replace third-party email tooling with an internal web platform."
-      }
+      },
+      "resumeBullets": [
+        "Helped move email generation and styling to an internal web platform, reducing annual third-party tooling costs by ~$100K.",
+        "Built a gamified employee engagement dashboard with Vue.js and Node.js."
+      ]
     }
   ],
   "projects": [
     {
       "title": "Template Pulse",
-      "description": "Built a full-stack Backstage plugin with React, TypeScript and Node.js to track software template usage and run history, with searchable results and permission-based access. Designed it as an installable plugin that can be integrated into existing Backstage developer portals.",
+      "description": "A Backstage plugin that shows which software templates teams use, how often runs succeed and how long they take.",
       "tech": ["React.js", "TypeScript", "Node.js", "Backstage.io", "SQLite", "REST APIs"],
       "links": {
         "live": "https://alibayramli.github.io/template-pulse-demo/",
         "github": "https://github.com/alibayramli/template-pulse"
       },
       "caseStudy": [
-        "Built a React dashboard to compare template usage, success rates and run times, with filters for date, template, user and team.",
-        "Added backend permission checks so developers can see their own runs and authorized users can view activity across the organization.",
-        "Added a database history module so analytics can include all stored template runs."
-      ]
+        "Built the React dashboard with filters for date, template, user and team.",
+        "Added backend permission checks so developers see their own runs and authorized users can view activity across the organization.",
+        "Added an optional database history module to include all stored template runs."
+      ],
+      "resumeDescription": "Built a full-stack Backstage plugin with React, TypeScript and Node.js to track software template usage and run history, with searchable results and permission-based access. Designed it as an installable plugin that can be integrated into existing Backstage developer portals."
     }
   ]
 }

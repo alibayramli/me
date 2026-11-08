@@ -114,8 +114,8 @@ const LAYOUT = {
   },
 }
 
-const contactColumnWidth = Math.round(
-  (LAYOUT.page.width - LAYOUT.page.margins.left - LAYOUT.page.margins.right) * 0.32,
+const contactColumnWidths = [0.31, 0.33].map((ratio) =>
+  Math.round((LAYOUT.page.width - LAYOUT.page.margins.left - LAYOUT.page.margins.right) * ratio),
 )
 
 const displayUrl = (url) => url.replace(/^https?:\/\/(?:www\.)?/, '').replace(/\/$/, '')
@@ -165,31 +165,31 @@ const PDF_LAYOUT = {
 const buildContactRows = (currentProfile) => [
   [
     {
-      label: 'Phone',
-      text: currentProfile.phone,
-      href: `tel:${currentProfile.phone}`,
-    },
-    {
       label: 'Email',
       text: currentProfile.email,
       href: `mailto:${currentProfile.email}`,
     },
-  ],
-  [
     {
       label: 'Portfolio',
       text: displayUrl(currentProfile.siteUrl),
       href: currentProfile.siteUrl,
     },
     {
-      label: 'GitHub',
-      text: displayUrl(currentProfile.github),
-      href: currentProfile.github,
-    },
-    {
       label: 'LinkedIn',
       text: displayUrl(currentProfile.linkedin),
       href: currentProfile.linkedin,
+    },
+  ],
+  [
+    {
+      label: 'Phone',
+      text: currentProfile.phone,
+      href: `tel:${currentProfile.phone}`,
+    },
+    {
+      label: 'GitHub',
+      text: displayUrl(currentProfile.github),
+      href: currentProfile.github,
     },
   ],
 ]
@@ -263,8 +263,8 @@ const createContactParagraphs = () => {
         run: { size: LAYOUT.sizes.contact },
         keepNext: true,
         tabStops: [
-          { type: TabStopType.LEFT, position: contactColumnWidth },
-          { type: TabStopType.LEFT, position: contactColumnWidth * 2 },
+          { type: TabStopType.LEFT, position: contactColumnWidths[0] },
+          { type: TabStopType.LEFT, position: contactColumnWidths[0] + contactColumnWidths[1] },
         ],
         children: cells.flatMap((cell, index) => [
           ...(index > 0 ? [makeRun('\t', { size: LAYOUT.sizes.contact })] : []),
@@ -503,7 +503,7 @@ const renderPdfHtml = () => {
 
       .contact-grid {
         display: grid;
-        grid-template-columns: repeat(2, ${twipsToCss(contactColumnWidth)}) minmax(0, 1fr);
+        grid-template-columns: ${contactColumnWidths.map(twipsToCss).join(' ')} minmax(0, 1fr);
         margin-bottom: ${twipsToCss(LAYOUT.spacing.contactAfter)};
         font-size: ${halfPointsToCss(LAYOUT.sizes.contact)};
         line-height: ${PDF_LAYOUT.lineHeight.contact};
@@ -745,7 +745,7 @@ const canonicalResume = {
   label: 'Canonical resume',
   outputBaseName: 'Ali_Bayramli_Resume',
   title: baseProfile.title,
-  summary: baseProfile.summary,
+  summary: baseProfile.resumeSummary ?? baseProfile.summary,
   skillLines: defaultResumeSkillLines,
   projectTitles: projects.map(({ title }) => title),
   experienceOverrides: {},
@@ -795,7 +795,7 @@ for (const variant of variantsToExport) {
   profile = {
     ...baseProfile,
     title: variant.title ?? baseProfile.title,
-    summary: variant.summary ?? baseProfile.summary,
+    summary: variant.summary ?? baseProfile.resumeSummary ?? baseProfile.summary,
     resumeSkillLines: variant.skillLines ?? defaultResumeSkillLines,
   }
   experiences = baseExperiences.map((experience) => {
@@ -803,19 +803,19 @@ for (const variant of variantsToExport) {
       variant.experienceOverrides?.[experienceKey(experience)] ??
       variant.experienceOverrides?.[experience.company]
 
-    if (!override) {
-      return experience
-    }
-
     return {
       ...experience,
-      bullets: override.bullets ?? experience.bullets,
-      tech: override.tech ?? experience.tech,
+      bullets: override?.bullets ?? experience.resumeBullets ?? experience.bullets,
+      tech: override?.tech ?? experience.tech,
     }
   })
   selectedProjects = variant.projectTitles
     .map((title) => projects.find((project) => project.title === title))
     .filter(Boolean)
+    .map((project) => ({
+      ...project,
+      description: project.resumeDescription ?? project.description,
+    }))
   contactRows = buildContactRows(profile)
 
   const docxPath = resolve(outputDir, `${variant.outputBaseName}.docx`)
