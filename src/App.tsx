@@ -25,10 +25,10 @@ function App({ posts }: AppProps) {
         <Hero />
         <Projects />
         <Experience />
-        {posts.length > 0 ? <Blog posts={posts} /> : null}
+        <Blog posts={posts} />
         <Contact />
       </main>
-      <Footer page="home" />
+      <Footer />
     </div>
   )
 }

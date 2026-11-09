@@ -40,10 +40,6 @@ const defaultResumeSkillLines = skillCategories.map(
   (category) => `${category.title}: ${category.skills.join(', ')}`,
 )
 
-let profile = baseProfile
-let experiences = baseExperiences
-let selectedProjects = projects
-
 const LAYOUT = {
   color: '111111',
   fontFamily: 'Verdana, Arial, sans-serif',
@@ -131,10 +127,7 @@ const text = (value) => escapeHtml(String(value))
 
 const halfPointsToPt = (value) => value / 2
 const twipsToPt = (value) => value / 20
-const formatCssNumber = (value) => {
-  const rounded = Number(value.toFixed(3))
-  return Number.isInteger(rounded) ? String(rounded) : String(rounded)
-}
+const formatCssNumber = (value) => String(Number(value.toFixed(3)))
 const pt = (value) => `${formatCssNumber(value)}pt`
 const halfPointsToCss = (value) => pt(halfPointsToPt(value))
 const twipsToCss = (value) => pt(twipsToPt(value))
@@ -158,7 +151,6 @@ const PDF_LAYOUT = {
     companyAfter: 4,
     roleAfter: 2,
     entryAfter: 140,
-    singleLineAfter: 45,
   },
 }
 
@@ -194,7 +186,6 @@ const buildContactRows = (currentProfile) => [
   ],
 ]
 
-let contactRows = buildContactRows(profile)
 const availabilityLine = () => `${profile.location} | ${profile.availability}`
 
 const makeRun = (value, overrides = {}) =>
@@ -751,9 +742,9 @@ const canonicalResume = {
   experienceOverrides: {},
 }
 
-const variantsToExport = targetConfigPath
-  ? [JSON.parse(readFileSync(resolve(rootDir, targetConfigPath), 'utf8'))]
-  : [canonicalResume]
+const variant = targetConfigPath
+  ? JSON.parse(readFileSync(resolve(rootDir, targetConfigPath), 'utf8'))
+  : canonicalResume
 
 const experienceKey = (experience) => `${experience.company}::${experience.role}`
 
@@ -785,58 +776,56 @@ const validateExperienceTechOverrides = (variant) => {
   }
 }
 
-for (const variant of variantsToExport) {
-  if (!/^[A-Za-z0-9._-]+$/.test(variant.outputBaseName ?? '')) {
-    throw new Error(`Invalid outputBaseName: ${variant.outputBaseName}`)
-  }
-
-  validateExperienceTechOverrides(variant)
-
-  profile = {
-    ...baseProfile,
-    title: variant.title ?? baseProfile.title,
-    summary: variant.summary ?? baseProfile.resumeSummary ?? baseProfile.summary,
-    resumeSkillLines: variant.skillLines ?? defaultResumeSkillLines,
-  }
-  experiences = baseExperiences.map((experience) => {
-    const override =
-      variant.experienceOverrides?.[experienceKey(experience)] ??
-      variant.experienceOverrides?.[experience.company]
-
-    return {
-      ...experience,
-      bullets: override?.bullets ?? experience.resumeBullets ?? experience.bullets,
-      tech: override?.tech ?? experience.tech,
-    }
-  })
-  selectedProjects = variant.projectTitles
-    .map((title) => projects.find((project) => project.title === title))
-    .filter(Boolean)
-    .map((project) => ({
-      ...project,
-      description: project.resumeDescription ?? project.description,
-    }))
-  contactRows = buildContactRows(profile)
-
-  const docxPath = resolve(outputDir, `${variant.outputBaseName}.docx`)
-  const pdfPath = resolve(outputDir, `${variant.outputBaseName}.pdf`)
-  let docxExported = false
-
-  try {
-    await exportDocx(docxPath)
-    docxExported = true
-  } catch (error) {
-    if (error?.code !== 'EBUSY') {
-      throw error
-    }
-
-    console.warn(`Skipped DOCX export because the file is locked: ${docxPath}`)
-  }
-
-  await exportPdf(pdfPath)
-
-  if (docxExported) {
-    console.log(`Exported ${variant.label} DOCX: ${docxPath}`)
-  }
-  console.log(`Exported ${variant.label} PDF: ${pdfPath}`)
+if (!/^[A-Za-z0-9._-]+$/.test(variant.outputBaseName ?? '')) {
+  throw new Error(`Invalid outputBaseName: ${variant.outputBaseName}`)
 }
+
+validateExperienceTechOverrides(variant)
+
+const profile = {
+  ...baseProfile,
+  title: variant.title ?? baseProfile.title,
+  summary: variant.summary ?? baseProfile.resumeSummary ?? baseProfile.summary,
+  resumeSkillLines: variant.skillLines ?? defaultResumeSkillLines,
+}
+const experiences = baseExperiences.map((experience) => {
+  const override =
+    variant.experienceOverrides?.[experienceKey(experience)] ??
+    variant.experienceOverrides?.[experience.company]
+
+  return {
+    ...experience,
+    bullets: override?.bullets ?? experience.resumeBullets ?? experience.bullets,
+    tech: override?.tech ?? experience.tech,
+  }
+})
+const selectedProjects = variant.projectTitles
+  .map((title) => projects.find((project) => project.title === title))
+  .filter(Boolean)
+  .map((project) => ({
+    ...project,
+    description: project.resumeDescription ?? project.description,
+  }))
+const contactRows = buildContactRows(profile)
+
+const docxPath = resolve(outputDir, `${variant.outputBaseName}.docx`)
+const pdfPath = resolve(outputDir, `${variant.outputBaseName}.pdf`)
+let docxExported = false
+
+try {
+  await exportDocx(docxPath)
+  docxExported = true
+} catch (error) {
+  if (error?.code !== 'EBUSY') {
+    throw error
+  }
+
+  console.warn(`Skipped DOCX export because the file is locked: ${docxPath}`)
+}
+
+await exportPdf(pdfPath)
+
+if (docxExported) {
+  console.log(`Exported ${variant.label} DOCX: ${docxPath}`)
+}
+console.log(`Exported ${variant.label} PDF: ${pdfPath}`)

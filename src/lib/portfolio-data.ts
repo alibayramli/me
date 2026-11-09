@@ -1,30 +1,14 @@
-import { createElement, type ComponentType, type ReactNode } from 'react'
-import { Code2, Layers, Server, Workflow } from 'lucide-react'
-import siteContent from '@/content/site-content.json'
-
-type IconKey = 'code' | 'layers' | 'server' | 'workflow'
-
-const iconMap: Record<IconKey, ComponentType<{ className?: string }>> = {
-  code: Code2,
-  layers: Layers,
-  server: Server,
-  workflow: Workflow,
-}
+import { experiences, navigation, profile, projects } from '@/content/site-content.json'
 
 export const withBasePath = (assetPath: string) =>
   `${import.meta.env.BASE_URL}${assetPath.replace(/^\/+/, '')}`
 
-const renderIcon = (icon: string, className: string) => {
-  const Icon = iconMap[(icon as IconKey) || 'layers'] ?? Layers
-  return createElement(Icon, { className })
-}
-
-export type NavItem = {
+type NavItem = {
   label: string
   href: string
 }
 
-export type SiteProfile = {
+type SiteProfile = {
   name: string
   title: string
   headline: string
@@ -42,34 +26,21 @@ export type SiteProfile = {
   profileImageUrl: string
 }
 
-export type ProofMetric = {
-  value: string
-  label: string
-  note: string
-}
-
-export type SkillCategory = {
-  title: string
-  icon: ReactNode
-  skills: string[]
-}
-
-export type Experience = {
+type Experience = {
   company: string
   role: string
   period: string
   location: string
   bullets: string[]
   tech: string[]
-  proofMetric?: ProofMetric
 }
 
-export type ProjectLink = {
+type ProjectLink = {
   live?: string
   github?: string
 }
 
-export type Project = {
+type Project = {
   title: string
   description: string
   tech: string[]
@@ -78,26 +49,15 @@ export type Project = {
 }
 
 export const SITE_PROFILE: SiteProfile = {
-  ...siteContent.profile,
-  resumePdfUrl: withBasePath(siteContent.profile.resumePdf),
-  profileImageUrl: withBasePath(siteContent.profile.profileImage),
+  ...profile,
+  resumePdfUrl: withBasePath(profile.resumePdf),
+  profileImageUrl: withBasePath(profile.profileImage),
 }
 
-export const NAV_ITEMS: NavItem[] = siteContent.navigation
-
-export const PROOF_METRICS: ProofMetric[] = siteContent.experiences.flatMap((experience) =>
-  experience.proofMetric ? [experience.proofMetric] : [],
-)
-
-export const SKILL_CATEGORIES: SkillCategory[] = siteContent.skillCategories.map((category) => ({
-  ...category,
-  icon: renderIcon(category.icon, 'h-5 w-5'),
-}))
-
-export const EXPERIENCES: Experience[] = siteContent.experiences
+export const NAV_ITEMS: NavItem[] = navigation
 
 // Keep consecutive roles at the same employer together, in career order.
-export const EXPERIENCE_GROUPS = EXPERIENCES.reduce<{ company: string; roles: Experience[] }[]>(
+export const EXPERIENCE_GROUPS = experiences.reduce<{ company: string; roles: Experience[] }[]>(
   (groups, experience) => {
     const previous = groups.at(-1)
     if (previous?.company === experience.company) {
@@ -110,4 +70,4 @@ export const EXPERIENCE_GROUPS = EXPERIENCES.reduce<{ company: string; roles: Ex
   [],
 )
 
-export const PROJECTS: Project[] = siteContent.projects
+export const PROJECTS: Project[] = projects

@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 
 type BlogPostCardProps = {
   post: BlogPostSummary
-  placement: 'home-latest' | 'blog-index' | 'tag-index'
+  placement: 'blog-index' | 'tag-index'
   featured?: boolean
   showDraft?: boolean
 }
@@ -32,7 +32,6 @@ const BlogPostCard = ({
   featured = false,
   showDraft = false,
 }: BlogPostCardProps) => {
-  const Heading = placement === 'home-latest' ? 'h3' : 'h2'
   const articleEvent = {
     'data-umami-event': 'article-open',
     'data-umami-event-article': post.url,
@@ -58,7 +57,7 @@ const BlogPostCard = ({
             <PostTopics tags={post.tags} />
           </div>
         )}
-        <Heading className={cn('text-2xl font-bold leading-snug', featured && 'md:text-3xl')}>
+        <h2 className={cn('text-2xl font-bold leading-snug', featured && 'md:text-3xl')}>
           <a
             href={post.url}
             className="rounded-sm transition-colors hover:text-primary focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
@@ -66,7 +65,7 @@ const BlogPostCard = ({
           >
             {post.title}
           </a>
-        </Heading>
+        </h2>
         <p
           className={cn(
             'mt-4 text-sm leading-7 text-muted-foreground',

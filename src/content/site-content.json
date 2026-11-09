@@ -35,17 +35,14 @@
   "skillCategories": [
     {
       "title": "Frontend",
-      "icon": "code",
       "skills": ["Angular", "React.js", "TypeScript", "JavaScript", "NgRx", "RxJS"]
     },
     {
       "title": "Backend and APIs",
-      "icon": "server",
       "skills": ["Node.js", "REST APIs", "PostgreSQL", "Python"]
     },
     {
       "title": "Engineering Tooling",
-      "icon": "layers",
       "skills": ["GitLab CI/CD", "Backstage", "Internal Developer Portals (IDP)"]
     }
   ],
@@ -70,11 +67,6 @@
         "Python",
         "GitLab CI/CD"
       ],
-      "proofMetric": {
-        "value": "~3,000",
-        "label": "Engineering hours saved/month",
-        "note": "XM.com - contributed reusable templates and setup automation."
-      },
       "resumeBullets": [
         "Build Backstage plugins with React, TypeScript and Node.js, including AI-assisted validation of service catalog metadata.",
         "Design reusable software templates that automate provisioning, configuration and access management, supporting automation estimated to save ~3,000 engineering hours per month.",
@@ -112,11 +104,6 @@
         "Built reusable, data-heavy Angular interfaces with AG Grid and real-time updates using RxJS."
       ],
       "tech": ["Angular", "AG Grid", "RxJS", "Jest"],
-      "proofMetric": {
-        "value": "15+",
-        "label": "Applications migrated",
-        "note": "Morgan Stanley - contributed Angular UI work to the desktop-to-web migration."
-      },
       "resumeBullets": [
         "Contributed to modernizing 15+ wealth-management applications by rebuilding complex desktop functionality as Angular web interfaces.",
         "Built reusable Angular solutions for wealth-management interfaces handling large amounts of financial data, including advanced AG Grid configurations and real-time updates with RxJS."
@@ -132,11 +119,6 @@
         "Built a gamified employee engagement dashboard with Vue.js and Node.js."
       ],
       "tech": ["Vue.js", "Node.js", "Vuex", "MongoDB", "Amazon S3", "SharePoint APIs"],
-      "proofMetric": {
-        "value": "~$100K",
-        "label": "Annual tooling costs reduced",
-        "note": "ExxonMobil - helped replace third-party email tooling with an internal web platform."
-      },
       "resumeBullets": [
         "Helped move email generation and styling to an internal web platform, reducing annual third-party tooling costs by ~$100K.",
         "Built a gamified employee engagement dashboard with Vue.js and Node.js."

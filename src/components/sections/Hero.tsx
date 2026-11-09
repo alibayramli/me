@@ -9,7 +9,7 @@ const Hero = () => {
 
   return (
     <section id="hero" className="px-6 pb-8 pt-28 md:pb-10">
-      <div id="hero-intro" className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl">
         <div className="flex items-center gap-4 md:gap-5">
           <div className="h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-border/80 md:h-20 md:w-20">
             {imageFailed ? (
