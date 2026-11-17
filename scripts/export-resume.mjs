@@ -100,8 +100,8 @@ const LAYOUT = {
     singleLineAfter: 30,
   },
   bullet: {
-    left: 900,
-    hanging: 260,
+    left: 520,
+    hanging: 220,
   },
   experience: {
     inset: 180,
@@ -592,10 +592,12 @@ const renderPdfHtml = () => {
       }
 
       .compact-list {
-        margin: ${twipsToCss(PDF_LAYOUT.spacing.bulletBefore)} 0 0 ${twipsToCss(
-          LAYOUT.bullet.left + LAYOUT.bullet.hanging,
-        )};
+        margin: ${twipsToCss(PDF_LAYOUT.spacing.bulletBefore)} 0 0 ${twipsToCss(LAYOUT.bullet.left)};
         padding: 0;
+      }
+
+      .experience-entry .compact-list {
+        margin-left: ${twipsToCss(LAYOUT.experience.bulletLeft - LAYOUT.experience.inset)};
       }
 
       .compact-list li {
